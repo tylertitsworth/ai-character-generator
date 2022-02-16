@@ -20,7 +20,6 @@
 *.pem
 
 yarn.lock
-.estlintrc.json
 
 # debug
 npm-debug.log*
