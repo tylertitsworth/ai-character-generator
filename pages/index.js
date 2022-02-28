@@ -1,6 +1,13 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
+
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client'
+
 import Link from 'next/link';
+
+import { Provider } from 'react-redux';
+import store from '../redux/store';
+
 
 import Head from 'next/head'
 import Image from 'next/image'
@@ -24,3 +31,4 @@ export default function Home() {
         </ApolloProvider>
     )
 }
+
