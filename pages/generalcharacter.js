@@ -14,6 +14,7 @@ import {
     writeSkills
 } from '../redux/actions'
 import { X } from '../node_modules/@emotion-icons/octicons/index';
+import { Action } from '../styles/globals'
 
 function TestStore() {
 
@@ -44,11 +45,10 @@ export default function GeneralCharacter() {
     if(!loading || error) { console.log(data); }
     return (
         <div>
-            <h1>Home</h1>
             <ul>
                 <li>
                     <Link href="/backstory">
-                        <a>Continue</a>
+                        <Action>Continue</Action>
                     </Link>
                 </li>
             </ul>

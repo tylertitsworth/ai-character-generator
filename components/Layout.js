@@ -1,12 +1,16 @@
 import React from 'react';
 
-import { Frame, Title } from '../styles/globals'
+import { Frame, Page, Title } from '../styles/globals'
+import Sidebar from './SideNavbar'
 
 export default function Layout(props) {
     return (
         <Frame>
-            <Title>{props.Title}</Title>
-            {props.children}
+            <Sidebar />
+            <Page>
+                <Title>{props.Title}</Title>
+                {props.children}
+            </Page>
         </Frame>
     )
 }

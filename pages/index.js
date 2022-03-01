@@ -23,7 +23,7 @@ const client = new ApolloClient({
 export default function Home() {
     return (
         <ApolloProvider client={client}>
-            <Layout>
+            <Layout Title="Let's Get Started...">
                 <GeneralCharacter />
             </Layout>
         </ApolloProvider>

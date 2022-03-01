@@ -2,20 +2,20 @@ import React from 'react';
 import Link from 'next/link';
 
 import Layout from '../components/Layout';
+import { Action } from '../styles/globals'
 
 export default function Review() {
     return (
-        <Layout>
-            <h1>Review Information</h1>
+        <Layout Title="Review Information">
             <ul>
                 <li>
                     <Link href="/download">
-                        <a>Continue</a>
+                        <Action>Continue</Action>
                     </Link>
                 </li>
                 <li>
                     <Link href="/backstory">
-                        <a>Go Back</a>
+                        <Action>Go Back</Action>
                     </Link>
                 </li>
             </ul>

@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 
 import Layout from '../components/Layout';
+import { Action } from '../styles/globals'
 
 import store from '../redux/store';
 import { Provider } from 'react-redux';
@@ -19,17 +20,16 @@ export default function Backstory() {
     var test = TestStore()
 
     return (
-            <Layout>
-                <h1>Backstory</h1>
+            <Layout Title="Backstory">
                 <ul>
                     <li>
                         <Link href="/review">
-                            <a>Continue</a>
+                            <Action>Continue</Action>
                         </Link>
                     </li>
                     <li>
                         <Link href="/">
-                            <a>Go Back</a>
+                            <Action>Go Back</Action>
                         </Link>
                     </li>
                 </ul>
