@@ -1,11 +1,12 @@
 import React from 'react';
 
+import { Frame, Title } from '../styles/globals'
 
 export default function Layout(props) {
     return (
-        <div>
-            <h1>Title</h1>
+        <Frame>
+            <Title>{props.Title}</Title>
             {props.children}
-        </div>
+        </Frame>
     )
 }

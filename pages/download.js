@@ -1,22 +1,22 @@
 import React from 'react';
 import Link from 'next/link';
 
+import { Action } from '../styles/globals'
 import Layout from '../components/Layout';
 
 export default function Download() {
     return (
-        <Layout>
-            <h1>Download Page</h1>
-            <ul>
-                <li>
-                    <button>Download</button>
-                </li>
-                <li>
-                    <Link href="/">
-                        <a>Start Anew</a>
-                    </Link>
-                </li>
-            </ul>
+        <Layout Title="Backstory">
+                <ul>
+                    <li>
+                        <Action>Download Character Sheet as PDF</Action>
+                    </li>
+                    <li>
+                        <Link href="/">
+                            <Action>Start Over</Action>
+                        </Link>
+                    </li>
+                </ul>
         </Layout>
     )
 }
