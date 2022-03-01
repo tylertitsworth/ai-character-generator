@@ -32,18 +32,23 @@ const Sidebar = styled.div`
     height: 100%;
     background-color: #40060A;
     ul { padding: 0; };
+
+    Link:active {
+        color: #FFC357;
+    };
 `;
 
 const Sideaction = styled.button`
     width: 100%;
     margin-bottom: 10px;
-    color: #FFC357;
+    color: #B8B3B3;
     font-size: 20px;
     text-align: left;
     padding-left: 20px;
     height: 50px;
     background-color: rgba(0,0,0,0);
     border: 0;
+
 `;
 
 const Page = styled.div`
@@ -52,12 +57,47 @@ const Page = styled.div`
     flex-direction: column;
 `;
 
+const FormDisplay = styled.div`
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    height: 70%;
+    background-color: #FACE7F;
+    padding: 10px;
+
+
+    form {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        input{
+            width: 85%;
+            height: 50px;
+            font-size: 20px;
+            padding-left: 5px;
+        };
+
+        button{
+            color: #FFC357;
+            font-size: 20px;
+            background-color: #CB2D38;
+            border-radius: 10px;
+            border: 3px solid #922028;
+            box-shadow: 1px 1px 3px dimgray;
+            height: 50px;
+            width: 10%;
+        };
+    };
+`;
+
 const Action = styled.button`
     color: #FFC357;
     font-size: 20px;
     background-color: #CB2D38;
     border-radius: 10px;
     border: 3px solid #922028;
+    box-shadow: 1px 1px 3px #40060A;
     height: 50px;
 
 `;
@@ -69,4 +109,4 @@ const Title = styled.h1`
     padding-left: 30px;
 `;
 
-export { Frame, Sidebar, Sideaction, Page, Action, Title }
+export { Frame, Sidebar, Sideaction, Page, FormDisplay, Action, Title }
