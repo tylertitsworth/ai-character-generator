@@ -55,6 +55,23 @@ const Page = styled.div`
     width: 85%;
     display: flex;
     flex-direction: column;
+    align-items: center;
+`;
+
+const ButtonDisplay = styled.div`
+    justify-content: space-evenly;
+    padding: 10px;
+    width: 90%;
+    height: 10%;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-end;
+`;
+
+const Embed = styled.iframe`
+    width: 90%;
+    height: 100%;
+    border: none;
 `;
 
 const FormDisplay = styled.div`
@@ -106,8 +123,7 @@ const Action = styled.button`
 const Title = styled.h1`
     color: #CB2D38;
     font-size: 54px;
-    padding-top: 10px;
-    padding-left: 30px;
+    justify-content: center;
 `;
 
 const Field = styled.div`
@@ -139,5 +155,4 @@ const StyledSelect = styled.select`
             font-size: 20px;
         };
 `;
-
-export { Frame, Sidebar, Sideaction, Page, FormDisplay, Action, Title, Field, StyledSelect }
+export { Frame, Sidebar, Sideaction, Page, FormDisplay, Action, Title, Field, ButtonDisplay, Embed, StyledSelect }
