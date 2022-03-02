@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useQuery } from '@apollo/client';
 import { query } from '../hooks/qltree';
@@ -14,7 +14,8 @@ import {
 	writeSkills
 } from '../redux/actions'
 import { X } from '../node_modules/@emotion-icons/octicons/index';
-import { Action, FormDisplay, Field } from '../styles/globals'
+import { Action, FormDisplay, Field, StyledSelect } from '../styles/globals';
+import Dropdown from '../components/Dropdown';
 
 function TestStore(data) {
 
@@ -27,7 +28,9 @@ function TestStore(data) {
 	var equipment = ["Club", "Padded Armor"]
 	var skills = ["Athletics", "Nature"]
 
-	console.log("Inside", data)
+	console.log("Inside", data.classes)
+	const obj = Object.values(data.skills)
+	console.log("Object: ", obj[0].name)
 
 	const dispatch = useDispatch()
 	dispatch(writeRace(race))
@@ -50,12 +53,33 @@ export default function GeneralCharacter() {
 	const [toggle, setToggle] = useState(false)
 	const [userInput, setUserInput] = useState("")
 	const { data, loading, error } = useQuery(query);
-	if (!loading || error) { console.log(data); }
 
-	TestStore(data)
+	const [allClasses, setAllClasses] = useState([]);
+	const [allRaces, setAllRaces] = useState([]);
+	const [allAlignments, setAllAlignments] = useState([]);
+	const [allBackgrounds, setAllBackgrounds] = useState([]);
 
-	if (!toggle) {
-		return (
+	//if (!loading || error) { //console.log(data); 
+	//	TestStore(data)
+	//}
+	//console.log("-- LOADING: ", loading)
+	useEffect(() => {
+		if (loading === false) {
+			console.log("--- LOADED DATA: ", data)
+			//console.log("classes", allClasses)
+			//console.log("races", allRaces)
+			//console.log("alignments", allAlignments)
+
+			setAllClasses(Object.entries(data.classes))
+			setAllRaces(Object.entries(data.races));
+			setAllAlignments(Object.entries(data.alignments));
+			setAllBackgrounds(Object.entries(data.backgrounds));
+		}
+
+	}, [loading, error])
+
+	return (
+			<>
 			<FormDisplay>
 				<form onSubmit={(e) => {
 					if (userInput === '') {
@@ -72,32 +96,21 @@ export default function GeneralCharacter() {
 					<input value={userInput} placeholder="Enter a description of your character" onChange={(e) => setUserInput(e.target.value) }/>
 					<button>Submit</button>
 				</form>
+
+				{toggle ?
+					<>
+						<h1>Results: </h1>
+						<Dropdown data={allRaces} />
+						<Dropdown data={allClasses} />
+						<Dropdown data={allAlignments} />
+						<Dropdown data={allBackgrounds} />
+
+
+					</>
+					: <h1></h1>
+				}
 			</FormDisplay>
-		)
-	}
-	else {
-		return (
-			<div>
-				<FormDisplay>
-					<Field>
-						<h3>Race</h3>					
-					</Field>
-					<Field>
-						<h3>Class</h3>
-					</Field>
-					<Field>
-						<h3>Subclass</h3>
-					</Field>
-					<Field>
-						<h3>Alignment</h3>
-					</Field>
-					<Field>
-						<h3>Background</h3>
-					</Field>
-					<Field>
-						<h3>Weapon</h3>
-					</Field>
-				</FormDisplay>
+			{toggle ?
 				<ul>
 					<li>
 						<Link href="/backstory">
@@ -105,7 +118,9 @@ export default function GeneralCharacter() {
 						</Link>
 					</li>
 				</ul>
-			</div>
+				:
+				<h1></h1>
+			}
+			</>
 		)
-    }
-}
+	}

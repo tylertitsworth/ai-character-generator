@@ -63,7 +63,7 @@ const FormDisplay = styled.div`
     width: 80%;
     min-height: 70%;
     background-color: #FACE7F;
-    padding: 15px;
+    padding: 10px;
 
 
 
@@ -116,13 +116,28 @@ const Field = styled.div`
     border: 1px solid #40060A;
     width: 40%;
 
-    margin-bottom: 9px;
+    margin-top: 9px;
 
-    h3{
-        padding-left: 10px;
-        font-weight: normal;
+    h3 {
+            padding-left: 10px;
+            font-weight: normal;
+       
     };
 `;
 
+const StyledSelect = styled.select`
+    width: 100%;
+    height: 100%;
+    padding: .6rem;
+    background-color: rgba(0,0,0,0);
+    font-size: 20px;
+    font-weight: normal;
 
-export { Frame, Sidebar, Sideaction, Page, FormDisplay, Action, Title, Field }
+        option {
+            padding-left: 10px;
+
+            font-size: 20px;
+        };
+`;
+
+export { Frame, Sidebar, Sideaction, Page, FormDisplay, Action, Title, Field, StyledSelect }
