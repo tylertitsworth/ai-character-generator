@@ -14,12 +14,12 @@ export default function SideNavbar(props) {
                 </li>
                 <li>
                     <Link href="/backstory">
-                        <Sideaction>Backstory</Sideaction>
+                        <Sideaction>Build Backstory</Sideaction>
                     </Link>
                 </li>
                 <li>
                     <Link href="/review">
-                        <Sideaction>Review</Sideaction>
+                        <Sideaction>Review Results</Sideaction>
                     </Link>
                 </li>
             </ul>

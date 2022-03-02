@@ -61,9 +61,10 @@ const FormDisplay = styled.div`
     margin-left: auto;
     margin-right: auto;
     width: 80%;
-    height: 70%;
+    min-height: 70%;
     background-color: #FACE7F;
-    padding: 10px;
+    padding: 15px;
+
 
 
     form {
@@ -109,4 +110,19 @@ const Title = styled.h1`
     padding-left: 30px;
 `;
 
-export { Frame, Sidebar, Sideaction, Page, FormDisplay, Action, Title }
+const Field = styled.div`
+    background-color: white;
+    box-shadow: 5px 5px  5px inset #B8B3B3;
+    border: 1px solid #40060A;
+    width: 40%;
+
+    margin-bottom: 9px;
+
+    h3{
+        padding-left: 10px;
+        font-weight: normal;
+    };
+`;
+
+
+export { Frame, Sidebar, Sideaction, Page, FormDisplay, Action, Title, Field }
