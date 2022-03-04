@@ -65,10 +65,24 @@ export default function GeneralCharacter() {
 	const [allRaces, setAllRaces] = useState([]);
 	const [allSpells, setAllSpells] = useState([])
 
+	const [profChoices, setProfChoices] = useState({
+		oneprofchoice: false,
+		twoprofchoice: false,
+		threeprofchoice: false
+	})
+
+	var testClass = [];
+	var testClassProf = 0;
+
+
+
 	//if (!loading || error) { //console.log(data); 
 	//	TestStore(data)
 	//}
 	//console.log("-- LOADING: ", loading)
+    if (!loading || error) {
+
+    }
 	useEffect(() => {
 		if (loading === false) {
 			console.log("--- LOADED DATA: ", data)
@@ -85,8 +99,30 @@ export default function GeneralCharacter() {
 			setAllRaces(Object.entries(data.races));
 			setAllSpells(Object.entries(data.spells));
 		}
+		if (toggle === true) {
+		//
+			testClass = allClasses[2]
+			console.log(testClass)
+		//	//testClassProf = testClass[1].proficiency_choices.length;
+		//	console.log("------------", testClass[1].proficiency_choices.length)
+		//	if (testClass[1].proficiency_choices.length == 3) {
+		//		setProfChoices(profChoices.threeprofchoice = true)
+		//		console.log(profChoices)
+		//	}
+		//	else if (testClass[1].proficiency_choices.length == 2) {
+		//		setProfChoices(profChoices.twoprofchoice = true)
+		//		console.log(profChoices)
+		//	}
+		//	else {
+		//		setProfChoices(profChoices.oneprofchoice = true)
+		//		console.log(profChoices)
+		//
+		//	}
+        }
+	}, [loading, error, toggle])
 
-	}, [loading, error])
+	// if/elses for <SkillDropdown> 's (1-3)
+
 
 	return (
 			<>
@@ -106,7 +142,7 @@ export default function GeneralCharacter() {
 					<input value={userInput} placeholder="Enter a description of your character" onChange={(e) => setUserInput(e.target.value) }/>
 					<button>Submit</button>
 				</form>
-
+	
 				{toggle ?	// eventually will have to include the loading variable of the OpenAI api call
 					<>
 						<h1>Results: </h1>
@@ -116,7 +152,35 @@ export default function GeneralCharacter() {
 								<Dropdown data={allClasses} />
 								<Dropdown data={allAlignments} />
 								<Dropdown data={allBackgrounds} />
-								<SkillDropdown skills={allSkills} classes={allClasses}/>
+								{/*
+								{profChoices.threeprofchoice ?	// Isn't working
+									<>
+										<SkillDropdown profid="0" classes={allClasses} />			// profid here would switch between the different proficiency choices
+										<SkillDropdown profid="0" classes={allClasses} />
+										<SkillDropdown profid="1" classes={allClasses} />
+										<SkillDropdown profid="2" classes={allClasses} />
+									</>
+
+									: <></>
+								}
+
+								{profChoices.twoprofchoice ?
+									<>
+										<SkillDropdown profid="0" classes={allClasses} />
+										<SkillDropdown profid="1" classes={allClasses} />
+									</>
+
+									: <></>
+								}
+
+								{profChoices.oneprofchoice ?
+									<>
+										<SkillDropdown profid="0" classes={allClasses} />
+									</>
+
+									: <></>
+								}
+								*/}
 							</FlexColumn>
 							<FlexColumn>
 								<AbilityScoreDisplay data={allAbilityScores}/>
@@ -136,7 +200,7 @@ export default function GeneralCharacter() {
 					</li>
 				</ul>
 				:
-				<h1></h1>
+				<></>
 			}
 			</>
 		)

@@ -229,7 +229,7 @@ const StoryDisplay = styled.div`
     padding-left: 10px;
     padding-right: 10px;
     width: 95%;
-    height: 60%;
+    height: 70%;
     background-color: white;
     overflow-y: auto;
 
