@@ -52,7 +52,7 @@ export default function Backstory() {
                             <StoryDisplay>
                                 <p>{testText}</p>
                             </StoryDisplay>
-                            <Action>Try Again</Action>
+                            <Action >Try Again</Action>
                         </FlexRow>
                         :
                         <></>

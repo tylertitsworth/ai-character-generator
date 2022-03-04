@@ -8,8 +8,8 @@ export default function AbilityScoreDisplay(props) {
 		<FlexRow>
 			{
 				abilityData.map((ability, i) =>
-					<AbilityScore>
-						<textfield>##</textfield>
+					<AbilityScore key={i}>
+						<h1>##</h1>
 						<h2>{ability[1].full_name}</h2>
 					</AbilityScore>
 				)

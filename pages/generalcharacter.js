@@ -16,6 +16,7 @@ import {
 import { X } from '../node_modules/@emotion-icons/octicons/index';
 import { Action, FormDisplay, FlexColumn, FlexRow } from '../styles/globals';
 import Dropdown from '../components/Dropdown';
+import SkillDropdown from '../components/SkillDropdown';
 import AbilityScoreDisplay from '../components/AbilityScoreDisplay';
 
 function TestStore(data) {
@@ -115,6 +116,7 @@ export default function GeneralCharacter() {
 								<Dropdown data={allClasses} />
 								<Dropdown data={allAlignments} />
 								<Dropdown data={allBackgrounds} />
+								<SkillDropdown skills={allSkills} classes={allClasses}/>
 							</FlexColumn>
 							<FlexColumn>
 								<AbilityScoreDisplay data={allAbilityScores}/>
