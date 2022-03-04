@@ -30,7 +30,8 @@ const Frame = styled.div`
 const Sidebar = styled.div`
     width: 15%;
     height: 100%;
-    background-color: #40060A;
+    background-color: rgba(64,6,10,.6);
+    box-shadow: 3px 3px 6px -3px rgba(0,0,0,0.7);
     ul { padding: 0; };
 
     Link:active {
@@ -130,7 +131,7 @@ const Field = styled.div`
     background-color: white;
     box-shadow: 5px 5px  5px inset #B8B3B3;
     border: 1px solid #40060A;
-    width: 40%;
+    width: 100%;
 
     margin-top: 9px;
 
@@ -155,4 +156,67 @@ const StyledSelect = styled.select`
             font-size: 20px;
         };
 `;
-export { Frame, Sidebar, Sideaction, Page, FormDisplay, Action, Title, Field, ButtonDisplay, Embed, StyledSelect }
+
+const FlexColumn = styled.div`
+    width: 45%;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+`;
+
+const FlexRow = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+`;
+
+const AbilityScore = styled.div`
+    width: 150px;
+    height: 150px;
+    background-color: #CB2D38;
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 30px;
+    box-shadow: 0px 0px 6px 2px rgba(0,0,0,0.7);
+
+    textfield{
+        margin-top: 15px;
+        width: 80%;
+        height: 50%;
+        background-color: white;
+        text-align: center; 
+        font-size: 64px;
+        font-weight: bold;
+    };
+
+    h2{
+        color: #FFC357;
+    };
+
+`;
+
+const StoryDisplay = styled.div`
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 95%;
+    height: 60%;
+    background-color: white;
+    overflow-y: auto;
+
+    p {
+        font-size: 20px;
+    };
+`;
+
+export {
+    Frame, Sidebar, Sideaction, Page, FormDisplay, Action, Title, Field,
+    ButtonDisplay, Embed, StyledSelect, FlexColumn, FlexRow, AbilityScore,
+    StoryDisplay
+}

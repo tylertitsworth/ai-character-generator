@@ -14,8 +14,9 @@ import {
 	writeSkills
 } from '../redux/actions'
 import { X } from '../node_modules/@emotion-icons/octicons/index';
-import { Action, FormDisplay, Field, StyledSelect } from '../styles/globals';
+import { Action, FormDisplay, FlexColumn, FlexRow } from '../styles/globals';
 import Dropdown from '../components/Dropdown';
+import AbilityScoreDisplay from '../components/AbilityScoreDisplay';
 
 function TestStore(data) {
 
@@ -54,10 +55,14 @@ export default function GeneralCharacter() {
 	const [userInput, setUserInput] = useState("")
 	const { data, loading, error } = useQuery(query);
 
-	const [allClasses, setAllClasses] = useState([]);
-	const [allRaces, setAllRaces] = useState([]);
+	const [allAbilityScores, setAllAbilityScores] = useState([])
+	const [allSkills, setAllSkills] = useState([]);
+	const [allLanguages, setAllLanguages] = useState([])
 	const [allAlignments, setAllAlignments] = useState([]);
 	const [allBackgrounds, setAllBackgrounds] = useState([]);
+	const [allClasses, setAllClasses] = useState([]);
+	const [allRaces, setAllRaces] = useState([]);
+	const [allSpells, setAllSpells] = useState([])
 
 	//if (!loading || error) { //console.log(data); 
 	//	TestStore(data)
@@ -69,11 +74,15 @@ export default function GeneralCharacter() {
 			//console.log("classes", allClasses)
 			//console.log("races", allRaces)
 			//console.log("alignments", allAlignments)
-
-			setAllClasses(Object.entries(data.classes))
-			setAllRaces(Object.entries(data.races));
+			console.log(Object.entries(data.abilityScores));
+			setAllAbilityScores(Object.entries(data.abilityScores));
+			setAllSkills(Object.entries(data.skills));
+			setAllLanguages(Object.entries(data.languages));
 			setAllAlignments(Object.entries(data.alignments));
 			setAllBackgrounds(Object.entries(data.backgrounds));
+			setAllClasses(Object.entries(data.classes));
+			setAllRaces(Object.entries(data.races));
+			setAllSpells(Object.entries(data.spells));
 		}
 
 	}, [loading, error])
@@ -97,17 +106,23 @@ export default function GeneralCharacter() {
 					<button>Submit</button>
 				</form>
 
-				{toggle ?
+				{toggle ?	// eventually will have to include the loading variable of the OpenAI api call
 					<>
 						<h1>Results: </h1>
-						<Dropdown data={allRaces} />
-						<Dropdown data={allClasses} />
-						<Dropdown data={allAlignments} />
-						<Dropdown data={allBackgrounds} />
-
+						<FlexRow>
+							<FlexColumn>
+								<Dropdown data={allRaces} />
+								<Dropdown data={allClasses} />
+								<Dropdown data={allAlignments} />
+								<Dropdown data={allBackgrounds} />
+							</FlexColumn>
+							<FlexColumn>
+								<AbilityScoreDisplay data={allAbilityScores}/>
+							</FlexColumn>
+						</FlexRow>
 
 					</>
-					: <h1></h1>
+					: <></>
 				}
 			</FormDisplay>
 			{toggle ?
