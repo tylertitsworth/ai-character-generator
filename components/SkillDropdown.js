@@ -10,7 +10,7 @@ export default function SkillDropdown(props) {
 	console.log("------", profid)
 	console.log(classData)
 
-	const [toggle, setToggle] = useState(true)
+	const [toggle, setToggle] = useState(true)		// will cause the useEffect below to only go off once
 	const [skill1, setSkill1] = useState("")
 	const [skill2, setSkill2] = useState("")
 	const [skill3, setSkill3] = useState("")
@@ -51,7 +51,8 @@ export default function SkillDropdown(props) {
 				setToggle(false)
 			}
 
-        }
+		}
+
 		console.log("Skill 1: ", skill1)
 		console.log("Skill 2: ", skill2)
 		console.log("Skill 3: ", skill3)

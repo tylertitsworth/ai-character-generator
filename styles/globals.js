@@ -79,7 +79,7 @@ const FormDisplay = styled.div`
     margin-left: auto;
     margin-right: auto;
     width: 80%;
-    min-height: 70%;
+    min-height: 60%;
     background-color: #FACE7F;
     padding: 10px;
     display: flex;
@@ -179,6 +179,7 @@ const FlexColumn = styled.div`
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    border: 1px dashed hotpink;
 
 `;
 
@@ -188,38 +189,55 @@ const FlexRow = styled.div`
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    border: 1px dashed blue;
 
 `;
 
 const AbilityScore = styled.div`
-    min-width: 29%;
+    width: 46%;
+    margin-left: 5px;
+    margin-right: 5px;
     background-color: #CB2D38;
-    margin-left:  50px;
-    margin-right: 50px;
-    margin-bottom: 15px;
+    border-radius: 30px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row-reverse;
     justify-content: center;
     align-items: center;
-    border-radius: 30px;
+
+    margin-bottom: 15px;
     box-shadow: 0px 0px 6px 2px rgba(0,0,0,0.7);
 
     h1{
-        margin-top: 15px;
         margin-bottom: 15px;
-        width: 80%;
-        height: 50%;
+        margin-top: 15px;
+        margin-right: 5px;
+
+        width: 20%;
         background-color: white;
         text-align: center; 
-        font-size: 64px;
+        font-size: 39px;
         font-weight: bold;
     };
 
-    h2{
-        margin-top: 0;
-        color: #FFC357;
 
+    select{
+        margin-top: 0;
+        margin-left: 5px;
+        margin-right: 5px;
+        width: 65%;
+        padding: .6rem;
+        background-color: rgba(F,F,F,1);
+        font-size: 20px;
+        font-weight: normal;
+
+            option {
+                padding-left: 10px;
+
+                font-size: 20px;
+            };
     };
+
+
 
 `;
 

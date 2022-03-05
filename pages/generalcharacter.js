@@ -14,7 +14,7 @@ import {
 	writeSkills
 } from '../redux/actions'
 import { X } from '../node_modules/@emotion-icons/octicons/index';
-import { Action, FormDisplay, FlexColumn, FlexRow } from '../styles/globals';
+import { Action, FormDisplay, FlexColumn, FlexRow, ButtonDisplay } from '../styles/globals';
 import Dropdown from '../components/Dropdown';
 import SkillDropdown from '../components/SkillDropdown';
 import AbilityScoreDisplay from '../components/AbilityScoreDisplay';
@@ -147,13 +147,12 @@ export default function GeneralCharacter() {
 				}
 			</FormDisplay>
 			{toggle ?
-				<ul>
-					<li>
+				<ButtonDisplay>
 						<Link href="/backstory">
 							<Action>Continue</Action>
 						</Link>
-					</li>
-				</ul>
+					
+				</ButtonDisplay>
 				:
 				<></>
 			}
