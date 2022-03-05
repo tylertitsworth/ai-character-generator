@@ -179,7 +179,7 @@ const FlexColumn = styled.div`
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    border: 1px dashed hotpink;
+
 
 `;
 
@@ -189,7 +189,7 @@ const FlexRow = styled.div`
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    border: 1px dashed blue;
+
 
 `;
 
@@ -227,6 +227,7 @@ const AbilityScore = styled.div`
         width: 65%;
         padding: .6rem;
         background-color: rgba(F,F,F,1);
+        border-radius: 3px;
         font-size: 20px;
         font-weight: normal;
 
