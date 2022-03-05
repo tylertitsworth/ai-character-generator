@@ -16,7 +16,7 @@ export default function SkillDropdown(props) {
 	const [skill3, setSkill3] = useState("")
 	const [skill4, setSkill4] = useState("")
 
-	var testClass = classData[5]		// change this number to get different results (0-11) 5, 0 
+	var testClass = classData[2]		// change this number to get different results (0-11) 5, 0 
 
 	
 	var choose = testClass[1].proficiency_choices[profid].choose		// (1-4)

@@ -100,28 +100,13 @@ export default function GeneralCharacter() {
 			setAllSpells(Object.entries(data.spells));
 		}
 		if (toggle === true) {
-		//
 			testClass = allClasses[2]
 			console.log(testClass)
-		//	//testClassProf = testClass[1].proficiency_choices.length;
-		//	console.log("------------", testClass[1].proficiency_choices.length)
-		//	if (testClass[1].proficiency_choices.length == 3) {
-		//		setProfChoices(profChoices.threeprofchoice = true)
-		//		console.log(profChoices)
-		//	}
-		//	else if (testClass[1].proficiency_choices.length == 2) {
-		//		setProfChoices(profChoices.twoprofchoice = true)
-		//		console.log(profChoices)
-		//	}
-		//	else {
-		//		setProfChoices(profChoices.oneprofchoice = true)
-		//		console.log(profChoices)
-		//
-		//	}
+
         }
 	}, [loading, error, toggle])
 
-	// if/elses for <SkillDropdown> 's (1-3)
+
 
 
 	return (
@@ -150,37 +135,7 @@ export default function GeneralCharacter() {
 							<FlexColumn>
 								<Dropdown data={allRaces} />
 								<Dropdown data={allClasses} />
-								<Dropdown data={allAlignments} />
-								<Dropdown data={allBackgrounds} />
-								{/*
-								{profChoices.threeprofchoice ?	// Isn't working
-									<>
-										<SkillDropdown profid="0" classes={allClasses} />			// profid here would switch between the different proficiency choices
-										<SkillDropdown profid="0" classes={allClasses} />
-										<SkillDropdown profid="1" classes={allClasses} />
-										<SkillDropdown profid="2" classes={allClasses} />
-									</>
-
-									: <></>
-								}
-
-								{profChoices.twoprofchoice ?
-									<>
-										<SkillDropdown profid="0" classes={allClasses} />
-										<SkillDropdown profid="1" classes={allClasses} />
-									</>
-
-									: <></>
-								}
-
-								{profChoices.oneprofchoice ?
-									<>
-										<SkillDropdown profid="0" classes={allClasses} />
-									</>
-
-									: <></>
-								}
-								*/}
+								<SkillDropdown profid="0" classes={allClasses} />
 							</FlexColumn>
 							<FlexColumn>
 								<AbilityScoreDisplay data={allAbilityScores}/>
