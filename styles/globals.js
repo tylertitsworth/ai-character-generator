@@ -79,7 +79,7 @@ const FormDisplay = styled.div`
     margin-left: auto;
     margin-right: auto;
     width: 80%;
-    min-height: 60%;
+    height: 65%;
     background-color: #FACE7F;
     padding: 10px;
     display: flex;
@@ -243,14 +243,19 @@ const AbilityScore = styled.div`
 `;
 
 const StoryDisplay = styled.div`
-    margin-top: 30px;
-    margin-bottom: 30px;
+
+    margin-top: 70px;
+    margin-bottom: 0;
     padding-left: 10px;
     padding-right: 10px;
+    margin-left: auto;
+    margin-right: auto;
     width: 95%;
     height: 70%;
     background-color: white;
     overflow-y: auto;
+    border-radius: 3px;
+
 
     p {
         font-size: 20px;

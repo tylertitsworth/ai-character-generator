@@ -48,11 +48,9 @@ export default function Backstory() {
                     </form>
                     {toggle ?
                         //stuff
-                        <FlexRow>
                             <StoryDisplay>
-                                <p>{testText}</p>
+                                <p>{testText}{testText}</p>
                             </StoryDisplay>
-                        </FlexRow>
                         :
                         <></>
                         }
