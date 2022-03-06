@@ -6,8 +6,6 @@ export default function SkillDropdown(props) {
 
 	var skillData = props.skills
 	var classData = props.classes
-	var profid = props.profid
-	console.log("------", profid)
 	console.log(classData)
 
 	const [toggle, setToggle] = useState(true)		// will cause the useEffect below to only go off once
@@ -16,11 +14,22 @@ export default function SkillDropdown(props) {
 	const [skill3, setSkill3] = useState("")
 	const [skill4, setSkill4] = useState("")
 
-	var testClass = classData[2]		// change this number to get different results (0-11) 5, 0 
+	var testClass = classData[5]		// change this number to get different results (0-11) 5, 0 
+
+	var MonkSwitch = testClass[1].proficiency_choices[0].from[0].name.includes("Skill: ")
+	console.log("MONK SWITCH: ", MonkSwitch)		// False if Monk
+
+	if (MonkSwitch) {
+		var choose = testClass[1].proficiency_choices[0].choose		// (1-4)
+		var choices = testClass[1].proficiency_choices[0].from		// Names
+	}
+	else {
+		var choose = testClass[1].proficiency_choices[2].choose		// (1-4)
+		var choices = testClass[1].proficiency_choices[2].from		// Names
+    }
 
 	
-	var choose = testClass[1].proficiency_choices[profid].choose		// (1-4)
-	var choices = testClass[1].proficiency_choices[profid].from		// Names
+
 	console.log(`Test Class: ${testClass[1].name}:`, testClass)
 
 

@@ -135,7 +135,7 @@ export default function GeneralCharacter() {
 							<FlexColumn>
 								<Dropdown data={allRaces} />
 								<Dropdown data={allClasses} />
-								<SkillDropdown profid="0" classes={allClasses} />
+								<SkillDropdown classes={allClasses} />
 							</FlexColumn>
 							<FlexColumn>
 								<AbilityScoreDisplay data={allAbilityScores}/>
