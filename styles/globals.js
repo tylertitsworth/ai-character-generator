@@ -13,6 +13,11 @@ import styled from '@emotion/styled'
  
  */
 
+const breakpoints = {
+    sm: 720,
+    lg: 1024
+};
+
 const Frame = styled.div`
     position: fixed;
     display: flex;
@@ -25,6 +30,7 @@ const Frame = styled.div`
 
     overflow-y: auto;
     ul { list-style: none; };
+
 `;
 
 const Sidebar = styled.div`
@@ -108,6 +114,15 @@ const FormDisplay = styled.div`
             height: 50px;
             width: 10%;
         };
+    };
+
+    @media(max-width: ${breakpoints.sm}px) {
+        form {
+            button {
+                width: 15%;
+                font-size: 15px;
+            }
+        }
     };
 `;
 
@@ -238,7 +253,13 @@ const AbilityScore = styled.div`
             };
     };
 
+    @media (min-width: ${breakpoints.sm + 1}px) and (max-width: ${breakpoints.lg}px) {
+        width: 100%;
+    }
 
+    @media(max-width: ${breakpoints.sm}px) {
+        width: 100%;
+    };
 
 `;
 
