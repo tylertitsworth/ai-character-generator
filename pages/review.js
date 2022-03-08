@@ -1,24 +1,30 @@
 import React from 'react';
 import Link from 'next/link';
+import Pdf from 'react-to-pdf'
 
 import Layout from '../components/Layout';
+<<<<<<< HEAD
 import { Action } from '../styles/globals'
+=======
+import { Action, ButtonDisplay } from '../styles/globals'
+
+const ref = React.createRef();
+>>>>>>> origin/master
 
 export default function Review() {
     return (
         <Layout Title="Review Information">
-            <ul>
-                <li>
-                    <Link href="/download">
-                        <Action>Continue</Action>
-                    </Link>
-                </li>
-                <li>
-                    <Link href="/backstory">
-                        <Action>Go Back</Action>
-                    </Link>
-                </li>
-            </ul>
+
+            <div ref={ref}> PDF Container </div>
+            <ButtonDisplay>
+                <Pdf targetRef={ref} filename="AI-Generated-5e-Character.pdf">
+                    {({ toPdf }) => <Action onClick={toPdf}>Download PDF</Action>}
+                </Pdf>
+                <Link href="/backstory">
+                    <Action>Go Back</Action>
+                </Link>
+            </ButtonDisplay>
+
         </Layout>
     )
 }

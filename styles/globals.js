@@ -75,11 +75,6 @@ const ButtonDisplay = styled.div`
     align-items: flex-end;
 `;
 
-const Embed = styled.iframe`
-    width: 90%;
-    height: 100%;
-    border: none;
-`;
 
 const FormDisplay = styled.div`
     margin-left: auto;
@@ -285,6 +280,6 @@ const StoryDisplay = styled.div`
 
 export {
     Frame, Sidebar, Sideaction, Page, FormDisplay, Action, Title, Field, SkillField,
-    ButtonDisplay, Embed, StyledSelect, FlexColumn, FlexRow, AbilityScore,
+    ButtonDisplay, StyledSelect, FlexColumn, FlexRow, AbilityScore,
     StoryDisplay
 }
