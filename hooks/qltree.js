@@ -20,7 +20,7 @@ export const query = gql`
             type
             script
         }
-        alignment {
+        alignments {
             name
             desc
         }
