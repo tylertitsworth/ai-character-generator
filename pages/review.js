@@ -10,6 +10,7 @@ const ref = React.createRef();
 export default function Review() {
     return (
         <Layout Title="Review Information">
+
             <div ref={ref}> PDF Container </div>
             <ButtonDisplay>
                 <Pdf targetRef={ref} filename="AI-Generated-5e-Character.pdf">
@@ -19,6 +20,7 @@ export default function Review() {
                     <Action>Go Back</Action>
                 </Link>
             </ButtonDisplay>
+
         </Layout>
     )
 }
