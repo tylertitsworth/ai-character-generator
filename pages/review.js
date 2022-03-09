@@ -3,13 +3,9 @@ import Link from 'next/link';
 import Pdf from 'react-to-pdf'
 
 import Layout from '../components/Layout';
-<<<<<<< HEAD
-import { Action } from '../styles/globals'
-=======
 import { Action, ButtonDisplay } from '../styles/globals'
 
 const ref = React.createRef();
->>>>>>> origin/master
 
 export default function Review() {
     return (
