@@ -5,16 +5,21 @@ import Link from 'next/link';
 import { useQuery } from '@apollo/client';
 import { query } from '../hooks/qltree';
 import Layout from '../components/Layout'
-import { useDispatch } from 'react-redux';
+
+import { useDispatch, useSelector } from 'react-redux';
 import {
 	writeClass,
-	writeSubclass,
 	writeRace,
-	writeSubrace,
 	writeEquipment,
 	writeBackground,
 	writeSkills
 } from '../redux/actions'
+
+import {
+	getClass,
+	getRace
+} from '../redux/selectors'
+
 import { X } from '../node_modules/@emotion-icons/octicons/index';
 import { Action, FormDisplay, FlexColumn, FlexRow, ButtonDisplay } from '../styles/globals';
 import Dropdown from '../components/Dropdown';
@@ -67,11 +72,10 @@ function GeneralCharacter() {
 	const [allRaces, setAllRaces] = useState([]);
 	const [allSpells, setAllSpells] = useState([])
 
-	const [profChoices, setProfChoices] = useState({
-		oneprofchoice: false,
-		twoprofchoice: false,
-		threeprofchoice: false
-	})
+
+	const dispatch = useDispatch()
+
+
 
 	var testClass = [];
 	var testClassProf = 0;
@@ -100,15 +104,24 @@ function GeneralCharacter() {
 			setAllClasses(Object.entries(data.classes));
 			setAllRaces(Object.entries(data.races));
 			setAllSpells(Object.entries(data.spells));
+
+
+			var charClass = "Barbarian"
+			dispatch(writeClass(charClass))
+			var charRace = "Halfling"
+			dispatch(writeRace(charRace))
+
 		}
 		if (toggle === true) {
 			testClass = allClasses[2]
 			console.log(testClass)
 
-        }
+
+        	}
 	}, [loading, error, toggle])
 
-
+	var currClass = useSelector(getClass)
+	var currRace = useSelector(getRace)
 
 
 	return (
@@ -134,8 +147,10 @@ function GeneralCharacter() {
 						<h1>Results: </h1>
 						<FlexRow>
 							<FlexColumn>
-								<Dropdown data={allRaces} />
-								<Dropdown data={allClasses} />
+
+								<Dropdown data={allRaces} currValue={currRace}/>
+								<Dropdown data={allClasses} currValue={currClass}/>
+
 								<SkillDropdown classes={allClasses} />
 							</FlexColumn>
 							<FlexColumn>

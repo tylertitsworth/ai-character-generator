@@ -1,11 +1,10 @@
 import {
 	WRITE_CLASS,
-	WRITE_SUBCLASS,
 	WRITE_RACE,
-	WRITE_SUBRACE,
 	WRITE_BACKGROUND,
 	WRITE_EQUIPMENT,
-	WRITE_SKILLS
+	WRITE_SKILLS,
+	WRITE_ABILITY_SCORES
 } from './actions'
 
 
@@ -21,20 +20,10 @@ function charReducer(state = [], action) {
 				...state,
 				charClass: action.charClass
 			}
-		case WRITE_SUBCLASS:
-			return {
-				...state,
-				subclass: action.subclass
-			}
 		case WRITE_RACE:
 			return {
 				...state,
 				race: action.race
-			}
-		case WRITE_SUBRACE:
-			return {
-				...state,
-				subrace: action.subrace
 			}
 		case WRITE_BACKGROUND:
 			return {
@@ -50,6 +39,18 @@ function charReducer(state = [], action) {
 			return {
 				...state,
 				skills: action.skills
+			}
+		case WRITE_ABILITY_SCORES:
+			return {
+				...state,
+				abilityScores: {
+					strength: action.strength,
+					dexterity: action.dexterity,
+					constitution: action.constitution,
+					intelligence: action.intelligence,
+					wisdom: action.wisdom,
+					charisma: action.charisma
+				}
 			}
 		default:
 			return state

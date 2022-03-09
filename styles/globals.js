@@ -221,12 +221,13 @@ const AbilityScore = styled.div`
         margin-bottom: 15px;
         margin-top: 15px;
         margin-right: 5px;
-
+        padding: 5px;
         width: 20%;
         background-color: white;
         text-align: center; 
-        font-size: 39px;
+        font-size: 30px;
         font-weight: bold;
+        border-radius: 3px;
     };
 
 
@@ -278,8 +279,25 @@ const StoryDisplay = styled.div`
     };
 `;
 
+const AbilityScoreError = styled.div`
+    width: 100%;
+    background-color: #40060A;
+    color: #CB2D38;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    h1 {
+        margin-left: 10px;
+        margin-right: 10px;
+    };
+    h2 {
+    };
+`;
+
 export {
     Frame, Sidebar, Sideaction, Page, FormDisplay, Action, Title, Field, SkillField,
     ButtonDisplay, StyledSelect, FlexColumn, FlexRow, AbilityScore,
-    StoryDisplay
+    StoryDisplay, AbilityScoreError
 }
