@@ -1,24 +1,37 @@
 import React from 'react';
 import Link from 'next/link';
-import Pdf from 'react-to-pdf'
-
+import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
+import { PDFViewer } from '@react-pdf/renderer';
+import { PDFDownloadLink } from '@react-pdf/renderer'
 import Layout from '../components/Layout';
 
 import { Action, ButtonDisplay } from '../styles/globals'
 
-const ref = React.createRef();
-
-
-
+function TestDocument() {
+    return (
+        <Document>
+            <Page size="letter">
+                <View>
+                    <Text>Test Section</Text>
+                </View>
+            </Page>
+            <Page>
+                <Text>Section 2</Text>
+            </Page>
+        </Document>
+    )
+}
+// https://github.com/diegomura/react-pdf
 export default function Review() {
     return (
         <Layout Title="Review Information">
-
-            <div ref={ref}> PDF Container </div>
+            <PDFViewer>
+                <TestDocument/>
+            </PDFViewer>
             <ButtonDisplay>
-                <Pdf targetRef={ref} filename="AI-Generated-5e-Character.pdf">
-                    {({ toPdf }) => <Action onClick={toPdf}>Download PDF</Action>}
-                </Pdf>
+                <PDFDownloadLink document={<TestDocument/>} fileName={"AI_Generated_Character_Sheet.pdf"}>
+                    <Action>Download PDF</Action>
+                </PDFDownloadLink>
                 <Link href="/backstory">
                     <Action>Go Back</Action>
                 </Link>
