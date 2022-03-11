@@ -12,7 +12,12 @@ import {
 	writeRace,
 	writeEquipment,
 	writeBackground,
-	writeSkills
+	writeSkills,
+	writeAllClasses,
+	writeAllRaces,
+	writeAllBackgrounds,
+	writeAllAlignments,
+	writeAllSkills
 } from '../redux/actions'
 
 import {
@@ -52,9 +57,18 @@ function TestStore(data) {
 
 }
 
-function handleSubmit() {
-	alert("OpenAI call here")
 
+
+function handleSubmitCleaner(userClassSelection) {
+
+	//allClass= ["Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer",	"Wizard"];
+	var curatedChoice;
+
+	curatedChoice = userClassSelection.match(/Barbarian|Fighter|Bard|Cleric|Druid|Fighter|Monk|Paladin|Ranger|Rogue|Sorcerer|Wizard/); // returns ["FIRST STRING THAT SHOWS UP"]
+	console.log(" the first choice for the users input is :  " + curatedChoice[0]);
+	//alert("api class selection is ==  " + curatedChoice[0]);
+	return curatedChoice[0]
+	//
 }
 
 function GeneralCharacter() {
@@ -105,11 +119,19 @@ function GeneralCharacter() {
 			setAllRaces(Object.entries(data.races));
 			setAllSpells(Object.entries(data.spells));
 
+			// Storage
+			dispatch(writeAllClasses(Object.entries(data.classes)))
+			dispatch(writeAllRaces(Object.entries(data.races)))
+			dispatch(writeAllBackgrounds(Object.entries(data.backgrounds)))
+			dispatch(writeAllAlignments(Object.entries(data.alignments)))
+			dispatch(writeAllSkills(Object.entries(data.skills)))
 
-			var charClass = "Barbarian"
-			dispatch(writeClass(charClass))
-			var charRace = "Halfling"
-			dispatch(writeRace(charRace))
+
+
+			//var charClass = "Barbarian"
+			//dispatch(writeClass(charClass))
+			//var charRace = "Halfling"
+			//dispatch(writeRace(charRace))
 
 		}
 		if (toggle === true) {
@@ -124,21 +146,60 @@ function GeneralCharacter() {
 	var currRace = useSelector(getRace)
 
 
+	// openapi call stuff below up until return
+	const [classInput, setclassInput] = useState("");   // same as user input
+	const [result, setResult] = useState();
+
+	async function onSubmit(event) {
+		console.log("before the preventDefault + event object")
+		console.log(event)
+		event.preventDefault();
+		console.log(">>>>>>>>>>Fetching the data from the call>>>>>>>");
+		const response = await fetch("/api/userClass", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ userClass: classInput }),
+		});
+		const data = await response.json();
+		setResult(data.result);
+		console.log("original return from open AI>> " + data.result);
+		// console.log(result);
+		var setPickedResult = handleSubmitCleaner(data.result);
+		console.log("This is the picked result from the API after sanitazation>> " + setPickedResult);
+		// TestStore(data.result);
+		// dispatch here for class selection
+		dispatch(writeClass(setPickedResult));
+		setclassInput("");
+
+		setToggle(true)
+	}
+
+
 	return (
 		<Layout Title="Let's Get Started...">        
 			<FormDisplay>
-				<form onSubmit={(e) => {
-					if (userInput === '') {
-						e.preventDefault()
-						alert("You must enter a description of your character before proceeding.")
-					}
-					else {
-					e.preventDefault();
-					handleSubmit();
-					setToggle(true)
-					}
-				}}>
-					<input value={userInput} placeholder="Enter a description of your character" onChange={(e) => setUserInput(e.target.value) }/>
+				<form onSubmit={onSubmit
+
+					// (e) => {
+					// if (userInput === '') {
+					// 	e.preventDefault()
+					// 	alert("You must enter a description of your character before proceeding.")
+					// }
+					// else {
+					// e.preventDefault();
+					// handleSubmit();
+
+					// console.log("user input>>", userInput);
+
+					// onSubmit();
+					// setToggle(true)
+					// }
+				}>
+					{/* <input value={userInput} placeholder="Enter a description of your character" onChange={(e) => setUserInput(e.target.value) }/> */}
+					<input value={classInput} placeholder="Enter a description of your character" onChange={(e) => setclassInput(e.target.value)} />
+
 					<button>Submit</button>
 				</form>
 
@@ -188,3 +249,4 @@ export default function Home() {
         </ApolloProvider2>
     )
 }
+

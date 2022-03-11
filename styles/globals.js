@@ -27,22 +27,30 @@ const Frame = styled.div`
     bottom: 0;
     left: 0;
     right: 0;
+    margin: 0;
 
     overflow-y: auto;
-    ul { list-style: none; };
+
+    ul{ list-style: none; };
+
+   
+
 
 `;
 
 const Sidebar = styled.div`
+    position: fixed;
     width: 15%;
-    height: 100%;
+    height: 100vh;
+    top: 0;
+    z-index: 99;
+    margin-top: 0;
+    margin-bottom: 0;
     background-color: rgba(64,6,10,.6);
     box-shadow: 3px 3px 6px -3px rgba(0,0,0,0.7);
     ul { padding: 0; };
 
-    Link:active {
-        color: #FFC357;
-    };
+
 `;
 
 const Sideaction = styled.button`
@@ -60,6 +68,7 @@ const Sideaction = styled.button`
 
 const Page = styled.div`
     width: 85%;
+    padding-left: 15%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -77,8 +86,6 @@ const ButtonDisplay = styled.div`
 
 
 const FormDisplay = styled.div`
-    margin-left: auto;
-    margin-right: auto;
     width: 80%;
     height: 65%;
     background-color: #FACE7F;
@@ -273,9 +280,11 @@ const StoryDisplay = styled.div`
     overflow-y: auto;
     border-radius: 3px;
 
-
     p {
+        text-transform: none;
         font-size: 20px;
+        font-weight: normal;
+        
     };
 `;
 
@@ -296,8 +305,35 @@ const AbilityScoreError = styled.div`
     };
 `;
 
+
+const Error = styled.div`
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #40060A;
+    color: #CB2D38;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    h1 {
+        margin-left: 10px;
+        margin-right: 10px;
+    };
+
+`;
+
+
+
+// !!! --- Character Sheet Styling
+
+
+
+
+
 export {
     Frame, Sidebar, Sideaction, Page, FormDisplay, Action, Title, Field, SkillField,
     ButtonDisplay, StyledSelect, FlexColumn, FlexRow, AbilityScore,
-    StoryDisplay, AbilityScoreError
+    StoryDisplay, AbilityScoreError, Error
 }

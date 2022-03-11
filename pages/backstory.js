@@ -27,7 +27,25 @@ export default function Backstory() {
     //var test = TestStore()
     const [toggle, setToggle] = useState(false)
     const [userInput, setUserInput] = useState("")
-
+   
+    // const [classInput, setclassInput] = useState("");
+    // const [result, setResult] = useState();
+  
+    // async function onSubmit(event) {
+    //   event.preventDefault();
+    //   const response = await fetch("/api/userClass", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({ userClass: classInput }),
+    //   });
+    //   const data = await response.json();
+    //   setResult(data.result);
+    //   console.log("original return"+data.result);
+    //   TestStore(data.result);
+    //   setclassInput("");
+    // }
         return (
             <Layout>
                 <FormDisplay>
@@ -38,7 +56,9 @@ export default function Backstory() {
                         }
                         else {
                             e.preventDefault();
-                            handleSubmit();
+                            // handleSubmit();
+                            console.log("after submit on backstory")
+                            onSubmit();
                             setToggle(true)
                         }
 

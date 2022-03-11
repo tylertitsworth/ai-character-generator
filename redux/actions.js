@@ -8,6 +8,14 @@ export const WRITE_EQUIPMENT = 'WRITE_EQUIPMENT';
 export const WRITE_SKILLS = 'WRITE_SKILLS';
 export const WRITE_ABILITY_SCORES = 'WRITE_ABILITY_SCORES';
 
+
+// Storage Actions
+export const WRITE_ALL_CLASSES = 'WRITE_ALL_CLASSES';
+export const WRITE_ALL_RACES = 'WRITE_ALL_RACES';
+export const WRITE_ALL_BACKGROUNDS = 'WRITE_ALL_BACKGROUNDS';
+export const WRITE_ALL_ALIGNMENTS = 'WRITE_ALL_ALIGNMENTS';
+export const WRITE_ALL_SKILLS = 'WRITE_ALL_SKILLS';
+
 // Action Functions
 
 export function writeClass(charClass) {
@@ -57,4 +65,42 @@ export function writeAbilityScores(strength, dexterity, constitution, intelligen
 			charisma: charisma
         }
     }
+}
+
+
+// Storage 
+
+export function writeAllClasses(allClasses) {
+	return {
+		type: WRITE_ALL_CLASSES,
+		allClasses: allClasses
+    }
+}
+
+export function writeAllRaces(allRaces) {
+	return {
+		type: WRITE_ALL_RACES,
+		allRaces: allRaces
+	}
+}
+
+export function writeAllBackgrounds(allBackgrounds) {
+	return {
+		type: WRITE_ALL_BACKGROUNDS,
+		allBackgrounds: allBackgrounds
+    }
+}
+
+export function writeAllAlignments(allAlignments) {
+	return {
+		type: WRITE_ALL_ALIGNMENTS,
+		allAlignments: allAlignments
+	}
+}
+
+export function writeAllSkills(allSkills) {
+	return {
+		type: WRITE_ALL_SKILLS,
+		allSkills: allSkills
+	}
 }
