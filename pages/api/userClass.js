@@ -21,11 +21,12 @@ export default async function (req, res) {
 }
 
 function generatePrompt(userClass) {
+  console.log("User input is-------------------------- "+userClass)
   const capitalizedAnimal =
   userClass[0].toUpperCase() + userClass.slice(1).toLowerCase();
-  const labels = useQuery.name;
-  console.log("User input is "+userClass);
-  console.log("these are the labels "+labels);
+  // const labels = useQuery.name;
+  console.log("User input is--------------------------- "+userClass)
+  // console.log("these are the labels "+labels);
     //Query below
   return `Suggest three classes for a dungeons and dragon character.
 

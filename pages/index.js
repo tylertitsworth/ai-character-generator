@@ -34,26 +34,26 @@ import AbilityScoreDisplay from '../components/AbilityScoreDisplay';
 function TestStore(data) {
 
 	// testing values
-	var charClass = "Barbarian"
-	var subclass = "Berserker"
-	var race = "Tiefling"
-	var subrace = "Bloodline of Mammon"
-	var background = "Acolyte"
-	var equipment = ["Club", "Padded Armor"]
-	var skills = ["Athletics", "Nature"]
+	// var charClass = "Barbarian"
+	// var subclass = "Berserker"
+	// var race = "Tiefling"
+	// var subrace = "Bloodline of Mammon"
+	// var background = "Acolyte"
+	// var equipment = ["Club", "Padded Armor"]
+	// var skills = ["Athletics", "Nature"]
 
-	console.log("Inside", data.classes)
-	const obj = Object.values(data.skills)
-	console.log("Object: ", obj[0].name)
+	// console.log("Inside", data.classes)
+	// const obj = Object.values(data.skills)
+	// console.log("Object: ", obj[0].name)
 
-	const dispatch = useDispatch()
-	dispatch(writeRace(race))
-	dispatch(writeSubrace(subrace))
-	dispatch(writeClass(charClass))
-	dispatch(writeSubclass(subclass))
-	dispatch(writeBackground(background))
-	dispatch(writeEquipment(equipment))
-	dispatch(writeSkills(skills))
+	// const dispatch = useDispatch()
+	// dispatch(writeRace(race))
+	// dispatch(writeSubrace(subrace))
+	// dispatch(writeClass(charClass))
+	// dispatch(writeSubclass(subclass))
+	// dispatch(writeBackground(background))
+	// dispatch(writeEquipment(equipment))
+	// dispatch(writeSkills(skills))
 
 }
 
@@ -65,10 +65,26 @@ function handleSubmitCleaner(userClassSelection) {
 	var curatedChoice;
 
 	curatedChoice = userClassSelection.match(/Barbarian|Fighter|Bard|Cleric|Druid|Fighter|Monk|Paladin|Ranger|Rogue|Sorcerer|Wizard/); // returns ["FIRST STRING THAT SHOWS UP"]
-	console.log(" the first choice for the users input is :  " + curatedChoice[0]);
+	
 	//alert("api class selection is ==  " + curatedChoice[0]);
-	return curatedChoice[0]
+	if (curatedChoice== null)
+		return "Paladin"
+	else{
+		console.log(" the first choice for the users input is :  " + curatedChoice[0]);
+		return curatedChoice[0]}
 	//
+}
+function handleSubmitCleanerRace(userRaceSelection){
+	// allRaces= [Dwarf, Elf, Halfling, Human, Dragonborn, Gnome, Half-Elf, Half-Orc, Tiefling]
+	var curatedRacechoice;
+	curatedRacechoice = userRaceSelection.match(/Dwarf|Elf|Halfing|Human|Dragonborn|Gnome|Half-Elf|Half-Orc|Tiefling/); 
+	if(curatedRacechoice==null)
+		return "Dragonborn"
+	else{
+		console.log(" the first choice for the users input for RACE is :  " + curatedRacechoice[0]);
+		return curatedRacechoice[0]
+	}
+	
 }
 
 function GeneralCharacter() {
@@ -142,6 +158,7 @@ function GeneralCharacter() {
         	}
 	}, [loading, error, toggle])
 
+	// i think these are causing issues on the api call part of the project
 	var currClass = useSelector(getClass)
 	var currRace = useSelector(getRace)
 
@@ -149,12 +166,15 @@ function GeneralCharacter() {
 	// openapi call stuff below up until return
 	const [classInput, setclassInput] = useState("");   // same as user input
 	const [result, setResult] = useState();
+	const [resultTwo, setResultTwo] = useState();
 
 	async function onSubmit(event) {
+
 		console.log("before the preventDefault + event object")
-		console.log(event)
+		// console.log(event)
 		event.preventDefault();
 		console.log(">>>>>>>>>>Fetching the data from the call>>>>>>>");
+		
 		const response = await fetch("/api/userClass", {
 			method: "POST",
 			headers: {
@@ -163,14 +183,35 @@ function GeneralCharacter() {
 			body: JSON.stringify({ userClass: classInput }),
 		});
 		const data = await response.json();
+		
+		// second call
+		const responseTwo = await fetch("/api/userRace", {
+			method: "POST",
+			headers: {
+			"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ userClass: classInput }),
+		});
+		const secondData= await responseTwo.json();
+
 		setResult(data.result);
-		console.log("original return from open AI>> " + data.result);
-		// console.log(result);
+		setResultTwo(secondData.resultTwo);
+		console.log("original return from open AI call 1>> " + data.result);
+
+		console.log("original return from open AI call 2>> " + secondData.resultTwo);
+
 		var setPickedResult = handleSubmitCleaner(data.result);
-		console.log("This is the picked result from the API after sanitazation>> " + setPickedResult);
+		console.log("This is the picked Class from the API after sanitazation>> " + setPickedResult);
 		// TestStore(data.result);
 		// dispatch here for class selection
+		
+
+		var setPickedRace = handleSubmitCleanerRace(secondData.resultTwo); 
+		console.log("the picked race is "+setPickedRace);
+		
 		dispatch(writeClass(setPickedResult));
+		dispatch(writeRace(setPickedRace));
+
 		setclassInput("");
 
 		setToggle(true)
@@ -209,8 +250,8 @@ function GeneralCharacter() {
 						<FlexRow>
 							<FlexColumn>
 
-								<Dropdown data={allRaces} currValue={currRace}/>
-								<Dropdown data={allClasses} currValue={currClass}/>
+								<Dropdown data={allRaces} /*currValue={currRace}*//>
+								<Dropdown data={allClasses} /*currValue={currClass}*//>
 
 								<SkillDropdown classes={allClasses} />
 							</FlexColumn>
