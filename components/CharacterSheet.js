@@ -19,13 +19,13 @@ import {
 } from '../redux/actions'
 
 import {
-	FlexRow, CharSheet, CharName, Misc, MainContent,
-	Attributes, Scores, Score, Modifier, AttrApplications, Inspiration,
-	ProficiencyBonus, LabelContainer, ListSection, ListTextInput, ListCheckboxInput,
-	PassivePerception, OtherProficiencies, Combat, CombatScore, Hitpoints, RegularHitpoints,
-	TemporaryHitpoints, MaxHitpoints, CurrentHitpoints, HitDice, TotalHitDice, RemainingHitDice,
-	DeathSaves, Marks, SuccessOrFail, Bubbles, AttacksAndSpellcasting, Equipment, Money,
-	Flavor, Features
+    FlexRowAlternate, CharSheet, CharName, Misc, MainContent,
+    Attributes, Scores, Score, Modifier, AttrApplications, Inspiration,
+    ProficiencyBonus, LabelContainer, ListSection, ListTextInput, ListCheckboxInput,
+    PassivePerception, OtherProficiencies, Combat, CombatScore, Hitpoints, RegularHitpoints,
+    TemporaryHitpoints, MaxHitpoints, CurrentHitpoints, HitDice, TotalHitDice, RemainingHitDice,
+    DeathSaves, Marks, SuccessOrFail, Bubbles, AttacksAndSpellcasting, Equipment, Money,
+    Flavor, Features
 } from '../styles/charactersheet'
 
 
@@ -46,7 +46,7 @@ export default function CharacterSheet() {
     var currClassData = []
     var currRaceData = []
 
-    console.log("Class: " + currClass + " Race: " + currRace);
+    //console.log("Class: " + currClass + " Race: " + currRace);
 
     allClasses.forEach((option) => {
         if (option[1].name === currClass) {
@@ -60,30 +60,29 @@ export default function CharacterSheet() {
         }
     })
 
-	return (
+
+    return (
         <CharSheet>
             <header>
                 <CharName>
-                    <label>Character Name</label><input name="charname" placeholder="Character Name"></input>
+                    <label>Character Name</label><input name="CharName" placeholder="Character Name"></input>
                 </CharName>
                 <Misc>
                     <ul>
                         <li>
                             <label>Class & Level</label>
-                        <select value={currClass} onChange={(event) => { dispatch(writeClass(event.target.value)) }}>
+                            <select value={currClass} onChange={(event) => { dispatch(writeClass(event.target.value)) }}>
                                 {allClasses.map((option, i) =>
                                     <option key={i} value={option[1].name}>{option[1].name} 1</option>
-                                )
-                                }
+                                )}
                             </select>
                         </li>
                         <li>
                             <label>Background</label>
-                            <select  >
+                            <select>
                                 {allBackgrounds.map((option, i) =>
                                     <option key={i} value={option[1].name}>{option[1].name}</option>
-                                )
-                                }
+                                )}
                             </select>
                         </li>
                         <li>
@@ -92,11 +91,10 @@ export default function CharacterSheet() {
                         </li>
                         <li>
                             <label>Race</label>
-                        <select value={currRace} onChange={(event) => { dispatch(writeRace(event.target.value)) }}>
+                            <select value={currRace} onChange={(event) => { dispatch(writeRace(event.target.value)) }}>
                                 {allRaces.map((option, i) =>
                                     <option key={i} value={option[1].name}>{option[1].name}</option>
-                                )
-                                }
+                                )}
                             </select>
                         </li>
                         <li>
@@ -104,13 +102,12 @@ export default function CharacterSheet() {
                             <select  >
                                 {allAlignments.map((option, i) =>
                                     <option key={i} value={option[1].name}>{option[1].name}</option>
-                                )
-                                }
+                                )}
                             </select>
                         </li>
                         <li>
                             <label>Experience Points</label>
-                            <input placeholder="3240"></input>
+                            <input placeholder="0"></input>
                         </li>
                     </ul>
                 </Misc>
@@ -123,7 +120,7 @@ export default function CharacterSheet() {
                                 <li>
                                     <Score>
                                         <label>Strength</label>
-                                    <div name="Strengthscore" placeholder="10">{currAbilityScores[0]}</div>
+                                        <div name="Strengthscore" placeholder="10">{currAbilityScores[0]}</div>
                                     </Score>
                                     <Modifier>
                                         <input name="Strengthmod" placeholder="+0"></input>
@@ -132,7 +129,7 @@ export default function CharacterSheet() {
                                 <li>
                                     <Score>
                                         <label>Dexterity</label>
-                                    <div name="Dexterityscore" placeholder="10">{currAbilityScores[1]}</div>
+                                        <div name="Dexterityscore" placeholder="10">{currAbilityScores[1]}</div>
                                     </Score>
                                     <Modifier>
                                         <input name="Dexteritymod" placeholder="+0"></input>
@@ -141,7 +138,7 @@ export default function CharacterSheet() {
                                 <li>
                                     <Score>
                                         <label>Constitution</label>
-                                    <div name="Constitutionscore" placeholder="10">{currAbilityScores[2]}</div>
+                                        <div name="Constitutionscore" placeholder="10">{currAbilityScores[2]}</div>
                                     </Score>
                                     <Modifier>
                                         <input name="Constitutionmod" placeholder="+0"></input>
@@ -150,7 +147,7 @@ export default function CharacterSheet() {
                                 <li>
                                     <Score>
                                         <label>Intelligence</label>
-                                    <div name="Intelligencescore" placeholder="10">{currAbilityScores[3]}</div>
+                                        <div name="Intelligencescore" placeholder="10">{currAbilityScores[3]}</div>
                                     </Score>
                                     <Modifier>
                                         <input name="Intelligencemod" placeholder="+0"></input>
@@ -159,7 +156,7 @@ export default function CharacterSheet() {
                                 <li>
                                     <Score>
                                         <label>Wisdom</label>
-                                    <div name="Wisdomscore" placeholder="10">{currAbilityScores[4]}</div>
+                                        <div name="Wisdomscore" placeholder="10">{currAbilityScores[4]}</div>
                                     </Score>
                                     <Modifier>
                                         <input name="Wisdommod" placeholder="+0"></input>
@@ -168,7 +165,7 @@ export default function CharacterSheet() {
                                 <li>
                                     <Score>
                                         <label>Charisma</label>
-                                    <div name="Charismascore" placeholder="10">{currAbilityScores[5]}</div>
+                                        <div name="Charismascore" placeholder="10">{currAbilityScores[5]}</div>
                                     </Score>
                                     <Modifier>
                                         <input name="Charismamod" placeholder="+0"></input>
@@ -195,23 +192,22 @@ export default function CharacterSheet() {
                                         <li key={i}>
                                             <label>{ability}</label><ListTextInput placeholder="+0" /><ListCheckboxInput type="checkbox" />
                                         </li>
-                                    )
-                                    }
+                                    )}
                                 </ul>
                                 <div>Saving Throws</div>
                             </ListSection>
                             <ListSection>
                                 <ul>
-                                {allSkills.sort(function (a, b) {
-                                    if (a[1].name.toLowerCase() < b[1].name.toLowerCase()) return -1;
-                                    if (a[1].name.toLowerCase() > b[1].name.toLowerCase()) return 1;
-                                    return 0;
-                                }).map((skill, i) => 
-                                    <li key={i}>
-                                        <label>{skill[1].name}</label><ListTextInput placeholder="+0" /><ListCheckboxInput type="checkbox" />
-                                        <span>({skill[1].ability_score.name})</span>
-                                    </li>
-                                )}
+                                    {allSkills.sort(function (a, b) {
+                                        if (a[1].name.toLowerCase() < b[1].name.toLowerCase()) return -1;
+                                        if (a[1].name.toLowerCase() > b[1].name.toLowerCase()) return 1;
+                                        return 0;
+                                    }).map((skill, i) =>
+                                        <li key={i}>
+                                            <label>{skill[1].name}</label><ListTextInput placeholder="+0" /><ListCheckboxInput type="checkbox" />
+                                            <span>({skill[1].ability_score.name})</span>
+                                        </li>
+                                    )}
                                 </ul>
                                 <div>Skills</div>
                             </ListSection>
@@ -224,15 +220,12 @@ export default function CharacterSheet() {
                         <input placeholder="10" />
                     </PassivePerception>
                     <OtherProficiencies>
-                    <label>Other Proficiences and Languages</label>
-                    <ul>
-                        {currRaceData.languages.map((trait, i) =>
-                            <li key={i}>{trait.name}</li>
-                        )
-                        }
-                    </ul>
-                    
-                   
+                        <label>Other Proficiences and Languages</label>
+                        <ul>
+                            {currRaceData.languages.map((trait, i) =>
+                                <li key={i}>{trait.name}</li>
+                            )}
+                        </ul>
                     </OtherProficiencies>
                 </section>
                 <section>
@@ -249,13 +242,13 @@ export default function CharacterSheet() {
                         </CombatScore>
                         <CombatScore>
                             <div>
-                            <label>Speed</label><input placeholder={currRaceData.speed} type="text" />
+                                <label>Speed</label><input placeholder={currRaceData.speed} type="text" />
                             </div>
                         </CombatScore>
                         <Hitpoints>
                             <RegularHitpoints>
                                 <MaxHitpoints>
-                                <label>Hit Point Maximum</label><input placeholder="10" />
+                                    <label>Hit Point Maximum</label><input placeholder="10" />
                                 </MaxHitpoints>
                                 <CurrentHitpoints>
                                     <label>Current Hit Points</label><input />
@@ -264,8 +257,8 @@ export default function CharacterSheet() {
                             <TemporaryHitpoints>
                                 <label>Temporary Hit Points</label><input />
                             </TemporaryHitpoints>
-                    </Hitpoints>
-                        <FlexRow>
+                        </Hitpoints>
+                        <FlexRowAlternate>
                             <HitDice>
                                 <div>
                                     <TotalHitDice>
@@ -277,31 +270,31 @@ export default function CharacterSheet() {
                                 </div>
                             </HitDice>
                             <DeathSaves>
-                            <div>
-                                <LabelContainer>
-                                    <label>Death Saves</label>
-                                </LabelContainer>
-                                <Marks>
-                                    <SuccessOrFail>
-                                        <label>Successes</label>
-                                        <Bubbles>
-                                            <input name="deathsuccess1" type="checkbox" />
-                                            <input name="deathsuccess2" type="checkbox" />
-                                            <input name="deathsuccess3" type="checkbox" />
-                                        </Bubbles>
-                                    </SuccessOrFail>
-                                    <SuccessOrFail>
-                                        <label>Failures</label>
-                                        <Bubbles>
-                                            <input name="deathfail1" type="checkbox" />
-                                            <input name="deathfail2" type="checkbox" />
-                                            <input name="deathfail3" type="checkbox" />
-                                        </Bubbles>
-                                    </SuccessOrFail>
-                                </Marks>
-                            </div>
-                </DeathSaves>
-                        </FlexRow>
+                                <div>
+                                    <LabelContainer>
+                                        <label>Death Saves</label>
+                                    </LabelContainer>
+                                    <Marks>
+                                        <SuccessOrFail>
+                                            <label>Successes</label>
+                                            <Bubbles>
+                                                <input name="deathsuccess1" type="checkbox" />
+                                                <input name="deathsuccess2" type="checkbox" />
+                                                <input name="deathsuccess3" type="checkbox" />
+                                            </Bubbles>
+                                        </SuccessOrFail>
+                                        <SuccessOrFail>
+                                            <label>Failures</label>
+                                            <Bubbles>
+                                                <input name="deathfail1" type="checkbox" />
+                                                <input name="deathfail2" type="checkbox" />
+                                                <input name="deathfail3" type="checkbox" />
+                                            </Bubbles>
+                                        </SuccessOrFail>
+                                    </Marks>
+                                </div>
+                            </DeathSaves>
+                        </FlexRowAlternate>
                     </Combat>
                     <AttacksAndSpellcasting>
                         <div>
@@ -402,17 +395,17 @@ export default function CharacterSheet() {
                     </Flavor>
                     <Features>
                         <div>
-                        <label>Features & Traits</label>
-                        <ul>
-                            {currRaceData.traits.map((trait, i) =>
-                                <li key={i}>{trait.name}</li>
-                            )
-                            }
-                        </ul>
+                            <label>Features & Traits</label>
+                            <ul>
+                                {currRaceData.traits.map((trait, i) =>
+                                    <li key={i}>{trait.name}</li>
+                                )}
+                            </ul>
+
                         </div>
                     </Features>
                 </section>
             </MainContent>
         </CharSheet>
-	)
+    )
 }

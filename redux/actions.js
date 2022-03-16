@@ -7,6 +7,7 @@ export const WRITE_BACKGROUND = 'WRITE_BACKGROUND';
 export const WRITE_EQUIPMENT = 'WRITE_EQUIPMENT';
 export const WRITE_SKILLS = 'WRITE_SKILLS';
 export const WRITE_ABILITY_SCORES = 'WRITE_ABILITY_SCORES';
+export const WRITE_STORY = 'WRITE_STORY';
 
 
 // Storage Actions
@@ -58,6 +59,13 @@ export function writeAbilityScores(abilityScores) {
 		type: WRITE_ABILITY_SCORES,
 		abilityScores: abilityScores
     }
+}
+
+export function writeStory(story) {
+	return {
+		type: WRITE_STORY,
+		story: story
+	}
 }
 
 

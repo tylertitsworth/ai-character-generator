@@ -4,6 +4,10 @@
 import styled from '@emotion/styled'
 import React from 'react';
 
+const breakpoints = {
+    sm: 360,
+    lg: 1110
+};
 
 const Bounce1 = styled.div`
 
@@ -82,10 +86,12 @@ const Bounce3 = styled.div`
 `;
 
 const SpinContainer = styled.div`
-    margin: 100px auto 0;
-    width: 100%;
+    justify-content: space-between;
+    width: 50%;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
     display: flex;
-    justify-content: space-around;
     text-align: center;
     > div {
         width: 60px;
@@ -101,14 +107,18 @@ const SpinContainer = styled.div`
 
     };
 
-
-
+    @media(max-width: ${breakpoints.sm}px) {
+        > div {
+            width: 10px;
+            height: 10px;
+            border-radius: 100%;
+            display: inline-block;
+        };
+    };
 `;
 
-
-
-
 function Spinner({ size, color }) {
+
     size = size || 12;
     color = color || '#FF83C3';
 

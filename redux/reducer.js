@@ -4,8 +4,8 @@ import {
 	WRITE_BACKGROUND,
 	WRITE_EQUIPMENT,
 	WRITE_SKILLS,
-
 	WRITE_ABILITY_SCORES,
+	WRITE_STORY,
 	WRITE_ALL_CLASSES,
 	WRITE_ALL_RACES,
 	WRITE_ALL_BACKGROUNDS,
@@ -48,6 +48,11 @@ function charReducer(state = [], action) {
 			return {
 				...state,
 				abilityScores: action.abilityScores
+			}
+		case WRITE_STORY:
+			return {
+				...state,	
+				story: action.story
 			}
 		case WRITE_ALL_CLASSES:
 			return {

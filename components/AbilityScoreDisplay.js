@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { AbilityScore, FlexColumn, FlexRow, StyledSelect, AbilityScoreError } from '../styles/globals'
+import { AbilityScore, FlexColumn, FlexRow, StyledSelect, Error } from '../styles/globals'
 
 import { useDispatch } from 'react-redux';
 import {
@@ -283,10 +283,10 @@ export default function AbilityScoreDisplay(props) {
 
 			</FlexRow>
 			{isValid ? <> </> :
-				<AbilityScoreError>
+				<Error>
 					<h1>An ability score cannot have two different values!</h1>
 					<h3>Missing Ability Score: {missingAbility}</h3>
-				</AbilityScoreError>
+				</Error>
 			}
 		</>
     )

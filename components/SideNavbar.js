@@ -2,11 +2,13 @@ import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
-import { getClass } from '../redux/selectors';
+import { getClass, getStory } from '../redux/selectors';
 import { Sidebar, Sideaction } from '../styles/globals'
+import Footer from './Footer';
 
 export default function SideNavbar(props) {
     var currClass = useSelector(getClass)
+    var currStory = useSelector(getStory)
     const router = useRouter();
 
     return (
@@ -30,7 +32,9 @@ export default function SideNavbar(props) {
                         </Link>
                     </li>
                 </> : <></>}
+
             </ul>
+            <Footer />
         </Sidebar>
     )
 }

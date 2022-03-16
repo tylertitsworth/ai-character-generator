@@ -184,8 +184,8 @@ export default function SkillDropdown(props) {
 	else if (choose == 2) {
 		return (
 			<>
-				<h3>Choose {choose} Skills</h3>
 				<FlexRow>
+				<h2>Choose {choose} Skills</h2>
 					<SkillField>
 						<StyledSelect value={skill1} onChange={(event) => setSkill1(event.target.value)}> {
 							choices.map((choice, i) =>
@@ -205,8 +205,9 @@ export default function SkillDropdown(props) {
 				</FlexRow>
 				{isValid ? <> </> :
 					<Error>
-						<h1>Please choose unique abilities!</h1>
+						<h1>Please choose unique skills!</h1>
 					</Error>
+
 				}
 			</>
 		)
@@ -214,8 +215,8 @@ export default function SkillDropdown(props) {
 	else if (choose === 3) {
 			return (
 			<>
-				<h3>Choose {choose} Skills</h3>
 				<FlexRow>
+				<h2>Choose {choose} Skills</h2>
 					<SkillField>
 							<StyledSelect value={skill1} onChange={(event) => setSkill1(event.target.value)}> {
 								choices.map((choice, i) =>
@@ -243,7 +244,7 @@ export default function SkillDropdown(props) {
 				</FlexRow>
 				{isValid ? <> </> :
 					<Error>
-						<h1>Please choose unique abilities!</h1>
+						<h1>Please choose unique skills for your character!</h1>
 					</Error>
 				}
 			</>
@@ -253,8 +254,8 @@ export default function SkillDropdown(props) {
 	else {
 		return (
 			<>
-				<h3>Choose {choose} Skills</h3>
 				<FlexRow>
+				<h2>Choose {choose} Skills</h2>
 					<SkillField>
 						<StyledSelect value={skill1} onChange={(event) => setSkill1(event.target.value)}> {
 							choices.map((choice, i) =>
@@ -290,7 +291,7 @@ export default function SkillDropdown(props) {
 				</FlexRow>
 				{isValid ? <> </> :
 					<Error>
-						<h1>Please choose unique abilities!</h1>
+						<h1>Please choose unique skills!</h1>
 					</Error>
 				}
 			</>

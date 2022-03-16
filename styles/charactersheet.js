@@ -1,5 +1,10 @@
 import styled from '@emotion/styled'
 
+const breakpoints = {
+    sm: 360,
+    lg: 1110
+};
+
 const FlexRow = styled.div`
     min-width: 100%;
     display: flex;
@@ -7,6 +12,21 @@ const FlexRow = styled.div`
     flex-wrap: no-wrap;
     align-items: center;
     margin: 0;
+
+
+`;
+
+const FlexRowAlternate = styled.div`
+    min-width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: no-wrap;
+    align-items: center;
+    margin: 0;
+    @media(max-width: ${breakpoints.sm}px) {
+        flex-wrap: wrap;
+    };
+
 `;
 
 const FlexColumn = styled.div`
@@ -67,10 +87,16 @@ const CharSheet = styled.form`
     textarea{
         padding: 10px;
         text-align: left;
-        width: calc(100% -18px);
         resize: none;
         overflow: hidden;
         height: 15em;
+    };
+
+    @media(max-width: ${breakpoints.sm}px) {
+        margin-right: auto;
+        margin-left: auto;
+        width: 100%;
+        height: 100%;
     };
 
 `;
@@ -98,6 +124,13 @@ const CharName = styled.div`
         padding-left: 1em;
         font-size: 12px;
 
+    };
+
+    @media(max-width: ${breakpoints.sm}px) {
+        max-width: 25%;
+
+        input { font-size: 8px; width: 80%;};
+        label { font-size: 8px;};
     };
 `;
 
@@ -133,6 +166,19 @@ const Misc = styled.div`
 
         };
     };
+
+    @media(max-width: ${breakpoints.sm}px) {
+        max-width: 75%;
+
+        ul {
+            li {
+                label { font-size: 8px; };
+                input { font-size: 8px; };
+                select { font-size: 8px; };
+                
+            };
+        };
+    };
 `;
 
 
@@ -142,12 +188,27 @@ const MainContent = styled.main`
     margin-top: 10px;
     margin-left: 5px;
     margin-right: 5px;
+    
     > section {
         width: 32%;
         display: flex;
         flex-direction: column;
     };
+
+
+    @media(max-width: ${breakpoints.sm}px) {
+        margin-top: 10px;
+        margin-left: 0;
+        margin-right: 0;
+        display: flex;
+        flex-direction: row;
+         > section {
+            width: 25%;
+            
+        };
+    };
 `;
+
 
 const Attributes = styled.section`
     width: 100%;
@@ -191,6 +252,27 @@ const Scores = styled.div`
             };
         };
     };
+    @media(max-width: ${breakpoints.sm}px) {
+        max-width: 40px;
+        height: 95%;
+        ul {
+            li {
+                padding-top: 5px;
+                height: 50px;
+                width: 50px;
+                margin-bottom: 0;
+                margin-top: 0;
+
+                div {
+                    width: 100%;
+                    padding: 0;
+                    padding-bottom: 1px;
+                    margin: 0;
+                    border: 0;
+                };
+            };
+        };
+    };
 `;
 
 const Score = styled.div`
@@ -205,7 +287,19 @@ const Score = styled.div`
         padding: 2px 0px 0px 0px;
         background: rgba(0,0,0,0);
     };
+
+    @media(max-width: ${breakpoints.sm}px) {
+        
+        label {
+            font-size: 6px;
+        };
+        div {
+            padding: 0;
+            font-size: 20px;
+        };
+    };
 `;
+
 
 const Modifier = styled.div`
     margin-top: -7px;
@@ -217,13 +311,26 @@ const Modifier = styled.div`
         border-radius: 20px;
         text-align: center;
     };
+
+    @media(max-width: ${breakpoints.sm}px) {
+        margin-top: -50px;
+        input {
+            width: 25px;
+            height: 10px;
+        };
+    };
 `;
+
 
 const AttrApplications = styled.div`
     margin-left: 5px;
     width: 100%;
     display: flex;
     flex-direction: column;
+
+    @media(max-width: ${breakpoints.sm}px) {
+        
+    };
 `;
 
 const Inspiration = styled.div`
@@ -247,6 +354,14 @@ const Inspiration = styled.div`
         margin-right: 0;
     };
 
+    @media(max-width: ${breakpoints.sm}px) {
+        div{margin-top: 5px; margin-left: -4px;};
+        input {
+            width: 10px;
+            height: 8px;
+            padding: 10px;
+        };
+    };
 
 `;
 
@@ -263,7 +378,18 @@ const ProficiencyBonus = styled.div`
         text-align: center;
         border-radius: 10px;
     };
+
+    @media(max-width: ${breakpoints.sm}px) {
+        div{margin-top: 2px; margin-left: -4px; };
+        input {
+            width: 6px;
+            height: 6px;
+            padding: 6px;
+            font-size: 6px;
+        };
+    };
 `;
+
 
 const LabelContainer = styled.div`
     position: relative;
@@ -283,7 +409,21 @@ const LabelContainer = styled.div`
         font-size: 8px;
         
     };
+
+    @media(max-width: ${breakpoints.sm}px) {
+        height: 15px;
+        margin-left: -1px;
+        > label {
+            position: absolute;
+            left: 0;
+            top: 1px;
+            transform: translate(0%, 50%);
+            width: 100%;
+            font-size: 5px;
+        };
+    };
 `;
+
 
 const ListSection = styled.div`
     border: 1px solid black;
@@ -326,7 +466,34 @@ const ListSection = styled.div`
         font-size: 10px;
         font-weight: bold;
     };
-`
+
+    @media(max-width: ${breakpoints.sm}px) {
+        padding: 0;
+        margin: 0;
+        ul li {
+            height: 20%;
+            overflow-y: auto;
+            label {
+                font-size: 6px;
+                font-weight: normal;
+                text-align: left;
+                padding-left: 1px;
+            };
+            span {
+                margin-left: 3px;
+                margin-right: 0;
+                right: 0;
+                font-size: 5px;
+            };
+        };
+        div {
+            margin-top: 5px;
+            margin-bottom: 0;
+            font-size: 6px;
+        };
+    };
+`;
+
 
 const ListTextInput = styled.input`
     width: 30px;
@@ -335,6 +502,12 @@ const ListTextInput = styled.input`
     border: 0;
     border-bottom: 1px solid black;
     order: 2;
+
+    @media(max-width: ${breakpoints.sm}px) {
+        font-size: 6px;
+        width: 8px;
+        margin: 0;
+    };
 `;
 
 const ListCheckboxInput = styled.input`
@@ -343,7 +516,13 @@ const ListCheckboxInput = styled.input`
     height: 10px;
     border: 1px solid black;
     border-radius: 10px;
-    border: 1;
+    order: 1;
+
+    @media(max-width: ${breakpoints.sm}px) {
+        width: 7px;
+        height: 7px;
+        margin: 0;
+    };
 `;
 
 const PassivePerception = styled.div`
@@ -358,6 +537,18 @@ const PassivePerception = styled.div`
         text-align: center;
         border: 1px solid black;
         border-radius: 10px;
+    };
+
+    @media(max-width: ${breakpoints.sm}px) {
+        min-width: 145%;
+        margin-top: 0;
+        div{margin-top: 6px; margin-left: -4px; };
+        input {
+            margin-top: 5px;
+            width: 15px;
+            height: 15px;
+            font-size: 8px;
+        };
     };
 `;
 
@@ -401,6 +592,25 @@ const OtherProficiencies = styled.div`
             border: 0;
         };
     };
+    
+    @media(max-width: ${breakpoints.sm}px) {
+        min-width: 145%;
+        margin-top: 10px;
+        label { font-size: 6px; }
+        li { font-size: 10px; };
+        ul {
+            width: 100%;
+            height: 24.5em;
+            border: 1px solid black;
+            background-color: rgba(0,0,0,0);
+            textarea{
+                width: 100%;
+                height: 100%;
+                border: 0;
+            };
+        };
+    };
+
 `;
 
 const Combat = styled.section`
@@ -410,6 +620,14 @@ const Combat = styled.section`
     flex-wrap: wrap;
     border-radius: 10px;
     background-color: #eee;
+
+    @media(max-width: ${breakpoints.sm}px) {
+        justify-content: space-evenly;
+        margin-left: 40px;
+        padding-bottom: 10px;
+        width: 100%;
+        max-height:100%;
+    };
 `;
 
 const CombatScore = styled.div`
@@ -451,10 +669,48 @@ const CombatScore = styled.div`
         };
     }
 
+    @media(max-width: ${breakpoints.sm}px) {
+        > div {
+            margin-top: 0;
+            margin-bottom: 0;
+
+            label {
+                border: none;
+                background-color: rgba(0,0,0,0);
+                font-size: 5px;
+                width: 20px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                text-align: center;
+            };
+            input {
+                height: 30px;
+                width: 30px;
+                font-size: 10px;
+            };
+
+            div {
+                height: 30px;
+                width: 30px;
+                font-size: 10px;
+            };
+        }
+    };
 `;
+
 
 const Hitpoints = styled.div`
     width: 100%;
+    @media(max-width: ${breakpoints.sm}px) {
+        max-width: 95%;
+        margin-top: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        margin-left:0;
+        margin-right:0;
+    };
 
 `;
 
@@ -464,6 +720,12 @@ const RegularHitpoints = styled.div`
     margin: 10px;
     margin-bottom: 5px;
     border-radius: 10px 10px 0 0;
+    @media(max-width: ${breakpoints.sm}px) {
+        height: 50%;
+        margin-left:0;
+        margin-right:0;
+    
+    };
 `;
 
 const MaxHitpoints = styled.div`
@@ -483,6 +745,12 @@ const MaxHitpoints = styled.div`
         border-bottom: 1px solid #eee;
         font-size: 12px;
         text-align: center;
+    };
+
+    @media(max-width: ${breakpoints.sm}px) {
+        align-items: center;
+        label{ font-size: 8px; };
+        input{ font-size: 8px;};
     };
 `;
 
@@ -504,7 +772,20 @@ const CurrentHitpoints = styled.div`
         font-size: 20px;
         text-align: center;
     };
+
+    @media(max-width: ${breakpoints.sm}px) {
+        label{
+            font-size: 6px;
+            margin-bottom: 0;
+        };
+        input{
+            margin-top: 0;
+            padding: 15px 0;
+            font-size: 8px;
+        };
+    };
 `;
+
 
 const TemporaryHitpoints = styled.div`
     margin: 10px;
@@ -530,6 +811,19 @@ const TemporaryHitpoints = styled.div`
         text-align: center;
         font-weight: bold;
     };
+
+    @media(max-width: ${breakpoints.sm}px) {
+        height: 40%;
+        margin-left:0;
+        margin-right:0;
+        margin-top: 10px;
+        input{
+            font-size: 10px;
+        };
+        label{
+            font-size: 6px;
+        };
+    };
 `;
 
 const HitDice = styled.div`
@@ -542,6 +836,11 @@ const HitDice = styled.div`
         display: flex;
         flex-direction: column;
     };
+    @media(max-width: ${breakpoints.sm}px) {
+        max-width: 95%;
+        > div {margin: 0;};
+    };
+
 `;
 
 const TotalHitDice = styled.div`
@@ -567,6 +866,11 @@ const TotalHitDice = styled.div`
         padding: 0 0.25em;
         text-align: center;
     };
+    @media(max-width: ${breakpoints.sm}px) {
+        label { font-size: 6px; };
+        input { font-size: 7px; };
+    };
+
 `;
 
 const RemainingHitDice = styled.div`
@@ -588,7 +892,13 @@ const RemainingHitDice = styled.div`
         flex: 1;
         background-color: rgba(0,0,0,0)
     };
+
+    @media(max-width: ${breakpoints.sm}px) {
+        label { font-size: 6px; };
+        input { font-size: 7px; };
+    };
 `;
+
 
 const DeathSaves = styled.div`
     width: 60%;
@@ -612,6 +922,17 @@ const DeathSaves = styled.div`
             font-size: 10px;
         };
     }
+
+    @media(max-width: ${breakpoints.sm}px) {
+        max-width: 95%;
+        > div {
+            margin: 0;
+            div {margin:0;};
+            label {
+                font-size: 6px;
+            };
+        };
+    };
 `;
 
 const Marks = styled.div`
@@ -621,6 +942,9 @@ const Marks = styled.div`
     justify-content: center;
     
     wrap: no-wrap
+
+    @media(max-width: ${breakpoints.sm}px) {
+    };
 `;
 
 const SuccessOrFail = styled.div`
@@ -634,7 +958,9 @@ const SuccessOrFail = styled.div`
         text-align: right;
         flex: 1 50%;
     };
+
 `;
+
 
 const Bubbles = styled.div`
     flex: 1 40%;
@@ -645,6 +971,16 @@ const Bubbles = styled.div`
         height: 10px;
         border: 1px solid black;
         border-radius: 10px;
+    };
+
+    @media(max-width: ${breakpoints.sm}px) {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        input{ 
+            width: 5px;
+            height: 5px;
+        };
     };
 `;
 
@@ -686,6 +1022,34 @@ const AttacksAndSpellcasting = styled.section`
 
         };
     };
+
+    @media(max-width: ${breakpoints.sm}px) {
+        width: 150%;
+        margin-top: 40px;
+         div {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+             table {
+                width: 100%;
+                th { font-size: 5px; };
+
+                input {
+                    width: 15px;
+                    border: 0;
+                    background-color: #eee;
+                    font-size: 10px;
+                    padding: 0;
+                    margin: 0;
+                };
+            };
+            textarea {
+                border: 0;
+                height: 1em;
+
+            };
+        };
+    };
 `;
 
 const Equipment = styled.section`
@@ -706,6 +1070,24 @@ const Equipment = styled.section`
         textarea {
             flex: 1;
             border: 0;
+        };
+    };
+
+    @media(max-width: ${breakpoints.sm}px) {
+        width: 150%;
+        margin-bottom: 10px;
+        div {
+            padding: 0;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            label {
+                text-align: center;
+                order: 3;
+            };
+            textarea {
+                width: 80%;
+                font-size: 10px;
+            };
         };
     };
 `;
@@ -738,6 +1120,28 @@ const Money = styled.div`
                 padding: 10px 3px;
                 font-size: 12px;
                 text-align: center;
+            };
+        };
+    };
+
+    @media(max-width: ${breakpoints.sm}px) {
+        ul {
+            flex-direction: row-reverse;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            li {
+                flex-direction: row-reverse;
+                label{
+                    width: 10px;
+                    font-size: 6px;
+                };
+
+                input {
+                    width: 25px;
+                    padding: 5px 3px;
+                    font-size: 12px;
+                    text-align: center;
+                };
             };
         };
     };
@@ -777,6 +1181,30 @@ const Flavor = styled.section`
             border-radius: 0 0 10px 10px;
         };
     };
+
+    @media(max-width: ${breakpoints.sm}px) {
+        padding: 0;
+        width: 90%;
+        margin-left: 3px;
+
+        div {
+            padding: 0;
+            width: 85%;
+            margin-left: auto;   
+            margin-right: auto;   
+
+            label {
+                font-size: 6px;
+                margin-top: 1px;
+            }
+            textarea {
+                border: 0;
+                border-radius: 10px;;
+                height: 4em;
+            };
+
+        };
+    };
 `;
 
 const Features = styled.section`
@@ -811,6 +1239,29 @@ const Features = styled.section`
             };
         };
     };
+
+    @media(max-width: ${breakpoints.sm}px) {
+        padding: 0;
+        margin-right: 10px;
+        width: 95%;
+
+        div {
+            padding: 0;
+            width: 85%;
+            margin-left: auto;
+            margin-right: auto;
+
+            ul {
+                border: 0;
+                padding: 5px;
+                li {
+                    font-size: 8px;
+                    padding-bottom: 10px;
+                };
+            };
+        };
+    };
+
 `;
 
 const CharacterAppearance = styled.section`
@@ -838,6 +1289,10 @@ const CharacterAppearance = styled.section`
             border: 0;
             padding: 5px;
         };
+    };
+
+    @media(max-width: ${breakpoints.sm}px) {
+        width: 40%;
     };
 `;
 
@@ -867,6 +1322,9 @@ const AlliesAndOrganizations = styled.div`
         };
 
     };
+    @media(max-width: ${breakpoints.sm}px) {
+        max-width: 50%;
+    };
 
 `;
 
@@ -888,7 +1346,7 @@ const Symbol = styled.div`
     flex-direction: column-reverse;
     label {
         text-align: center;
-        color: white;
+        color: #bbb;
         font-size: 12px;
         
     };
@@ -914,25 +1372,53 @@ const Symbol = styled.div`
             };
         };
 
-
-
         textarea {
             border: 0;
             padding: 5px;
-            background-color: pink;
             width: 100%;
             height: 40%;
         };
 
     };
 
+    @media(max-width: ${breakpoints.sm}px) {
+        padding: 10px;
+        padding-top: 0;
+        padding-bottom: 0;
+        max-width: 10%;
+        max-height: 15%;
+        top: 5px;
+        label { font-size: 6px;  };
+        table {
+                padding-top: 5px;
+                width: 100%;
+                th { font-size: 8px; };
+                input {
+                    width: 50%;
+                    border: 0;
+                    background-color: #ddd;
+                    font-size: 10px;
+                    padding: 3px;
+                    margin: 3px;
+                };
+            };
+            textarea {
+                border: 0;
+                padding: 5px;
+                width: 100%;
+                height: 40%;
+            };
+        };
+    };
 `;
+
 
 const Backstory = styled.section`
     padding: 10px;
     margin-right: 5px;
     width: 30.3%;
-    align-self: stretch; 
+    align-self: stretch;
+    max-height: 100%;
     div {
         padding: 10px;
         border: 1px solid black;
@@ -945,9 +1431,46 @@ const Backstory = styled.section`
         };
 
         textarea {
+            background-color: rgba(0,0,0,0);
             border: 0;
-            padding: 5px;
-            height: 36em;
+            padding: 3px;
+            padding-top: 0;
+            min-height: 500px;
+            font-size: 13px;
+            text-align: left;
+            font-weight: normal;
+            text-transform: none;
+            overflow-y: auto;
+        };
+    };
+
+    @media(max-width: ${breakpoints.sm}px) {
+        padding: 10px;
+        padding-right: 5px;
+        margin-right: 15px;
+        width: 60%;
+        align-self: stretch;
+        height: 100%;
+
+        div {
+            max-width: 100%;
+            padding: 0;
+            border: 1px solid black;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column-reverse;
+
+            label {
+                text-align: center;
+                margin-top: 3px;
+            };
+
+            textarea {
+                border: 0;
+                font-size: 8px;
+                text-align: left;
+                min-height: 300px;
+            };
         };
     };
 `;
@@ -973,6 +1496,16 @@ const AdditionalFeatures = styled.section`
             height: 19em;
         };
     };
+    @media(max-width: ${breakpoints.sm}px) {
+        width: 85%;
+        div {
+            padding: 10px;
+
+            textarea {
+                height: 12em;
+            };
+        };
+    };
 `;
 
 const Treasure = styled.section`
@@ -993,6 +1526,16 @@ const Treasure = styled.section`
             border: 0;
             padding: 5px;
             height: 13em;
+        };
+    };
+    @media(max-width: ${breakpoints.sm}px) {
+        width: 85%;
+        div {
+            padding: 10px;
+
+            textarea {
+                height: 6em;
+            };
         };
     };
 `;
@@ -1022,6 +1565,7 @@ const SpellMisc = styled.div`
         width: 20%;
         display: flex;
         flex-direction: column-reverse;
+        
         label {
             margin-top: 5px;
             margin-bottom: 5px;
@@ -1038,7 +1582,15 @@ const SpellMisc = styled.div`
 
         };
     };
+    @media(max-width: ${breakpoints.sm}px) {
+        max-width: 75%;
 
+        div {
+            label { font-size: 6px; };
+            input { font-size: 8px; };
+
+        };
+    };
     
 `;
 
@@ -1048,6 +1600,9 @@ const SpellColumn = styled.div`
     flex-direction: column;
     flex-wrap: no-wrap;
 
+    @media(max-width: ${breakpoints.sm}px) {
+        max-width: 30%;
+    };
 `;
 
 const SpellLevel = styled.div`
@@ -1102,7 +1657,30 @@ const SpellLevel = styled.div`
 
     };
 
+    @media(max-width: ${breakpoints.sm}px) {
+        height: 30px;
+        h1 {
+            font-size: 10px;
+            padding-right: 5px;
+            padding-top: 2px;
+            padding-bottom: 2px;
+            border-left: 0;
+        };
+        label {
+            font-size: 10px;
+            margin: 0;
+            padding: 3px;;
+
+        };
+        input {
+            margin-bottom: 5px;
+            width: 20%;
+            font-size: 8px;
+            padding: 3px;
+        };
+    };
 `;
+
 
 const Cantrips = styled.div`
     width: 100%;
@@ -1118,7 +1696,11 @@ const Cantrips = styled.div`
         border-bottom: 1px solid #ddd;
     };
 
+    @media(max-width: ${breakpoints.sm}px) {
+        input {max-width: 90%; };
+    };
 `;
+
 
 const KnownSpells = styled.div`
     width: 100%;
@@ -1126,7 +1708,11 @@ const KnownSpells = styled.div`
     flex-direction: column;
     align-contents: stretch;
     align-items: stretch;
+    @media(max-width: ${breakpoints.sm}px) {
+        max-width: 100%;
+    };
 `;
+
 
 const Spell = styled.div`
     width: 100%;
@@ -1144,14 +1730,44 @@ const Spell = styled.div`
         border-bottom: 1px solid #ddd;
     };
 
+    @media(max-width: ${breakpoints.sm}px) {
+        max-width: 95%;
+        margin-left: 5px;
+        input {max-width: 100%; font-size: 10px; };
+    };
+`;
+
+
+const CharSheetContainer = styled.div`
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: no-wrap;
+    align-items: center;
+    margin: 30px;
+    padding: 30px;
+    background-color: #FACE7F;
+    max-height: 600px;
+    overflow-y: auto;
+    overflow-x: auto;
+    
+
+    @media(max-width: ${breakpoints.sm}px) {
+        padding: 0;
+        width: 100%;
+        div {
+            width: 100%;
+        }
+    };
+
 `;
 
 export {
-    FlexRow, FlexColumn, FlexPage, SpellPage, CharSheet, CharName, Misc, MainContent, Attributes, Scores, Score, Modifier, AttrApplications,
+    FlexRow, FlexRowAlternate, FlexColumn, FlexPage, SpellPage, CharSheet, CharName, Misc, MainContent, Attributes, Scores, Score, Modifier, AttrApplications,
     Inspiration, LabelContainer, ProficiencyBonus, ListSection, ListTextInput, ListCheckboxInput, PassivePerception,
     OtherProficiencies, Combat, CombatScore, Hitpoints, RegularHitpoints, TemporaryHitpoints, MaxHitpoints,
     CurrentHitpoints, HitDice, TotalHitDice, RemainingHitDice, DeathSaves, Marks, SuccessOrFail, Bubbles,
     AttacksAndSpellcasting, Equipment, Money, Flavor, Features, CharacterAppearance, AlliesAndOrganizations,
     Symbol, Backstory, AdditionalFeatures, Treasure, StyledHeader, SpellMisc, Cantrips, SpellColumn, KnownSpells,
-    SpellLevel, Spell
+    SpellLevel, Spell, CharSheetContainer
 }

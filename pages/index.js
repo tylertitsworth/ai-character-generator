@@ -159,6 +159,7 @@ function GeneralCharacter() {
 						</FlexColumn>
 					</FlexRow>
 				</> : <></>}
+
 			</FormDisplay>
 			{toggle ?
 				<ButtonDisplay>

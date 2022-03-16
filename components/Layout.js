@@ -1,6 +1,7 @@
 import React from 'react';
-
 import { Frame, Page, Title } from '../styles/globals'
+
+import Footer from './Footer';
 import Sidebar from './SideNavbar'
 
 export default function Layout(props) {
@@ -11,6 +12,7 @@ export default function Layout(props) {
                 <Title>{props.Title}</Title>
                 {props.children}
             </Page>
+
         </Frame>
     )
 }

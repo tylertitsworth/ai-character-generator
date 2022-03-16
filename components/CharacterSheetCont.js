@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import {
     getClass,
     getRace,
+    getStory,
     getAllClasses,
     getAllRaces,
     getAllBackgrounds,
@@ -19,6 +20,9 @@ import {
 
 
 export default function CharacterSheetCont() {
+    var currStory = useSelector(getStory)
+    //console.log(currStory)
+
     return (
         <CharSheet>
             <header>
@@ -88,7 +92,7 @@ export default function CharacterSheetCont() {
                     <FlexRow>
                         <Backstory>
                             <div>
-                                <label>Character Backstory</label><textarea></textarea>
+                                <label>Character Backstory</label><textarea value={currStory}></textarea>
                             </div>
                         </Backstory>
                         <FlexColumn>

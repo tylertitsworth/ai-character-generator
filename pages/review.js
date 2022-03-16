@@ -5,7 +5,10 @@ import Layout from '../components/Layout';
 import CharacterSheet from '../components/CharacterSheet';
 import CharacterSheetCont from '../components/CharacterSheetCont';
 import CharacterSheetFinal from '../components/CharacterSheetFinal';
-import { Action, ButtonDisplay, Error, FlexRow } from '../styles/globals'
+
+import { Action, ButtonDisplay, Error } from '../styles/globals'
+import { CharSheetContainer } from '../styles/charactersheet';
+
 import { useSelector } from 'react-redux';
 import {
     getClass,
@@ -28,29 +31,35 @@ export default function Review() {
     const allSkills = useSelector(getAllSkills)
     var currClass = useSelector(getClass)
     var currRace = useSelector(getRace)
-
+    let width = 0               // how to make dynamically check? Works through typical functionality
+    if (allClasses != undefined) width = screen.width;
     return (
+
         <Layout Title="Review Information">
-            {allClasses !== undefined ? <>
-                <div ref={ref}>
-                    <CharacterSheet />
-                    <CharacterSheetCont />
-                    <CharacterSheetFinal />
-                </div>
+            {allClasses != undefined ? <>
+                <CharSheetContainer>
+                    <div ref={ref}>
+                        <CharacterSheet />
+                        <CharacterSheetCont />
+                        <CharacterSheetFinal />
+                    </div>
+                </CharSheetContainer>
                 <ButtonDisplay>
+                {width > 360 ? 
                     <ReactToPdf targetRef={ref} imgWidth={210} filename="AI-Generated-5e-Character.pdf">
                         {({ toPdf }) => <Action onClick={toPdf}>Download PDF</Action>}
-                    </ReactToPdf>
+                    </ReactToPdf>  : <Action>PDF Available on Web</Action>}
                     <Link href="/backstory">
                         <Action>Go Back</Action>
                     </Link>
                 </ButtonDisplay>
             </> : <Error>
-                <h1>You must start this process from the very beginning.</h1>
+                <h1>Please start this process from the beginning.</h1>
                 <Link href="/">
                     <Action>To The Beginning</Action>
                 </Link>
             </Error>}
         </Layout>
+
     )
 }

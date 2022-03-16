@@ -14,8 +14,8 @@ import { css } from '@emotion/react';
  */
 
 const breakpoints = {
-    sm: 720,
-    lg: 1024
+    sm: 360,
+    lg: 1110
 };
 
 const Frame = styled.div`
@@ -36,16 +36,23 @@ const Frame = styled.div`
 
 const Sidebar = styled.div`
     position: fixed;
+    
     width: 15%;
     height: 100vh;
     top: 0;
     z-index: 99;
     margin-top: 0;
     margin-bottom: 0;
+    
     background-color: rgba(64,6,10,.6);
+    border-right: 10px groove #FACE7F;
     box-shadow: 3px 3px 6px -3px rgba(0,0,0,0.7);
     ul { padding: 0; };
+
+    @media(max-width: ${breakpoints.sm}px) {
+    };
 `;
+
 
 const Sideaction = styled.button`
     width: 100%;
@@ -57,7 +64,17 @@ const Sideaction = styled.button`
     height: 50px;
     background-color: rgba(0,0,0,0);
     border: 0;
+    @media (min-width: ${breakpoints.sm + 1}px) and (max-width: ${breakpoints.lg}px) {
+        font-size: 16px;
+    };
+
+
+    @media(max-width: ${breakpoints.sm}px) {
+        font-size: 12px;
+        padding-left: 2px;
+    };
 `;
+
 
 
 
@@ -67,6 +84,9 @@ const Page = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    @media(max-width: ${breakpoints.sm}px) {
+        text-align: center;
+    };
 `;
 
 const ButtonDisplay = styled.div`
@@ -82,11 +102,14 @@ const ButtonDisplay = styled.div`
 
 const FormDisplay = styled.div`
     width: 80%;
-    height: 65%;
+    min-height: 65%;
     background-color: #FACE7F;
     padding: 10px;
     display: flex;
     flex-direction: column;
+    @media(max-width: ${breakpoints.sm}px) {
+        width: 90%;
+    };
 
     form {
         display: flex;
@@ -109,16 +132,81 @@ const FormDisplay = styled.div`
             box-shadow: 1px 1px 3px dimgray;
             height: 50px;
             width: 10%;
+
+            &:hover {
+                color: #CB2D38;
+                background-color: #FFC357;
+                border: 3px solid #CB2D38;
+            };
+
         };
     };
 
-    @media(max-width: ${breakpoints.sm}px) {
+    h1{
+        text-align: left;
+        font-size: 26px;
+        
+    };
+
+    h2 {
+        width: 100%;
+        padding: 0;
+        margin-right: 10px;
+        margin-left: 0;
+        margin-bottom: 13px;
+        margin-top: 30px;
+        text-transform: none;
+        text-align: left;
+        font-size: 20px;
+    };
+
+    @media (min-width: ${breakpoints.sm + 1}px) and (max-width: ${breakpoints.lg}px) {
         form {
+            input{
+                width: 80%;
+            };
             button {
                 width: 15%;
-                font-size: 15px;
             }
         }
+        h2{
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            margin-top: 13px;
+            margin-bottom: -5px;
+        text-transform: none;
+        font-size: 15px;
+
+        };
+    };
+
+
+    @media(max-width: ${breakpoints.sm}px) {
+        min-height: 100%;
+        overflow-y: auto;
+        form {
+            input{
+                height: 30px;
+                width: 80%;
+                font-size: 11px;
+            };
+            button {
+                width: 20%;
+                height: 30px;
+                font-size: 10px;
+            }
+        }
+        h2 {
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            margin-top: 13px;
+            margin-bottom: -5px;
+            text-transform: none;
+            font-size: 15px;
+        };
+
     };
 `;
 
@@ -130,12 +218,37 @@ const Action = styled.button`
     border: 3px solid #922028;
     box-shadow: 1px 1px 3px #40060A;
     height: 50px;
+    &:hover {
+        color: #CB2D38;
+        padding: 10px;
+        background-color: #FFC357;
+        border: 3px solid #CB2D38;
+    };
+
+    @media (min-width: ${breakpoints.sm + 1}px) and (max-width: ${breakpoints.lg}px) {
+        font-size: 16px;
+    };
+
+
+    @media(max-width: ${breakpoints.sm}px) {
+        font-size: 12px;
+    };
+
 `;
 
 const Title = styled.h1`
     color: #CB2D38;
     font-size: 54px;
     justify-content: center;
+
+    @media (min-width: ${breakpoints.sm + 1}px) and (max-width: ${breakpoints.lg}px) {
+        font-size: 45px;
+    };
+
+
+    @media(max-width: ${breakpoints.sm}px) {
+        font-size: 30px;
+    };
 `;
 
 const Field = styled.div`
@@ -144,25 +257,43 @@ const Field = styled.div`
     border: 1px solid #40060A;
     width: 100%;
     margin-top: 9px;
+    right: 0;
 
     h3 {
             padding-left: 10px;
             font-weight: normal;
     };
+
+    @media(max-width: ${breakpoints.sm}px) {
+        width: 80%;
+        align-self: flex-emd;
+        max-height: 40px;
+    }
 `;
+
 
 const SkillField = styled.div`
     background-color: white;
     box-shadow: 5px 5px  5px inset #B8B3B3;
     border: 1px solid #40060A;
     display: flex;
-
+    width: 45%;
     margin-top: 9px;
 
     h3 {
-            padding-left: 10px;
-            font-weight: normal;
+        padding-left: 10px;
+        font-weight: normal;
     };
+
+    @media (min-width: ${breakpoints.sm + 1}px) and (max-width: ${breakpoints.lg}px) {
+
+    };
+
+    @media(max-width: ${breakpoints.sm}px) {
+        width: 45%;
+        max-height: 40px;
+    };
+
 `;
 
 const StyledSelect = styled.select`
@@ -172,26 +303,90 @@ const StyledSelect = styled.select`
     background-color: rgba(0,0,0,0);
     font-size: 20px;
     font-weight: normal;
+
     option {
         padding-left: 10px;
         font-size: 20px;
+    };
+
+    @media (min-width: ${breakpoints.sm + 1}px) and (max-width: ${breakpoints.lg}px) {
+        font-size: 15px;
+        option {
+            font-size: 15px;
+        };
+    };
+
+    @media(max-width: ${breakpoints.sm}px) {
+        font-size: 12px;
+
+            option {font-size: 12px;};
     };
 `;
 
 const FlexColumn = styled.div`
     width: 45%;
+    height: 100%;
     margin: 10px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    align-items: flex-start;
+    @media(max-width: ${breakpoints.sm}px) {
+        height: 60%;
+        margin: 0;
+        align-items: center;
+        flex-wrap: no-wrap;
+        align-content: space-between;
+        width: 100%;
+        label {
+            margin-top: 15px;
+            font-size: 18px;
+            text-decoration: underline;
+        };
+    };
 `;
 
 const FlexRow = styled.div`
+
     width: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: space-around;
+    align-items: center;
+    h2{
+        width: 100%;
+        margin-top: 15px;
+        margin-bottom: 5px;
+        padding-left: 10px;
+    };
+    label {
+        width:15%;
+        margin-top: 15px;
+        font-size: 24px;
+        text-decoration: underline;
+        text-align: right;
+    };
+
+    @media (min-width: ${breakpoints.sm + 1}px) and (max-width: ${breakpoints.lg}px) {
+        margin-top: 0;
+        width: 100%;
+        margin-bottom: 0;
+        label {
+            margin-top: 15px;
+            font-size: 20px;
+        };
+    };
+    @media(max-width: ${breakpoints.sm}px) {
+        margin-top: 0;
+        width: 100%;
+        margin-bottom: 0;
+        label {
+            margin-top: 15px;
+            font-size: 18px;
+        };
+    };
+
 `;
 
 const AbilityScore = styled.div`
@@ -211,7 +406,6 @@ const AbilityScore = styled.div`
     h1{
         margin-bottom: 15px;
         margin-top: 15px;
-        margin-right: 5px;
         padding: 5px;
         width: 20%;
         background-color: white;
@@ -230,6 +424,8 @@ const AbilityScore = styled.div`
         border-radius: 3px;
         font-size: 20px;
         font-weight: normal;
+        border-radius: 10px;
+
         option {
             padding-left: 10px;
             font-size: 20px;
@@ -237,14 +433,56 @@ const AbilityScore = styled.div`
     };
 
     @media (min-width: ${breakpoints.sm + 1}px) and (max-width: ${breakpoints.lg}px) {
-        width: 100%;
+        width: 46%;
+        max-height: 60px;
+
+        h1{
+            width: 15%;
+            font-size: 25px;
+            margin-right: 10px;
+        };
+        select{
+            width: 95%;
+            font-size: 12px;
+            margin-left: 5px;
+            margin-right: 2px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            option {
+                padding-left: 10px;
+                font-size: 18px;
+            };
+        };
+
     }
 
     @media(max-width: ${breakpoints.sm}px) {
-        width: 100%;
-    };
+        width: 45%;
+        max-height: 39px;
+        margin-top: 10px;
+        
+        border-radius: 0;
+        flex-direction: row;
+        align-items: center;
 
+        h1{
+            width: 10%;
+            font-size: 12px;
+            margin-right: 0;
+            margin-left: 5px;
+        };
+        select{
+            width: 90%;
+            font-size: 10px;
+            padding-left: 0;
+            option {
+                padding-left: 10px;
+                font-size: 13px;
+            };
+        };
+    };
 `;
+
 
 const StoryDisplay = styled.div`
     margin-top: 70px;
@@ -259,49 +497,148 @@ const StoryDisplay = styled.div`
     overflow-y: auto;
     border-radius: 3px;
 
-    p {
+    textarea {
+        width: 95%;
+        height: 95%;
         text-transform: none;
-        font-size: 20px;
+        font-size: 18px;
         font-weight: normal;
+        border: 0;
+        resize: none;
         
     };
 `;
 
-const AbilityScoreError = styled.div`
-    width: 100%;
-    background-color: #40060A;
-    color: #CB2D38;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-
-    h1 {
-        margin-left: 10px;
-        margin-right: 10px;
-    };
-`;
-
-
 const Error = styled.div`
-    width: 50%;
+    width: 100%;
+    max-width: 500px;
+    margin-top: 30px;
     margin-left: auto;
     margin-right: auto;
     background-color: #40060A;
+    border: 6px solid #CB2D38;
+    border-radius: 30px;
     color: #CB2D38;
     padding: 10px;
     display: flex;
     flex-direction: column;
-    text-align: center;
+    align-items: center;
 
     h1 {
-        margin-left: 10px;
-        margin-right: 10px;
+        margin-left: 15px;
+        margin-right: 15px;
+        margin-top: 15px;
+        text-align: center;
+        font-size: 24px;
+    };
+    h3 {
+        margin-top: 0;
+        font-size: 18px;
+    };
+
+    @media (min-width: ${breakpoints.sm + 1}px) and (max-width: ${breakpoints.lg}px) {
+        width: 70%;
+        h1 {
+            text-align: center;
+            font-size: 17px;
+        };
+        h3 {
+            margin-top: 0;
+            font-size: 12px;
+        };
+    };
+
+
+    @media(max-width: ${breakpoints.sm}px) {
+        width: 50%;
+        margin-top: 5px;;
+        margin-bottom: 0;
+        text-align: center;
+        h1 {
+            margin-top: 8px;
+            margin-left: 0;
+            margin-right: 0;
+            font-size: 12px;
+        };
+        h3 {
+            margin-top: 0;
+            order: 2;
+            font-size: 10px;
+        };
+
     };
 `;
+
+const FooterDiv = styled.div`
+    width: 100%;
+    height: 30%;
+    position: absolute;
+    bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: no-wrap;
+    text-align: right;
+    color: #FACE7F;
+    
+
+    h4 {
+        text-decoration: underline;
+        border-bottom: 1px solid #FACE7F;
+        margin-bottom: 0;
+        font-size: 12px;
+    };
+    section {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        h5 {
+            font-size: 13px;
+            margin-right: 10px;
+            &:hover {
+                font-size: 16px;
+                text-shadow: 0px 0px 3px white;
+                margin-right: 5px;
+            };
+        };
+    };
+
+    @media (min-width: ${breakpoints.sm + 1}px) and (max-width: ${breakpoints.lg}px) {
+
+    };
+
+    @media(max-width: ${ breakpoints.sm }px) {
+        height: 20%;
+        margin-bottom: 20px;
+        h4 {
+            font-size: 8px;
+        };
+        section {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: no-wrap;
+            justify-content: center;
+            h5 {
+                
+                padding: 0;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                font-size: 8px;
+                margin-right: 5px;
+                &:hover {
+                    font-size: 8px;
+                };
+
+            };
+        };
+    };
+`;
+
 
 export {
     Frame, Sidebar, Sideaction, Page, FormDisplay, Action, Title, Field, SkillField,
     ButtonDisplay, StyledSelect, FlexColumn, FlexRow, AbilityScore,
-    StoryDisplay, AbilityScoreError, Error
+    StoryDisplay, Error, FooterDiv
 }
