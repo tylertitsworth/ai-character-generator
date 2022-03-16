@@ -1,8 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
-// export default function handler(req, res) {
-//   res.status(200).json({ name: 'John Doe' })
-// }
+
 import { Configuration, OpenAIApi } from "openai";
 import { query } from "../../hooks/qltree";
 import { useQuery } from "@apollo/client";
@@ -24,9 +22,6 @@ function generatePrompt(userClass) {
   console.log("User input is-------------------------- "+userClass)
   const capitalizedAnimal =
   userClass[0].toUpperCase() + userClass.slice(1).toLowerCase();
-  // const labels = useQuery.name;
-  console.log("User input is--------------------------- "+userClass)
-  // console.log("these are the labels "+labels);
     //Query below
   return `Suggest three classes for a dungeons and dragon character.
 
