@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Pdf from 'react-to-pdf'
-import { jsPDF } from 'jspdf';
+import ReactToPdf from '../components/ReactToPdf'
 import Layout from '../components/Layout';
 import CharacterSheet from '../components/CharacterSheet';
 import CharacterSheetCont from '../components/CharacterSheetCont';
 import CharacterSheetFinal from '../components/CharacterSheetFinal';
 import { Action, ButtonDisplay, Error, FlexRow } from '../styles/globals'
-
-
 import { useSelector } from 'react-redux';
 import {
     getClass,
@@ -22,8 +19,6 @@ import {
 
 const ref = React.createRef();
 
-
-
 export default function Review() {
     const allClasses = useSelector(getAllClasses)
     const allRaces = useSelector(getAllRaces)
@@ -36,37 +31,26 @@ export default function Review() {
 
     return (
         <Layout Title="Review Information">
-
-            {allClasses !== undefined ?
-                <>
-                    <div ref={ref}>
-                        <CharacterSheet />
-                    </div>
-                    <div>
-                        <CharacterSheetCont />
-                    </div>
-                    <div>
-                        <CharacterSheetFinal />
-                    </div>
-
-                    <ButtonDisplay>
-                        <Pdf targetRef={ref} filename="AI-Generated-5e-Character.pdf">
-                            {({ toPdf }) => <Action onClick={toPdf}>Download PDF</Action>}
-                        </Pdf>
-                        <Link href="/backstory">
-                            <Action>Go Back</Action>
-                        </Link>
-                    </ButtonDisplay>
-                </>
-                :
-                <Error>
-                    <h1>You must start this process from the very beginning.</h1>
-                    <Link href="/">
-                        <Action>To The Beginning</Action>
+            {allClasses !== undefined ? <>
+                <div ref={ref}>
+                    <CharacterSheet />
+                    <CharacterSheetCont />
+                    <CharacterSheetFinal />
+                </div>
+                <ButtonDisplay>
+                    <ReactToPdf targetRef={ref} imgWidth={210} filename="AI-Generated-5e-Character.pdf">
+                        {({ toPdf }) => <Action onClick={toPdf}>Download PDF</Action>}
+                    </ReactToPdf>
+                    <Link href="/backstory">
+                        <Action>Go Back</Action>
                     </Link>
-                </Error>
-            }
+                </ButtonDisplay>
+            </> : <Error>
+                <h1>You must start this process from the very beginning.</h1>
+                <Link href="/">
+                    <Action>To The Beginning</Action>
+                </Link>
+            </Error>}
         </Layout>
     )
 }
-

@@ -14,13 +14,12 @@ export default async function (req, res) {
 }
 
 function generatePrompttwo(userClass) {
-  const capitalizedAnimal =
-    userClass[0].toUpperCase() + userClass.slice(1).toLowerCase();
+  const capitalizedAnimal = userClass[0].toUpperCase() + userClass.slice(1).toLowerCase();
   console.log("user input "+capitalizedAnimal);
   return `Suggest three races for a dungeon and dragon character.
-
-Character: Race
-Races: Dwarf, Elf, Halfling, Human, Dragonborn, Gnome, Half-Elf, Half-Orc, Tiefling
-Character: ${capitalizedAnimal}
-Races: `;
+    Character: Race
+    Races: Dwarf, Elf, Halfling, Human, Dragonborn, Gnome, Half-Elf, Half-Orc, Tiefling
+    Character: ${capitalizedAnimal}
+    Races: 
+  `;
 }

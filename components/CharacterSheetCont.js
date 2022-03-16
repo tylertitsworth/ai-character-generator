@@ -12,20 +12,19 @@ import {
 } from '../redux/selectors'
 
 import {
-    FlexRow, FlexColumn, FlexPage, CharSheet, Charname, Misc, MainContent,
+    FlexRow, FlexColumn, FlexPage, CharSheet, CharName, Misc, MainContent,
     CharacterAppearance, AlliesAndOrganizations, Symbol, Backstory, AdditionalFeatures,
     Treasure
 } from '../styles/charactersheet'
 
 
 export default function CharacterSheetCont() {
-
     return (
         <CharSheet>
             <header>
-                <Charname>
+                <CharName>
                     <label>Character Name</label><input name="charname" placeholder="Character Name"></input>
-                </Charname>
+                </CharName>
                 <Misc>
                     <ul>
                         <li>
@@ -110,7 +109,4 @@ export default function CharacterSheetCont() {
             </MainContent>
         </CharSheet>
     )
-
 }
-
-

@@ -8,7 +8,6 @@ import {
 import { writeSkills } from '../redux/actions';
 
 export default function SkillDropdown(props) {
-
 	var skillData = props.skills
 	var classData = props.classes
 
@@ -22,7 +21,6 @@ export default function SkillDropdown(props) {
 
 	const [toggle, setToggle] = useState(true)		// will cause the useEffect below to only go off once
 	const [isValid, setIsValid] = useState(true)
-	//const [monkSwitch, setMonkSwitch] = useState(false)
 	const [skill1, setSkill1] = useState("")
 	const [skill2, setSkill2] = useState("")
 	const [skill3, setSkill3] = useState("")

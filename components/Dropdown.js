@@ -8,18 +8,13 @@ import {
 import { getClass, getRace } from '../redux/selectors';
 
 export default function Dropdown(props) {
-
 	var dropdownData = props.data;
 	var currentRace = useSelector(getRace);
 	var currentClass= useSelector(getClass);
-
 	const dispatch = useDispatch();
 
-	// currentRace = ;
-	// currentClass = ; 
 	console.log(dropdownData)
 	if (dropdownData[0][1].name != "Elf") {
-		
 		console.log(">>>>>Class info>> "+ currentClass);
 		return (
 			<Field>
@@ -33,8 +28,6 @@ export default function Dropdown(props) {
 		)
 	}
 	else {
-		// current = "Half-Ling";
-		
 		console.log(">>>>race info>> "+ currentRace);
 		return (
 			<Field>
@@ -47,6 +40,4 @@ export default function Dropdown(props) {
 			</Field>
 		)
     }
-
-
 }

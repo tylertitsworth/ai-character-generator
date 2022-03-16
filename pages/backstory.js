@@ -7,30 +7,26 @@ import { Action, FormDisplay, StoryDisplay, ButtonDisplay, FlexRow } from '../st
 import store from '../redux/store';
 import { Provider, useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-//import { writeSubclass } from '../redux/actions'      // We will need something from actions later when we can build the backstory
 import {
 	getClass,
 	getRace
 } from '../redux/selectors'
 
-
 export default function Backstory() {
-
     const [toggle, setToggle] = useState(false)
 
-    var charclassStory=useSelector(getClass);
+    var charClassStory=useSelector(getClass);
     var charRaceStory=useSelector(getRace);
 
     const [storyInput, setStoryInput] =  useState("");
-    const [storyText, setStoryText]= useState(""); // here is the story after sucessful api retur
-
+    const [storyText, setStoryText]= useState(""); 
     
     async function onSubmit(event) {
         event.preventDefault();
 
         var obj ={};
         obj.userStory=storyInput;
-        obj.userClass=charclassStory;
+        obj.userClass=charClassStory;
         obj.userRace=charRaceStory;
 
         console.log("the class from store >>>  "+ obj.userClass);
@@ -51,38 +47,30 @@ export default function Backstory() {
         // send above items to the store
         setToggle(true);
     }
-    
-
-        return (
-            <Layout>
-                <FormDisplay>
-                    <form onSubmit={onSubmit }>
-
-                        <input value={storyInput} placeholder="Enter a description of your character's story" onChange={(e) => setStoryInput(e.target.value)} />
-                        <button>Submit</button>
-                    </form>
-                    {toggle ?
-                        //stuff
-                            <StoryDisplay>
-                                <p>{storyText}</p>
-                            </StoryDisplay>
-                        :
-                        <></>
-                        }
-                </FormDisplay>
+    return (
+        <Layout>
+            <FormDisplay>
+                <form onSubmit={onSubmit }>
+                    <input value={storyInput} placeholder="Enter a description of your character's story" onChange={(e) => setStoryInput(e.target.value)} />
+                    <button>Submit</button>
+                </form>
                 {toggle ?
-                    <ButtonDisplay>
-                        <Link href="/review">
-                            <Action>Continue</Action>
-                        </Link>
-                    
-                        <Link href="/">
-                            <Action>Go Back</Action>
-                        </Link>
-                    </ButtonDisplay>
-                    :
-                    <></>
-                }
-            </Layout>
-        )
-    }
+                    <StoryDisplay>
+                        <p>{storyText}</p>
+                    </StoryDisplay>
+                : <></>}
+            </FormDisplay>
+            {toggle ?
+                <ButtonDisplay>
+                    <Link href="/review">
+                        <Action>Continue</Action>
+                    </Link>
+                
+                    <Link href="/">
+                        <Action>Go Back</Action>
+                    </Link>
+                </ButtonDisplay>
+            : <></>}
+        </Layout>
+    )
+}

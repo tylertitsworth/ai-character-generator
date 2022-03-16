@@ -75,7 +75,7 @@ const CharSheet = styled.form`
 
 `;
 
-const Charname = styled.div`
+const CharName = styled.div`
     border: 1px solid black;
     border-radius: 10px 0 0 10px;
     border-right: 0;
@@ -1147,7 +1147,7 @@ const Spell = styled.div`
 `;
 
 export {
-    FlexRow, FlexColumn, FlexPage, SpellPage, CharSheet, Charname, Misc, MainContent, Attributes, Scores, Score, Modifier, AttrApplications,
+    FlexRow, FlexColumn, FlexPage, SpellPage, CharSheet, CharName, Misc, MainContent, Attributes, Scores, Score, Modifier, AttrApplications,
     Inspiration, LabelContainer, ProficiencyBonus, ListSection, ListTextInput, ListCheckboxInput, PassivePerception,
     OtherProficiencies, Combat, CombatScore, Hitpoints, RegularHitpoints, TemporaryHitpoints, MaxHitpoints,
     CurrentHitpoints, HitDice, TotalHitDice, RemainingHitDice, DeathSaves, Marks, SuccessOrFail, Bubbles,

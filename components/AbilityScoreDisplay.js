@@ -77,13 +77,12 @@ export default function AbilityScoreDisplay(props) {
 			setMissingAbility("")
 
         }
-
-		console.log(`Ability Score 1: ${abilityScore1} is ${abilityScores[0]}`)
-		console.log(`Ability Score 2: ${abilityScore2} is ${abilityScores[1]}`)
-		console.log(`Ability Score 3: ${abilityScore3} is ${abilityScores[2]}`)
-		console.log(`Ability Score 4: ${abilityScore4} is ${abilityScores[3]}`)
-		console.log(`Ability Score 5: ${abilityScore5} is ${abilityScores[4]}`)
-		console.log(`Ability Score 6: ${abilityScore6} is ${abilityScores[5]}`)
+		// console.log(`Ability Score 1: ${abilityScore1} is ${abilityScores[0]}`)
+		// console.log(`Ability Score 2: ${abilityScore2} is ${abilityScores[1]}`)
+		// console.log(`Ability Score 3: ${abilityScore3} is ${abilityScores[2]}`)
+		// console.log(`Ability Score 4: ${abilityScore4} is ${abilityScores[3]}`)
+		// console.log(`Ability Score 5: ${abilityScore5} is ${abilityScores[4]}`)
+		// console.log(`Ability Score 6: ${abilityScore6} is ${abilityScores[5]}`)
 
 	}, [abilityScore1, abilityScore2, abilityScore3, abilityScore4, abilityScore5, abilityScore6])
 
@@ -293,5 +292,3 @@ export default function AbilityScoreDisplay(props) {
     )
 
 }
-
-

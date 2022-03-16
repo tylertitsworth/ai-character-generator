@@ -3,8 +3,6 @@ import thunk from 'redux-thunk';
 import { createWrapper } from "next-redux-wrapper";
 import charReducer from './reducer';
 
-
-
 const middleware = [thunk]
 const makeStore = () => createStore(charReducer, compose(applyMiddleware(...middleware)))
 

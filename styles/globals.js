@@ -32,10 +32,6 @@ const Frame = styled.div`
     overflow-y: auto;
 
     ul{ list-style: none; };
-
-   
-
-
 `;
 
 const Sidebar = styled.div`
@@ -49,8 +45,6 @@ const Sidebar = styled.div`
     background-color: rgba(64,6,10,.6);
     box-shadow: 3px 3px 6px -3px rgba(0,0,0,0.7);
     ul { padding: 0; };
-
-
 `;
 
 const Sideaction = styled.button`
@@ -63,8 +57,6 @@ const Sideaction = styled.button`
     height: 50px;
     background-color: rgba(0,0,0,0);
     border: 0;
-
-
 `;
 
 
@@ -95,7 +87,6 @@ const FormDisplay = styled.div`
     padding: 10px;
     display: flex;
     flex-direction: column;
-
 
     form {
         display: flex;
@@ -139,7 +130,6 @@ const Action = styled.button`
     border: 3px solid #922028;
     box-shadow: 1px 1px 3px #40060A;
     height: 50px;
-
 `;
 
 const Title = styled.h1`
@@ -153,13 +143,11 @@ const Field = styled.div`
     box-shadow: 5px 5px  5px inset #B8B3B3;
     border: 1px solid #40060A;
     width: 100%;
-
     margin-top: 9px;
 
     h3 {
             padding-left: 10px;
             font-weight: normal;
-       
     };
 `;
 
@@ -174,7 +162,6 @@ const SkillField = styled.div`
     h3 {
             padding-left: 10px;
             font-weight: normal;
-       
     };
 `;
 
@@ -185,12 +172,10 @@ const StyledSelect = styled.select`
     background-color: rgba(0,0,0,0);
     font-size: 20px;
     font-weight: normal;
-
-        option {
-            padding-left: 10px;
-
-            font-size: 20px;
-        };
+    option {
+        padding-left: 10px;
+        font-size: 20px;
+    };
 `;
 
 const FlexColumn = styled.div`
@@ -199,8 +184,6 @@ const FlexColumn = styled.div`
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-
-
 `;
 
 const FlexRow = styled.div`
@@ -209,8 +192,6 @@ const FlexRow = styled.div`
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
-
-
 `;
 
 const AbilityScore = styled.div`
@@ -239,8 +220,6 @@ const AbilityScore = styled.div`
         font-weight: bold;
         border-radius: 3px;
     };
-
-
     select{
         margin-top: 0;
         margin-left: 5px;
@@ -251,12 +230,10 @@ const AbilityScore = styled.div`
         border-radius: 3px;
         font-size: 20px;
         font-weight: normal;
-
-            option {
-                padding-left: 10px;
-
-                font-size: 20px;
-            };
+        option {
+            padding-left: 10px;
+            font-size: 20px;
+        };
     };
 
     @media (min-width: ${breakpoints.sm + 1}px) and (max-width: ${breakpoints.lg}px) {
@@ -270,7 +247,6 @@ const AbilityScore = styled.div`
 `;
 
 const StoryDisplay = styled.div`
-
     margin-top: 70px;
     margin-bottom: 0;
     padding-left: 10px;
@@ -304,8 +280,6 @@ const AbilityScoreError = styled.div`
         margin-left: 10px;
         margin-right: 10px;
     };
-    h2 {
-    };
 `;
 
 
@@ -324,14 +298,7 @@ const Error = styled.div`
         margin-left: 10px;
         margin-right: 10px;
     };
-
 `;
-
-
-
-
-
-
 
 export {
     Frame, Sidebar, Sideaction, Page, FormDisplay, Action, Title, Field, SkillField,

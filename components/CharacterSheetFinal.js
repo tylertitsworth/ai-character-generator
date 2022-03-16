@@ -12,23 +12,19 @@ import {
 } from '../redux/selectors'
 
 import {
-    FlexRow, FlexColumn, SpellPage, CharSheet, Charname, MainContent,
+    FlexRow, FlexColumn, SpellPage, CharSheet, CharName, MainContent,
     StyledHeader, SpellMisc, Cantrips, SpellColumn, KnownSpells, SpellLevel,
     Spell
 } from '../styles/charactersheet'
 
-
 export default function CharacterSheetFinal() {
-
-
     return (
         <CharSheet>
             <StyledHeader>
-                <Charname>
+                <CharName>
                     <label>Spellcasting Class</label><input name="charname" ></input>
-                </Charname>
+                </CharName>
                 <SpellMisc>
-
                     <div>
                         <label>Spellcasting Ability</label>
                         <input ></input>
@@ -191,13 +187,9 @@ export default function CharacterSheetFinal() {
                             <Spell><input type="checkbox" /><input type="text" /></Spell>
                             <Spell><input type="checkbox" /><input type="text" /></Spell>
                         </KnownSpells>
-
                     </SpellColumn>
                 </SpellPage>
             </MainContent>
         </CharSheet>
     )
-
 }
-
-

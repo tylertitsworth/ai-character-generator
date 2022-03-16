@@ -11,13 +11,9 @@ import {
 	WRITE_ALL_BACKGROUNDS,
 	WRITE_ALL_ALIGNMENTS,
 	WRITE_ALL_SKILLS,
-
-
 } from './actions'
 
-
 function charReducer(state = [], action) {
-
 	console.log(state)
 	console.log("-- charReducer: ", action.type)
 
@@ -81,8 +77,6 @@ function charReducer(state = [], action) {
 		default:
 			return state
 	}
-
 }
-
 
 export default charReducer;
