@@ -7,6 +7,13 @@ export function getRace(state) {
 
 }
 
+export function getSkills(state) {
+    return state.skills;
+}
+
+export function getAbilityScores(state) {
+    return state.abilityScores;
+}
 
 // Storage
 export function getAllClasses(state) {

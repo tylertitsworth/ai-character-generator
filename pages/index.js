@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useQuery } from '@apollo/client';
 import { query } from '../hooks/qltree';
 import Layout from '../components/Layout'
+import Spinner from '../components/Spinner';
 
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -85,11 +86,13 @@ function handleSubmitCleanerRace(userRaceSelection){
 		return curatedRacechoice[0]
 	}
 	
+
 }
 
 function GeneralCharacter() {
 
 	const [toggle, setToggle] = useState(false)
+	const [spin, setSpin] = useState(false)
 	const [userInput, setUserInput] = useState("")
 	const { data, loading, error } = useQuery(query);
 
@@ -169,7 +172,8 @@ function GeneralCharacter() {
 	const [resultTwo, setResultTwo] = useState();
 
 	async function onSubmit(event) {
-
+		setToggle(false)
+		setSpin(true)
 		console.log("before the preventDefault + event object")
 		// console.log(event)
 		event.preventDefault();
@@ -214,6 +218,7 @@ function GeneralCharacter() {
 
 		setclassInput("");
 
+		setSpin(false)
 		setToggle(true)
 	}
 
@@ -243,6 +248,8 @@ function GeneralCharacter() {
 
 					<button>Submit</button>
 				</form>
+
+				{spin ? <Spinner /> : <></>}
 
 				{toggle ?	// eventually will have to include the loading variable of the OpenAI api call
 					<>

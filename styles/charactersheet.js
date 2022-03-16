@@ -378,11 +378,28 @@ const OtherProficiencies = styled.div`
         padding: 4px 0;
         font-weight: bold;
     }
+
+    li {
+        list-style: none;
+        text-align: left;
+        font-size: 13px;
+        padding: 5px;
+        padding-left: 10px;
+        text-transform: none;
+        font-weight: normal;
+    };
     
-    textarea {
-        width: 92.3%;
-        height: 17em;
+    ul {
+        width: 100%;
+        height: 24.5em;
         border: 1px solid black;
+        background-color: rgba(0,0,0,0);
+
+        textarea{
+            width: 100%;
+            height: 100%;
+            border: 0;
+        };
     };
 `;
 
@@ -416,6 +433,15 @@ const CombatScore = styled.div`
             border-radius: 0 0 10px 10px;
         };
         input {
+            height: 70px;
+            width: 70px;
+            border-radius: 10px;
+            border: 1px solid black;
+            text-align: center;
+            font-size: 30px;
+        };
+
+        div {
             height: 70px;
             width: 70px;
             border-radius: 10px;
@@ -756,6 +782,7 @@ const Flavor = styled.section`
 const Features = styled.section`
     padding: 10px;
     margin-right: 5px;
+    
 
     div {
         padding: 10px;
@@ -764,14 +791,24 @@ const Features = styled.section`
         display: flex;
         flex-direction: column-reverse;
 
+
+        
         label {
             text-align: center;
         };
 
-        textarea {
+        ul {
             border: 0;
             padding: 5px;
-            height: 32em;
+            height: 42.5em;
+            li {
+                list-style: none;
+                text-align: left;
+                font-size: 13px;
+                padding-bottom: 10px;
+                text-transform: none;
+                font-weight: normal;
+            };
         };
     };
 `;

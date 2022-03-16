@@ -214,6 +214,7 @@ export default function AbilityScoreDisplay(props) {
 			//orderedAbilities = abilityScores
         }
 		console.log("Ordered Abilities:", orderedAbilities)
+		dispatch(writeAbilityScores(orderedAbilities))
 	}, [ isValid])
 
 

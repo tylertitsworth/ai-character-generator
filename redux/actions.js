@@ -53,17 +53,10 @@ export function writeSkills(skills) {
 	}
 }
 
-export function writeAbilityScores(strength, dexterity, constitution, intelligence, wisdom, charisma) {
+export function writeAbilityScores(abilityScores) {
 	return {
 		type: WRITE_ABILITY_SCORES,
-		abilityScores: {
-			strength: strength,
-			dexterity: dexterity,
-			constitution: constitution,
-			intelligence: intelligence,
-			wisdom: wisdom,
-			charisma: charisma
-        }
+		abilityScores: abilityScores
     }
 }
 

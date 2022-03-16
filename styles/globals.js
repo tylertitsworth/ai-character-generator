@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-
+import { css } from '@emotion/react';
 /* 
     c1 - #CB2D38    - light-red
     c2 - #630A10    - dark-red
@@ -56,7 +56,7 @@ const Sidebar = styled.div`
 const Sideaction = styled.button`
     width: 100%;
     margin-bottom: 10px;
-    color: #B8B3B3;
+    color: ${props => props.active ? '#FACE7F' : '#B8B3B3'};
     font-size: 20px;
     text-align: left;
     padding-left: 20px;
@@ -64,7 +64,10 @@ const Sideaction = styled.button`
     background-color: rgba(0,0,0,0);
     border: 0;
 
+
 `;
+
+
 
 const Page = styled.div`
     width: 85%;
@@ -325,8 +328,6 @@ const Error = styled.div`
 `;
 
 
-
-// !!! --- Character Sheet Styling
 
 
 

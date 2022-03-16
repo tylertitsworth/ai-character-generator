@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from 'react';
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
     getClass,
     getRace,
+    getAbilityScores,
+    getSkills,
     getAllClasses,
     getAllRaces,
     getAllBackgrounds,
     getAllAlignments,
     getAllSkills
 } from '../redux/selectors'
+
+import {
+    writeClass,
+    writeRace
+} from '../redux/actions'
 
 import {
 	FlexRow, CharSheet, Charname, Misc, MainContent,
@@ -31,6 +38,33 @@ export default function CharacterSheet() {
     const allSkills = useSelector(getAllSkills)
     var currClass = useSelector(getClass)
     var currRace = useSelector(getRace)
+    var currSkills = useSelector(getSkills)
+    var currAbilityScores = useSelector(getAbilityScores)
+
+    const dispatch = useDispatch();
+
+    var currClassData = []
+    var currRaceData = []
+
+    console.log("Class: " + currClass + " Race: " + currRace);
+
+    allClasses.forEach((option, index) => {
+        if (option[1].name === currClass) {
+            currClassData = option[1]
+        }
+    })
+
+    allRaces.forEach((option, index) => {
+        if (option[1].name === currRace) {
+            currRaceData = option[1]
+        }
+    })
+
+    console.log(currRaceData)
+    console.log(currClassData)              // I wanted to use this data to fill out other valuese like hit_dice, etc
+                                            // but my DnD knowledge has run out :( I don't know what should go where.
+                                            // Like the value hit_dice only returns a singular number (6, 8, 10), but hit
+                                            // dice themselves in the game are 1d6 or 2d10
 
     /*
     - Header information contains all top section
@@ -77,7 +111,7 @@ export default function CharacterSheet() {
                         <ul>
                             <li>
                                 <label>Class & Level</label>
-                                <select  >
+                            <select value={currClass} onChange={(event) => { dispatch(writeClass(event.target.value)) }}>
                                     {allClasses.map((option, i) =>
                                         <option key={i} value={option[1].name}>{option[1].name} 1</option>
                                     )
@@ -99,7 +133,7 @@ export default function CharacterSheet() {
                             </li>
                             <li>
                                 <label>Race</label>
-                                <select >
+                            <select value={currRace} onChange={(event) => { dispatch(writeRace(event.target.value)) }}>
                                     {allRaces.map((option, i) =>
                                         <option key={i} value={option[1].name}>{option[1].name}</option>
                                     )
@@ -130,7 +164,7 @@ export default function CharacterSheet() {
                                     <li>
                                         <Score>
                                             <label>Strength</label>
-                                            <div name="Strengthscore" placeholder="10">10</div>
+                                        <div name="Strengthscore" placeholder="10">{currAbilityScores[0]}</div>
                                         </Score>
                                         <Modifier>
                                             <input name="Strengthmod" placeholder="+0"></input>
@@ -139,7 +173,7 @@ export default function CharacterSheet() {
                                     <li>
                                         <Score>
                                             <label>Dexterity</label>
-                                            <div name="Dexterityscore" placeholder="10">10</div>
+                                        <div name="Dexterityscore" placeholder="10">{currAbilityScores[1]}</div>
                                         </Score>
                                         <Modifier>
                                             <input name="Dexteritymod" placeholder="+0"></input>
@@ -148,7 +182,7 @@ export default function CharacterSheet() {
                                     <li>
                                         <Score>
                                             <label>Constitution</label>
-                                            <div name="Constitutionscore" placeholder="10">10</div>
+                                        <div name="Constitutionscore" placeholder="10">{currAbilityScores[2]}</div>
                                         </Score>
                                         <Modifier>
                                             <input name="Constitutionmod" placeholder="+0"></input>
@@ -157,7 +191,7 @@ export default function CharacterSheet() {
                                     <li>
                                         <Score>
                                             <label>Intelligence</label>
-                                            <div name="Intelligencescore" placeholder="10">10</div>
+                                        <div name="Intelligencescore" placeholder="10">{currAbilityScores[3]}</div>
                                         </Score>
                                         <Modifier>
                                             <input name="Intelligencemod" placeholder="+0"></input>
@@ -166,7 +200,7 @@ export default function CharacterSheet() {
                                     <li>
                                         <Score>
                                             <label>Wisdom</label>
-                                            <div name="Wisdomscore" placeholder="10">10</div>
+                                        <div name="Wisdomscore" placeholder="10">{currAbilityScores[4]}</div>
                                         </Score>
                                         <Modifier>
                                             <input name="Wisdommod" placeholder="+0"></input>
@@ -175,7 +209,7 @@ export default function CharacterSheet() {
                                     <li>
                                         <Score>
                                             <label>Charisma</label>
-                                            <div name="Charismascore" placeholder="10">10</div>
+                                        <div name="Charismascore" placeholder="10">{currAbilityScores[5]}</div>
                                         </Score>
                                         <Modifier>
                                             <input name="Charismamod" placeholder="+0"></input>
@@ -209,13 +243,17 @@ export default function CharacterSheet() {
                                 </ListSection>
                                 <ListSection>
                                     <ul>
-                                        {allSkills.map((skill, i) =>
-                                            <li key={i}>
-                                                <label>{skill[1].name}</label><ListTextInput placeholder="+0" /><ListCheckboxInput type="checkbox" />
-                                                <span>({skill[1].ability_score.name})</span>
-                                            </li>
-                                        )
-                                        }
+                                    {allSkills.sort(function (a, b) {
+                                        if (a[1].name.toLowerCase() < b[1].name.toLowerCase()) return -1;
+                                        if (a[1].name.toLowerCase() > b[1].name.toLowerCase()) return 1;
+                                        return 0;
+                                    }).map((skill, i) => 
+                                        <li key={i}>
+                                            <label>{skill[1].name}</label><ListTextInput placeholder="+0" /><ListCheckboxInput type="checkbox" />
+                                            <span>({skill[1].ability_score.name})</span>
+                                        </li>
+
+                                    )}
                                     </ul>
                                     <div>Skills</div>
                                 </ListSection>
@@ -228,7 +266,15 @@ export default function CharacterSheet() {
                             <input placeholder="10" />
                         </PassivePerception>
                         <OtherProficiencies>
-                            <label>Other Proficiences and Languages</label><textarea></textarea>
+                        <label>Other Proficiences and Languages</label>
+                        <ul>
+                            {currRaceData.languages.map((trait, i) =>
+                                <li key={i}>{trait.name}</li>
+                            )
+                            }
+                        </ul>
+                        
+                       
                         </OtherProficiencies>
                     </section>
                     <section>
@@ -245,13 +291,13 @@ export default function CharacterSheet() {
                             </CombatScore>
                             <CombatScore>
                                 <div>
-                                    <label>Speed</label><input placeholder="30" type="text" />
+                                <label>Speed</label><input placeholder={currRaceData.speed} type="text" />
                                 </div>
                             </CombatScore>
                             <Hitpoints>
                                 <RegularHitpoints>
                                     <MaxHitpoints>
-                                        <label>Hit Point Maximum</label><input placeholder="10" />
+                                    <label>Hit Point Maximum</label><input placeholder="10" />
                                     </MaxHitpoints>
                                     <CurrentHitpoints>
                                         <label>Current Hit Points</label><input />
@@ -398,7 +444,14 @@ export default function CharacterSheet() {
                         </Flavor>
                         <Features>
                             <div>
-                                <label>Features & Traits</label><textarea></textarea>
+                            <label>Features & Traits</label>
+                            <ul>
+                                {currRaceData.traits.map((trait, i) =>
+                                    <li key={i}>{trait.name}</li>
+                                )
+                                }
+
+                            </ul>
                             </div>
                         </Features>
                     </section>

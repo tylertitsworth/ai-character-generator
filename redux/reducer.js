@@ -51,14 +51,7 @@ function charReducer(state = [], action) {
 		case WRITE_ABILITY_SCORES:
 			return {
 				...state,
-				abilityScores: {
-					strength: action.strength,
-					dexterity: action.dexterity,
-					constitution: action.constitution,
-					intelligence: action.intelligence,
-					wisdom: action.wisdom,
-					charisma: action.charisma
-				}
+				abilityScores: action.abilityScores
 			}
 		case WRITE_ALL_CLASSES:
 			return {
