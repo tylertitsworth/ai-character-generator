@@ -3,17 +3,17 @@ import { SkillField, StyledSelect, FlexRow, Error } from '../styles/globals'
 
 import { useDispatch, useSelector } from 'react-redux';
 import {
+    getAllClasses,
 	getClass
 } from '../redux/selectors';
 import { writeSkills } from '../redux/actions';
 
 export default function SkillDropdown(props) {
-	var skillData = props.skills
-	var classData = props.classes
+	var classData = useSelector(getAllClasses)
 
 	const dispatch = useDispatch()
 
-	var testClass = []
+	var testClass = [];
 	var choose = 0;
 	var choices = [];
 	const currentClass = useSelector(getClass)
@@ -29,14 +29,16 @@ export default function SkillDropdown(props) {
 
 	for (var i = 0; i < classData.length; i++) {
 		if (classData[i][1].name === currentClass) {
+			console.log(classData[i])
 			testClass = classData[i]
-        }
-    }
+		}
+	}
+	console.log(testClass)
 	//var testClass = classData[5]		// change this number to get different results (0-11) 5, 0 
 
 	var MonkSwitch = testClass[1].proficiency_choices[0].from[0].name.includes("Skill: ")
 	//console.log("MONK SWITCH: ", MonkSwitch)		// False if Monk
-	
+
 	if (MonkSwitch) {
 		//console.log("Not a Monk")
 		var choose = testClass[1].proficiency_choices[0].choose		// (1-4)
@@ -46,13 +48,14 @@ export default function SkillDropdown(props) {
 		//console.log("Is a Monk")
 		var choose = testClass[1].proficiency_choices[2].choose		// (1-4)
 		var choices = testClass[1].proficiency_choices[2].from		// Names
-    }
+	}
 
 	//console.log(`Test Class: ${testClass[1].name}`)
 	useEffect(() => {
 		console.log("CHANGED CLASS")
+
 		setToggle(true)
-	} , [currentClass]	)
+	}, [currentClass])
 
 	// set skill state
 	useEffect(() => {
@@ -111,7 +114,7 @@ export default function SkillDropdown(props) {
 			}
 		}
 		else if (choose == 3) {
-			if (skill1 == skill2 || skill1 == skill3 || skill2 == skill3 ) {
+			if (skill1 == skill2 || skill1 == skill3 || skill2 == skill3) {
 				console.log("Two skills are the same")
 				setIsValid(false)
 			}
@@ -185,7 +188,7 @@ export default function SkillDropdown(props) {
 		return (
 			<>
 				<FlexRow>
-				<h2>Choose {choose} Skills</h2>
+					<h2>Choose {choose} Skills</h2>
 					<SkillField>
 						<StyledSelect value={skill1} onChange={(event) => setSkill1(event.target.value)}> {
 							choices.map((choice, i) =>
@@ -213,14 +216,14 @@ export default function SkillDropdown(props) {
 		)
 	}
 	else if (choose === 3) {
-			return (
+		return (
 			<>
 				<FlexRow>
-				<h2>Choose {choose} Skills</h2>
+					<h2>Choose {choose} Skills</h2>
 					<SkillField>
-							<StyledSelect value={skill1} onChange={(event) => setSkill1(event.target.value)}> {
-								choices.map((choice, i) =>
-									<option key={i} value={choice.name.replace("Skill: ", "")}>{choice.name.replace("Skill: ", "")}</option>
+						<StyledSelect value={skill1} onChange={(event) => setSkill1(event.target.value)}> {
+							choices.map((choice, i) =>
+								<option key={i} value={choice.name.replace("Skill: ", "")}>{choice.name.replace("Skill: ", "")}</option>
 							)
 						}
 						</StyledSelect>
@@ -255,7 +258,7 @@ export default function SkillDropdown(props) {
 		return (
 			<>
 				<FlexRow>
-				<h2>Choose {choose} Skills</h2>
+					<h2>Choose {choose} Skills</h2>
 					<SkillField>
 						<StyledSelect value={skill1} onChange={(event) => setSkill1(event.target.value)}> {
 							choices.map((choice, i) =>

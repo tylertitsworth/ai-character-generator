@@ -139,19 +139,18 @@ function GeneralCharacter() {
 		setToggle(true)
 	}
 	return (
-		<Layout Title="Let's Get Started...">      
+		<Layout Title="AI  D&D  Character  Creator">      
 			<FormDisplay>
 				<form onSubmit={onSubmit}>
 					<input value={classInput} placeholder="Enter a description of your character" onChange={(e) => setclassInput(e.target.value)} />
 					<button>Submit</button>
 				</form>
 				{spin ? <Spinner /> : <></>}
-				{toggle ? <>
+				{toggle || currClass !== undefined ? <>
 					<h1>Results: </h1>
 					<FlexRow>
 						<FlexColumn>
-							<Dropdown data={allRaces} /*currValue={currRace}*//>
-							<Dropdown data={allClasses} /*currValue={currClass}*//>
+							<Dropdown/>
 							<SkillDropdown classes={allClasses} />
 						</FlexColumn>
 						<FlexColumn>
@@ -161,7 +160,7 @@ function GeneralCharacter() {
 				</> : <></>}
 
 			</FormDisplay>
-			{toggle ?
+			{toggle || currClass !== undefined ?
 				<ButtonDisplay>
 					<Link href="/backstory">
 						<Action>Continue</Action>

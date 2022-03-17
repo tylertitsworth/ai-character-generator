@@ -5,39 +5,35 @@ import {
 	writeClass,
 	writeRace,
 } from '../redux/actions'
-import { getClass, getRace } from '../redux/selectors';
+import { getAllClasses, getAllRaces, getClass, getRace } from '../redux/selectors';
 
 export default function Dropdown(props) {
-	var dropdownData = props.data;
 	var currentRace = useSelector(getRace);
-	var currentClass= useSelector(getClass);
+	var currentClass = useSelector(getClass);
+	var allClasses = useSelector(getAllClasses);
+	var allRaces = useSelector(getAllRaces);
+
 	const dispatch = useDispatch();
 
-	console.log(dropdownData)
-	if (dropdownData[0][1].name != "Elf") {
-		console.log(">>>>>Class info>> "+ currentClass);
-		return (
+	return (
+		<>
 			<Field>
-				<StyledSelect value={currentClass} onChange={(event) => { console.log(event.target.value); dispatch(writeClass(event.target.value))}}> {
-					dropdownData.map((opt, i) =>
+				<StyledSelect value={currentRace} onChange={(event) => { event.preventDefault(); console.log(event.target.value); dispatch(writeRace(event.target.value)) }}> {
+					allRaces.map((opt, i) =>
+						<option key={i} value={opt[1].name}>{opt[1].name}</option>
+					)
+				}
+				</StyledSelect>
+				</Field>
+			<Field>
+				<StyledSelect value={currentClass} onChange={(event) => { event.preventDefault(); console.log(event.target.value); dispatch(writeClass(event.target.value)) }}> {
+					allClasses.map((opt, i) =>
 						<option key={i} value={opt[1].name}>{opt[1].name}</option>
 					)
 				}
 				</StyledSelect>
 			</Field>
-		)
-	}
-	else {
-		console.log(">>>>race info>> "+ currentRace);
-		return (
-			<Field>
-				<StyledSelect value={currentRace} onChange={(event) => { console.log(event.target.value); dispatch(writeRace(event.target.value)) }}> {
-					dropdownData.map((opt, i) =>
-						<option key={i} value={opt[1].name}>{opt[1].name}</option>
-					)
-				}
-				</StyledSelect>
-			</Field>
-		)
-    }
+		</>
+	)
+
 }
