@@ -65,7 +65,7 @@ export default function Backstory() {
         obj.userRace=charRaceStory;
 
         console.log("the class from store >>>  "+ obj.userClass);
-        console.log("the class from store >>>  "+ obj.userRace);
+        console.log("the race from store >>>  "+ obj.userRace);
 
         const response = await fetch("/api/userStory", {
 			method: "POST",
@@ -76,10 +76,12 @@ export default function Backstory() {
 		});
 		const data = await response.json();
 
-        console.log("Your story begins here >>>>>>>>>>>>>>>>>>>" + data.resultThree);
         
-        setStoryText(data.resultThree);
-        dispatch(writeStory(data.resultThree));
+        var storyCleaner=data.resultThree.replace(/^[^A-Za-z]+/, '');
+        console.log("cleaned story ======== "+ storyCleaner);
+       
+        setStoryText(storyCleaner);
+        dispatch(writeStory(storyCleaner));
         setSpin(false);
         setToggle(true);
     }

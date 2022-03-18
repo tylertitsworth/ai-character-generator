@@ -17,7 +17,7 @@ export default async function (req, res) {
   res.status(200).json({ resultThree: completion.data.choices[0].text });
   // one token = 4 characters in english. max tokens is 2048
   // 1000 tokens in  "text-davinci-001" = $0.06. each call is 6 cents
-  console.log("What is Completion userStory.js>>>>>>" + JSON.stringify(completion.data));
+  // console.log("What is Completion userStory.js>>>>>>" + JSON.stringify(completion.data));
 }
 
 function generatePrompttwo(userStory,genClass,genRace) {
