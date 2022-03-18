@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { AbilityScore, FlexColumn, FlexRow, StyledSelect, Error } from '../styles/globals'
+import { AbilityScore, ContentContainer, ItemContainer, FlexColumn, FlexRow, StyledSelect, Error } from '../styles/globals'
 
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -12,13 +12,14 @@ import {
 
 export default function AbilityScoreDisplay(props) {
 	
-	const ABILITY_NAMES = ["Strength","Dexterity","Constituion","Intelligence","Wisdom","Charisma"]
+	const ABILITY_NAMES = ["Strength","Dexterity","Constitution","Intelligence","Wisdom","Charisma"]
 	console.log(ABILITY_NAMES)
 	var THE_SCORES_ARRAY = [15, 14, 13, 12, 10, 8]
 	var orderedAbilities = []
 
 	const [missingAbility, setMissingAbility] = useState("")
 	const [isValid, setIsValid] = useState(true)
+	const [toggle, setToggle] = useState(true)
 
 	const [abilityScore1, setAbilityScore1] = useState(ABILITY_NAMES[0])
 	const [abilityScore2, setAbilityScore2] = useState(ABILITY_NAMES[1])
@@ -27,121 +28,143 @@ export default function AbilityScoreDisplay(props) {
 	const [abilityScore5, setAbilityScore5] = useState(ABILITY_NAMES[4])
 	const [abilityScore6, setAbilityScore6] = useState(ABILITY_NAMES[5])
 
-	var currClass = useSelector(getClass);
+	const currClass = useSelector(getClass);
 	var classData = useSelector(getAllClasses);
 
-	console.log(currClass, classData)
-
-	useEffect(() => {
-		if (currClass === "Fighter") {
-			setAbilityScore1(ABILITY_NAMES[0])
-			setAbilityScore2(ABILITY_NAMES[2])
-			setAbilityScore3(ABILITY_NAMES[1])
-			setAbilityScore4(ABILITY_NAMES[3])
-			setAbilityScore5(ABILITY_NAMES[4])
-			setAbilityScore6(ABILITY_NAMES[5])
-			dispatch(writeAbilityScores([15, 13, 14, 12, 10, 8]))
-		}
-		else if (currClass === "Druid") {
-			setAbilityScore1(ABILITY_NAMES[3])
-			setAbilityScore2(ABILITY_NAMES[4])
-			setAbilityScore3(ABILITY_NAMES[2])
-			setAbilityScore4(ABILITY_NAMES[1])
-			setAbilityScore5(ABILITY_NAMES[5])
-			setAbilityScore6(ABILITY_NAMES[0])
-			dispatch(writeAbilityScores([8, 12, 13, 12, 15, 10]))
-		}
-		else if (currClass === "Paladin") {
-			setAbilityScore1(ABILITY_NAMES[4])
-			setAbilityScore2(ABILITY_NAMES[5])
-			setAbilityScore3(ABILITY_NAMES[2])
-			setAbilityScore4(ABILITY_NAMES[0])
-			setAbilityScore5(ABILITY_NAMES[3])
-			setAbilityScore6(ABILITY_NAMES[1])
-			dispatch(writeAbilityScores([12, 8, 13, 10, 15, 14])) 
-		}
-		else if (currClass === "Sorcerer") {
-			setAbilityScore1(ABILITY_NAMES[2])
-			setAbilityScore2(ABILITY_NAMES[5])
-			setAbilityScore3(ABILITY_NAMES[3])
-			setAbilityScore4(ABILITY_NAMES[4])
-			setAbilityScore5(ABILITY_NAMES[1])
-			setAbilityScore6(ABILITY_NAMES[0])
-			dispatch(writeAbilityScores([12, 8, 13, 10, 15, 14])) // var THE_SCORES_ARRAY = [15, 14, 13, 12, 10, 8]		["Strength","Dexterity","Constituion","Intelligence","Wisdom","Charisma"]
-		}
-		else if (currClass === "Bard") {
-			setAbilityScore1(ABILITY_NAMES[1])
-			setAbilityScore2(ABILITY_NAMES[5])
-			setAbilityScore3(ABILITY_NAMES[2])
-			setAbilityScore4(ABILITY_NAMES[4])
-			setAbilityScore5(ABILITY_NAMES[0])
-			setAbilityScore6(ABILITY_NAMES[3])
-		}
-		else if (currClass === "Monk") {
-			setAbilityScore1(ABILITY_NAMES[0])
-			setAbilityScore2(ABILITY_NAMES[1])
-			setAbilityScore3(ABILITY_NAMES[2])
-			setAbilityScore4(ABILITY_NAMES[3])
-			setAbilityScore5(ABILITY_NAMES[4])
-			setAbilityScore6(ABILITY_NAMES[5])
-		}
-		else if (currClass === "Wizard") {
-			setAbilityScore1(ABILITY_NAMES[3])
-			setAbilityScore2(ABILITY_NAMES[4])
-			setAbilityScore3(ABILITY_NAMES[2])
-			setAbilityScore4(ABILITY_NAMES[1])
-			setAbilityScore5(ABILITY_NAMES[5])
-			setAbilityScore6(ABILITY_NAMES[0])
-		}
-		else if (currClass === "Barbarian") {
-			setAbilityScore1(ABILITY_NAMES[0])
-			setAbilityScore2(ABILITY_NAMES[2])
-			setAbilityScore3(ABILITY_NAMES[1])
-			setAbilityScore4(ABILITY_NAMES[4])
-			setAbilityScore5(ABILITY_NAMES[3])
-			setAbilityScore6(ABILITY_NAMES[5])
-		}
-		else if (currClass === "Cleric") {
-			setAbilityScore1(ABILITY_NAMES[4])
-			setAbilityScore2(ABILITY_NAMES[5])
-			setAbilityScore3(ABILITY_NAMES[2])
-			setAbilityScore4(ABILITY_NAMES[3])
-			setAbilityScore5(ABILITY_NAMES[1])
-			setAbilityScore6(ABILITY_NAMES[0])
-		}
-		else if (currClass === "Ranger") {
-			setAbilityScore1(ABILITY_NAMES[0])
-			setAbilityScore2(ABILITY_NAMES[1])
-			setAbilityScore3(ABILITY_NAMES[2])
-			setAbilityScore4(ABILITY_NAMES[5])
-			setAbilityScore5(ABILITY_NAMES[3])
-			setAbilityScore6(ABILITY_NAMES[4])
-		}
-		else if (currClass === "Rogue") {
-			setAbilityScore1(ABILITY_NAMES[1])
-			setAbilityScore2(ABILITY_NAMES[3])
-			setAbilityScore3(ABILITY_NAMES[2])
-			setAbilityScore4(ABILITY_NAMES[0])
-			setAbilityScore5(ABILITY_NAMES[5])
-			setAbilityScore6(ABILITY_NAMES[4])
-		}
-		else if (currClass === "Warlock") {
-			setAbilityScore1(ABILITY_NAMES[4])
-			setAbilityScore2(ABILITY_NAMES[5])
-			setAbilityScore3(ABILITY_NAMES[2])
-			setAbilityScore4(ABILITY_NAMES[3])
-			setAbilityScore5(ABILITY_NAMES[1])
-			setAbilityScore6(ABILITY_NAMES[0])
-		}
-
-		setIsValid(true)
-		//var startingScores = [abilityScore1, abilityScore2, abilityScore3,
-		//					abilityScore4, abilityScore5, abilityScore6	]
-		//dispatch(writeAbilityScores(startingScores))
-	}, [currClass])
-
+	//console.log(currClass, classData)
 
 	const dispatch = useDispatch()
+
+	useEffect(() => {
+		console.log("************* TOGGLING Class Changed")
+		setToggle(true)
+	}, [currClass])
+	useEffect(() => {
+		if (toggle) {
+			if (currClass === "Fighter") {
+				setAbilityScore1(ABILITY_NAMES[0])
+				setAbilityScore2(ABILITY_NAMES[2])
+				setAbilityScore3(ABILITY_NAMES[1])
+				setAbilityScore4(ABILITY_NAMES[3])
+				setAbilityScore5(ABILITY_NAMES[4])
+				setAbilityScore6(ABILITY_NAMES[5])
+				dispatch(writeAbilityScores([15, 13, 14, 12, 10, 8]))
+				setToggle(false)
+			}
+			else if (currClass === "Druid") {
+				setAbilityScore1(ABILITY_NAMES[4])
+				setAbilityScore2(ABILITY_NAMES[1])
+				setAbilityScore3(ABILITY_NAMES[2])
+				setAbilityScore4(ABILITY_NAMES[3])
+				setAbilityScore5(ABILITY_NAMES[5])
+				setAbilityScore6(ABILITY_NAMES[0])
+				dispatch(writeAbilityScores([8, 14, 13, 12, 15, 10]))
+				setToggle(false)
+			}
+			else if (currClass === "Paladin") {
+				setAbilityScore1(ABILITY_NAMES[0])
+				setAbilityScore2(ABILITY_NAMES[5])
+				setAbilityScore3(ABILITY_NAMES[2])
+				setAbilityScore4(ABILITY_NAMES[4])
+				setAbilityScore5(ABILITY_NAMES[3])
+				setAbilityScore6(ABILITY_NAMES[1])
+				dispatch(writeAbilityScores([15, 8, 13, 10, 12, 14])) 
+				setToggle(false)
+			}
+			else if (currClass === "Sorcerer") {
+				setAbilityScore1(ABILITY_NAMES[5])
+				setAbilityScore2(ABILITY_NAMES[2])
+				setAbilityScore3(ABILITY_NAMES[4])
+				setAbilityScore4(ABILITY_NAMES[3])
+				setAbilityScore5(ABILITY_NAMES[1])
+				setAbilityScore6(ABILITY_NAMES[0])
+				dispatch(writeAbilityScores([8, 10, 14, 12, 13, 15])) 
+				setToggle(false)
+			}
+			else if (currClass === "Bard") {
+				setAbilityScore1(ABILITY_NAMES[1])
+				setAbilityScore2(ABILITY_NAMES[5])
+				setAbilityScore3(ABILITY_NAMES[2])
+				setAbilityScore4(ABILITY_NAMES[4])
+				setAbilityScore5(ABILITY_NAMES[0])
+				setAbilityScore6(ABILITY_NAMES[3])
+				dispatch(writeAbilityScores([10, 15, 13, 8, 12, 14])) 
+				setToggle(false)
+			}
+			else if (currClass === "Monk") {
+				setAbilityScore1(ABILITY_NAMES[1])
+				setAbilityScore2(ABILITY_NAMES[4])
+				setAbilityScore3(ABILITY_NAMES[2])
+				setAbilityScore4(ABILITY_NAMES[3])
+				setAbilityScore5(ABILITY_NAMES[0])
+				setAbilityScore6(ABILITY_NAMES[5])
+				dispatch(writeAbilityScores([10, 15, 13, 12, 14, 8])) 
+				setToggle(false)
+			}
+			else if (currClass === "Wizard") {
+				setAbilityScore1(ABILITY_NAMES[3])
+				setAbilityScore2(ABILITY_NAMES[4])
+				setAbilityScore3(ABILITY_NAMES[2])
+				setAbilityScore4(ABILITY_NAMES[1])
+				setAbilityScore5(ABILITY_NAMES[5])
+				setAbilityScore6(ABILITY_NAMES[0])
+				dispatch(writeAbilityScores([8, 12, 13, 15, 14, 10]))
+				setToggle(false)
+			}
+			else if (currClass === "Barbarian") {
+				setAbilityScore1(ABILITY_NAMES[0])
+				setAbilityScore2(ABILITY_NAMES[2])
+				setAbilityScore3(ABILITY_NAMES[1])
+				setAbilityScore4(ABILITY_NAMES[4])
+				setAbilityScore5(ABILITY_NAMES[3])
+				setAbilityScore6(ABILITY_NAMES[5])
+				dispatch(writeAbilityScores([15, 13, 14, 10, 12, 8])) 
+				setToggle(false)
+			}
+			else if (currClass === "Cleric") {
+				setAbilityScore1(ABILITY_NAMES[4])
+				setAbilityScore2(ABILITY_NAMES[5])
+				setAbilityScore3(ABILITY_NAMES[2])
+				setAbilityScore4(ABILITY_NAMES[3])
+				setAbilityScore5(ABILITY_NAMES[1])
+				setAbilityScore6(ABILITY_NAMES[0])
+				dispatch(writeAbilityScores([8, 10, 13, 12, 15, 14])) 
+				setToggle(false)
+			}
+			else if (currClass === "Ranger") {
+				setAbilityScore1(ABILITY_NAMES[1])
+				setAbilityScore2(ABILITY_NAMES[4])
+				setAbilityScore3(ABILITY_NAMES[2])
+				setAbilityScore4(ABILITY_NAMES[5])
+				setAbilityScore5(ABILITY_NAMES[3])
+				setAbilityScore6(ABILITY_NAMES[0])
+				dispatch(writeAbilityScores([8, 15, 13, 10, 14, 12])) 
+				setToggle(false)
+			}
+			else if (currClass === "Rogue") {
+				setAbilityScore1(ABILITY_NAMES[1])
+				setAbilityScore2(ABILITY_NAMES[3])
+				setAbilityScore3(ABILITY_NAMES[2])
+				setAbilityScore4(ABILITY_NAMES[0])
+				setAbilityScore5(ABILITY_NAMES[5])
+				setAbilityScore6(ABILITY_NAMES[4])
+				dispatch(writeAbilityScores([12, 15, 13, 14, 8, 10])) 
+				setToggle(false)
+			}
+			else if (currClass === "Warlock") {
+				setAbilityScore1(ABILITY_NAMES[5])
+				setAbilityScore2(ABILITY_NAMES[2])
+				setAbilityScore3(ABILITY_NAMES[4])
+				setAbilityScore4(ABILITY_NAMES[3])
+				setAbilityScore5(ABILITY_NAMES[1])
+				setAbilityScore6(ABILITY_NAMES[0])
+				dispatch(writeAbilityScores([8, 10, 14, 12, 13, 15])) 
+				setToggle(false)
+			}
+
+        }
+
+	}, [toggle])
 
 	// set initial ability state
 	useEffect(() => {
@@ -192,7 +215,7 @@ export default function AbilityScoreDisplay(props) {
 		}
 		else {
 			setIsValid(true)
-			dispatch(writeAbilityScores([]))
+			//dispatch(writeAbilityScores())
 			setMissingAbility("")
 
         }
@@ -205,8 +228,8 @@ export default function AbilityScoreDisplay(props) {
 
 	}, [abilityScore1, abilityScore2, abilityScore3, abilityScore4, abilityScore5, abilityScore6])
 
-	useEffect(() => {
 
+	useEffect(() => {
 		
 		if (isValid) {
 			// oh boy Tyler is gonna hate me for this one!
@@ -325,81 +348,87 @@ export default function AbilityScoreDisplay(props) {
 				orderedAbilities[5] = THE_SCORES_ARRAY[5]
 			}
 
-			//dispatch(writeAbilityScores(orderedAbilities[0], orderedAbilities[1], orderedAbilities[2], orderedAbilities[3], orderedAbilities[4], orderedAbilities[5]))
-			//dispatch(writeAbilityScores(15, 14, 13, 12, 10, 8))
+			dispatch(writeAbilityScores(orderedAbilities))
 		}
 		else {
 			//orderedAbilities = THE_SCORES_ARRAY
 		}
-		console.log("><><><><><><><><><>< Ordered Abilities:", orderedAbilities)
-		dispatch(writeAbilityScores(orderedAbilities))
+		//console.log("><><><><><><><><><>< Ordered Abilities:", orderedAbilities)
+		//dispatch(writeAbilityScores(orderedAbilities))
 
-	}, [ isValid])
+	}, [currClass,abilityScore1, abilityScore2,abilityScore3, abilityScore4, abilityScore5, abilityScore6, isValid])
 
 
 	return (
-		<>
+		<ContentContainer>
 			<FlexRow>
-
-				<AbilityScore>
-					<h1>{THE_SCORES_ARRAY[0]}</h1>
+				<ItemContainer>
+					<AbilityScore>
+						<h1>{THE_SCORES_ARRAY[0]}</h1>
 						<select value={abilityScore1} onChange={(event) => { console.log(event.target.value); setAbilityScore1(event.target.value) }}>
 							{ABILITY_NAMES.map((ability, i) =>
 								<option key={i} value={ability}>{ability}</option>
 							)
 							}
 						</select>
-				</AbilityScore>
+					</AbilityScore>
 
-				<AbilityScore>
-					<h1>{THE_SCORES_ARRAY[1]}</h1>
-					<select value={abilityScore2} onChange={(event) => { console.log(event.target.value); setAbilityScore2(event.target.value) }}>
-						{ABILITY_NAMES.map((ability, i) =>
-							<option key={i} value={ability}>{ability}</option>
-						)
-						}
-					</select>
-				</AbilityScore>
+					<AbilityScore>
+						<h1>{THE_SCORES_ARRAY[1]}</h1>
+						<select value={abilityScore2} onChange={(event) => { console.log(event.target.value); setAbilityScore2(event.target.value) }}>
+							{ABILITY_NAMES.map((ability, i) =>
+								<option key={i} value={ability}>{ability}</option>
+							)
+							}
+						</select>
+					</AbilityScore>
+				</ItemContainer>
 
-				<AbilityScore>
-					<h1>{THE_SCORES_ARRAY[2]}</h1>
-					<select value={abilityScore3} onChange={(event) => { console.log(event.target.value); setAbilityScore3(event.target.value) }}>
-						{ABILITY_NAMES.map((ability, i) =>
-							<option key={i} value={ability}>{ability}</option>
-						)
-						}
-					</select>
-				</AbilityScore>
+				<ItemContainer>
+					<AbilityScore>
+						<h1>{THE_SCORES_ARRAY[2]}</h1>
+						<select value={abilityScore3} onChange={(event) => { console.log(event.target.value); setAbilityScore3(event.target.value) }}>
+							{ABILITY_NAMES.map((ability, i) =>
+								<option key={i} value={ability}>{ability}</option>
+							)
+							}
+						</select>
+					</AbilityScore>
 
-				<AbilityScore>
-					<h1>{THE_SCORES_ARRAY[3]}</h1>
-					<select value={abilityScore4} onChange={(event) => { console.log(event.target.value); setAbilityScore4(event.target.value) }}>
-						{ABILITY_NAMES.map((ability, i) =>
-							<option key={i} value={ability}>{ability}</option>
-						)
-						}
-					</select>
-				</AbilityScore>
+					<AbilityScore>
+						<h1>{THE_SCORES_ARRAY[3]}</h1>
+						<select value={abilityScore4} onChange={(event) => { console.log(event.target.value); setAbilityScore4(event.target.value) }}>
+							{ABILITY_NAMES.map((ability, i) =>
+								<option key={i} value={ability}>{ability}</option>
+							)
+							}
+						</select>
+					</AbilityScore>
+				</ItemContainer>
 
-				<AbilityScore>
-					<h1>{THE_SCORES_ARRAY[4]}</h1>
-					<select value={abilityScore5} onChange={(event) => { console.log(event.target.value); setAbilityScore5(event.target.value) }}>
-						{ABILITY_NAMES.map((ability, i) =>
-							<option key={i} value={ability}>{ability}</option>
-						)
-						}
-					</select>
-				</AbilityScore>
+				<ItemContainer>
+					<AbilityScore>
+						<h1>{THE_SCORES_ARRAY[4]}</h1>
+						<select value={abilityScore5} onChange={(event) => { console.log(event.target.value); setAbilityScore5(event.target.value) }}>
+							{ABILITY_NAMES.map((ability, i) =>
+								<option key={i} value={ability}>{ability}</option>
+							)
+							}
+						</select>
+					</AbilityScore>
 
-				<AbilityScore>
-					<h1>{THE_SCORES_ARRAY[5]}</h1>
-					<select value={abilityScore6} onChange={(event) => { console.log(event.target.value); setAbilityScore6(event.target.value) }}>
-						{ABILITY_NAMES.map((ability, i) =>
-							<option key={i} value={ability}>{ability}</option>
-						)
-						}
-					</select>
-				</AbilityScore>
+					<AbilityScore>
+						<h1>{THE_SCORES_ARRAY[5]}</h1>
+						<select value={abilityScore6} onChange={(event) => { console.log(event.target.value); setAbilityScore6(event.target.value) }}>
+							{ABILITY_NAMES.map((ability, i) =>
+								<option key={i} value={ability}>{ability}</option>
+							)
+							}
+						</select>
+					</AbilityScore>
+				</ItemContainer>
+
+				
 
 			</FlexRow>
 			{isValid ? <> </> :
@@ -408,7 +437,9 @@ export default function AbilityScoreDisplay(props) {
 					<h3>Missing Ability Score: {missingAbility}</h3>
 				</Error>
 			}
-		</>
+
+
+		</ContentContainer>
     )
 
 }

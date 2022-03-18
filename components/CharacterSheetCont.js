@@ -24,7 +24,7 @@ export default function CharacterSheetCont() {
     //console.log(currStory)
 
     return (
-        <CharSheet>
+        <CharSheet onChange={(e) => { e.preventDefault(); }}>
             <header>
                 <CharName>
                     <label>Character Name</label><input name="charname" placeholder="Character Name"></input>
@@ -92,7 +92,7 @@ export default function CharacterSheetCont() {
                     <FlexRow>
                         <Backstory>
                             <div>
-                                <label>Character Backstory</label><textarea value={currStory}></textarea>
+                                <label>Character Backstory</label><textarea value={currStory}onChange={(e) =>{e.preventDefault();}}></textarea>
                             </div>
                         </Backstory>
                         <FlexColumn>

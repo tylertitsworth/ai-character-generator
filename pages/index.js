@@ -25,7 +25,7 @@ import {
 	getRace
 } from '../redux/selectors'
 // import { X } from '../node_modules/@emotion-icons/octicons/index';
-import { Action, FormDisplay, FlexColumn, FlexRow, ButtonDisplay } from '../styles/globals';
+import { Action, FormDisplay, FlexColumn, FlexRow, ButtonDisplay, PageFlex } from '../styles/globals';
 import Dropdown from '../components/Dropdown';
 import SkillDropdown from '../components/SkillDropdown';
 import AbilityScoreDisplay from '../components/AbilityScoreDisplay';
@@ -147,16 +147,11 @@ function GeneralCharacter() {
 				</form>
 				{spin ? <Spinner /> : <></>}
 				{toggle || currClass !== undefined ? <>
-					<h1>Results: </h1>
-					<FlexRow>
-						<FlexColumn>
-							<Dropdown/>
+					<PageFlex>
+							<FlexRow><Dropdown/></FlexRow>
 							<SkillDropdown classes={allClasses} />
-						</FlexColumn>
-						<FlexColumn>
-							<AbilityScoreDisplay data={allAbilityScores}/>
-						</FlexColumn>
-					</FlexRow>
+							<AbilityScoreDisplay data={allAbilityScores} />
+					</PageFlex>
 				</> : <></>}
 
 			</FormDisplay>

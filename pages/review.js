@@ -31,17 +31,37 @@ export default function Review() {
     const allSkills = useSelector(getAllSkills)
     var currClass = useSelector(getClass)
     var currRace = useSelector(getRace)
+    var currClassData = [];
+    var spellPageToggle
     let width = 0               // how to make dynamically check? Works through typical functionality
     if (allClasses != undefined) width = screen.width;
+    console.log(currClass)
+    console.log(allClasses)
+
+    if (allClasses != undefined) {
+        allClasses.forEach((option) => {
+            if (option[1].name == currClass) {
+                currClassData = option[1]
+                if (option[1].spellcasting !== null) {
+                    spellPageToggle = true;
+                }
+                else {
+                    spellPageToggle = false;
+                }
+            }
+        })
+        console.log(currClassData)
+    }
     return (
 
         <Layout Title="Review Information">
-            {allClasses != undefined ? <>
+            {allClasses !== undefined ? <>
                 <CharSheetContainer>
                     <div ref={ref}>
                         <CharacterSheet />
                         <CharacterSheetCont />
-                        <CharacterSheetFinal />
+                        {spellPageToggle ? <CharacterSheetFinal /> : <></> }
+                        
                     </div>
                 </CharSheetContainer>
                 <ButtonDisplay>

@@ -25,16 +25,16 @@ export default function SideNavbar(props) {
                             <Sideaction active={router.pathname == "/backstory" ? "active" : ""}>Build Backstory</Sideaction>
                         </Link>
                     </li>
-                    { /* here will be an if the story has been generated */}
-                    <li>
-                        <Link href="/review">
-                            <Sideaction active={router.pathname == "/review" ? "active" : ""}>Review Results</Sideaction>
-                        </Link>
-                    </li>
+                    {currStory != undefined ? 
+                        <li>
+                            <Link href="/review">
+                                <Sideaction active={router.pathname == "/review" ? "active" : ""}>Review Results</Sideaction>
+                            </Link>
+                        </li>
+                        : <></> }
                 </> : <></>}
 
             </ul>
-            <Footer />
         </Sidebar>
     )
 }

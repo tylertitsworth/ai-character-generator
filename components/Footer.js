@@ -5,16 +5,13 @@ import { useSelector } from 'react-redux';
 import { getClass, getStory } from '../redux/selectors';
 import { FooterDiv } from '../styles/globals'
 
-export default function Footer(props) {
+export default function Footer() {
     return (
-
         <FooterDiv>
-            <h4>Created by:</h4>
-            <section>
-                <h5>Tyler Titsworth</h5>
-                <h5>Miguel Ruiz</h5>
-                <h5>Kira L. Jiroux</h5>
-             </section>
+            <h5>Created by:</h5>
+            <h5>Tyler Titsworth</h5>
+            <h5>Miguel Ruiz</h5>
+            <h5>Kira L. Jiroux</h5>
         </FooterDiv>
     )
 }

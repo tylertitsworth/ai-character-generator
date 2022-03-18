@@ -45,7 +45,7 @@ const Sidebar = styled.div`
     margin-bottom: 0;
     
     background-color: rgba(64,6,10,.6);
-    border-right: 10px groove #FACE7F;
+    border-right: 10px groove #FFC357;
     box-shadow: 3px 3px 6px -3px rgba(0,0,0,0.7);
     ul { padding: 0; };
 
@@ -61,9 +61,17 @@ const Sideaction = styled.button`
     font-size: 20px;
     text-align: left;
     padding-left: 20px;
+    padding-bottom: 10px;
     height: 50px;
     background-color: rgba(0,0,0,0);
     border: 0;
+    border-bottom: 1px solid #FACE7F;
+    outline: none;
+
+    &:hover {
+        color: #f6a81b;
+    };
+
     @media (min-width: ${breakpoints.sm + 1}px) and (max-width: ${breakpoints.lg}px) {
         font-size: 16px;
     };
@@ -81,11 +89,34 @@ const Sideaction = styled.button`
 const Page = styled.div`
     width: 85%;
     padding-left: 15%;
+    height: 99%;
     display: flex;
     flex-direction: column;
+    flex-wrap: nowrap;
     align-items: center;
+
+    footer{
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        margin-right: 10px;
+        width: 25%;
+        margin-bottom: 0;
+        
+    }
+    
     @media(max-width: ${breakpoints.sm}px) {
         text-align: center;
+        footer{
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            margin: 0;
+            display: flex;
+            margin-bottom: 0;
+            div {margin-bottom: 50px; width: 60%; display: flex; flex-direction: column;};
+            
+        }
     };
 `;
 
@@ -97,6 +128,7 @@ const ButtonDisplay = styled.div`
     display: flex;
     flex-direction: row-reverse;
     align-items: flex-end;
+    margin-bottom: 90px;
 `;
 
 
@@ -185,6 +217,7 @@ const FormDisplay = styled.div`
     @media(max-width: ${breakpoints.sm}px) {
         min-height: 100%;
         overflow-y: auto;
+        
         form {
             input{
                 height: 30px;
@@ -240,6 +273,7 @@ const Title = styled.h1`
     color: #CB2D38;
     font-size: 54px;
     justify-content: center;
+    text-decoration: underline;
 
     @media (min-width: ${breakpoints.sm + 1}px) and (max-width: ${breakpoints.lg}px) {
         font-size: 45px;
@@ -279,6 +313,7 @@ const SkillField = styled.div`
     display: flex;
     width: 45%;
     margin-top: 9px;
+    margin-bottom: 10%;
 
     h3 {
         padding-left: 10px;
@@ -322,9 +357,21 @@ const StyledSelect = styled.select`
             option {font-size: 12px;};
     };
 `;
+const PageFlex = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    @media(max-width: ${breakpoints.sm}px) {
+        flex-wrap: wrap;
+        flex-direction: column;
+    };
+`;
 
 const FlexColumn = styled.div`
-    width: 45%;
+    width: 100%;
     height: 100%;
     margin: 10px;
     display: flex;
@@ -346,9 +393,11 @@ const FlexColumn = styled.div`
     };
 `;
 
+
+
 const FlexRow = styled.div`
 
-    width: 100%;
+    width: 50%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -389,8 +438,43 @@ const FlexRow = styled.div`
 
 `;
 
+const ContentContainer = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    margin: 0;
+    @media(max-width: ${breakpoints.sm}px) {
+        flex-direction: column;
+        flex-wrap: wrap;
+    };
+`;
+
+const ItemContainer = styled.div`
+    width: 99%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    @media (min-width: ${breakpoints.sm + 1}px) and (max-width: ${breakpoints.lg}px) {
+        margin-top: 0;
+        width: 100%;
+        margin-bottom: 0;
+    };
+    @media(max-width: ${breakpoints.sm}px) {
+        margin-top: 0;
+        width: 100%;
+        margin-bottom: 0;
+    };
+
+`;
+
 const AbilityScore = styled.div`
-    width: 46%;
+    width: 45%;
     margin-left: 5px;
     margin-right: 5px;
     background-color: #CB2D38;
@@ -467,7 +551,7 @@ const AbilityScore = styled.div`
 
         h1{
             width: 10%;
-            font-size: 12px;
+            font-size: 13px;
             margin-right: 0;
             margin-left: 5px;
         };
@@ -498,14 +582,14 @@ const StoryDisplay = styled.div`
     border-radius: 3px;
 
     textarea {
-        width: 95%;
+        width: 99%;
         height: 95%;
         text-transform: none;
         font-size: 18px;
         font-weight: normal;
         border: 0;
         resize: none;
-        
+        outline: none;
     };
 `;
 
@@ -558,12 +642,12 @@ const Error = styled.div`
             margin-top: 8px;
             margin-left: 0;
             margin-right: 0;
-            font-size: 12px;
+            font-size: 10px;
         };
         h3 {
             margin-top: 0;
             order: 2;
-            font-size: 10px;
+            font-size: 8px;
         };
 
     };
@@ -572,73 +656,52 @@ const Error = styled.div`
 const FooterDiv = styled.div`
     width: 100%;
     height: 30%;
-    position: absolute;
-    bottom: 10px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: no-wrap;
-    text-align: right;
+    text-align: center;
+    justify-content: space-between;
+    align-items: center;
     color: #FACE7F;
     
-
-    h4 {
-        text-decoration: underline;
-        border-bottom: 1px solid #FACE7F;
-        margin-bottom: 0;
-        font-size: 12px;
+    h5 {
+        font-size: 13px;
+        margin-right: 20px;
+        text-transform: none;
+        &:first-of-type {text-transform: uppercase; margin-right: 0; font-size: 10px;}
+        &:hover {
+            &:first-of-type { color: #FACE7f; text-shadow: none;};
+            color: #f6a81b;
+            text-shadow: 0px 0px 3px rgba(255,255,255,.6), 0px 0px 2px rgba(255,255,255,.3);
     };
-    section {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-        h5 {
-            font-size: 13px;
-            margin-right: 10px;
-            &:hover {
-                font-size: 16px;
-                text-shadow: 0px 0px 3px white;
-                margin-right: 5px;
-            };
-        };
-    };
+   
 
     @media (min-width: ${breakpoints.sm + 1}px) and (max-width: ${breakpoints.lg}px) {
 
     };
 
     @media(max-width: ${ breakpoints.sm }px) {
-        height: 20%;
-        margin-bottom: 20px;
-        h4 {
-            font-size: 8px;
-        };
-        section {
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            flex-wrap: no-wrap;
-            justify-content: center;
-            h5 {
-                
-                padding: 0;
-                margin-top: 10px;
-                margin-bottom: 10px;
-                font-size: 8px;
-                margin-right: 5px;
-                &:hover {
-                    font-size: 8px;
-                };
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        margin-left: 3px;
+        color: #FACE7F;
+        font-size: 10px;
+        margin-right: 3px;
+        margin-top: 3px;
+        margin-bottom: 10px;
 
-            };
-        };
+        h5 {
+            width: 100%;
+            font-size: 10px;
     };
 `;
 
 
 export {
     Frame, Sidebar, Sideaction, Page, FormDisplay, Action, Title, Field, SkillField,
-    ButtonDisplay, StyledSelect, FlexColumn, FlexRow, AbilityScore,
-    StoryDisplay, Error, FooterDiv
+    ButtonDisplay, StyledSelect, FlexColumn, FlexRow, AbilityScore, ItemContainer,
+    StoryDisplay, Error, FooterDiv, PageFlex, ContentContainer
 }

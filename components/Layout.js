@@ -11,8 +11,8 @@ export default function Layout(props) {
             <Page>
                 <Title>{props.Title}</Title>
                 {props.children}
+                <footer><Footer/></footer>
             </Page>
-
         </Frame>
     )
 }

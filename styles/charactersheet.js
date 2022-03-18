@@ -93,10 +93,12 @@ const CharSheet = styled.form`
     };
 
     @media(max-width: ${breakpoints.sm}px) {
+        overflow-y: auto;
+        overflow-x: auto;
         margin-right: auto;
         margin-left: auto;
         width: 100%;
-        height: 100%;
+        height: 800px;
     };
 
 `;
@@ -302,21 +304,28 @@ const Score = styled.div`
 
 
 const Modifier = styled.div`
-    margin-top: -7px;
-    input {
-        background: white;
-        width: 30px;
-        height: 20px;
-        border: 1px inset black;
-        border-radius: 20px;
-        text-align: center;
+    margin-top: -23px;
+    div {
+        h4 {
+            background: white;
+            height: 20px;
+            width: 30px;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px inset black;
+            border-radius: 20px;
+            text-align: center;
+            font-size: 12px;
+            padding-top: 5px;
+        };
     };
 
     @media(max-width: ${breakpoints.sm}px) {
         margin-top: -50px;
-        input {
-            width: 25px;
-            height: 10px;
+        div {
+            h4 {
+                font-size: 8px;
+            };
         };
     };
 `;
@@ -517,6 +526,7 @@ const ListCheckboxInput = styled.input`
     border: 1px solid black;
     border-radius: 10px;
     order: 1;
+    background-color: ${props => props.checked ? 'black' : 'white'}
 
     @media(max-width: ${breakpoints.sm}px) {
         width: 7px;
@@ -637,6 +647,7 @@ const CombatScore = styled.div`
         display: flex;
         flex-direction: column-reverse;
         align-items: center;
+        justify-content: center;
         margin-top: 10px;
 
         label {
@@ -665,6 +676,7 @@ const CombatScore = styled.div`
             border-radius: 10px;
             border: 1px solid black;
             text-align: center;
+            vertical-align: center;
             font-size: 30px;
         };
     }
@@ -1170,7 +1182,20 @@ const Flavor = styled.section`
             border: 0;
             border-radius: 0;
             height: 4em;
+            display: flex;
+            flex-direction: column;
+            font-size: 12px;
         };
+        select {
+            height: 100%;
+            width: 100%;
+            font-size: 2px;
+            overflow-x: auto;
+            border: none;
+            outline: none;
+            option { font-size: 12px; };
+        };
+        
         &:first-of-type {
             border-radius: 10px 10px 0 0;
         }
@@ -1739,15 +1764,17 @@ const Spell = styled.div`
 
 
 const CharSheetContainer = styled.div`
-    width: 60%;
+    width: 50%;
     display: flex;
     flex-direction: column;
     flex-wrap: no-wrap;
     align-items: center;
     margin: 30px;
+    margin-top: 0;
+    margin-bottom: 0;
     padding: 30px;
     background-color: #FACE7F;
-    max-height: 600px;
+    max-height: 900px;
     overflow-y: auto;
     overflow-x: auto;
     

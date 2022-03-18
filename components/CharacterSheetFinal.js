@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import {
     getClass,
     getRace,
+    getAbilityScores,
     getAllClasses,
     getAllRaces,
     getAllBackgrounds,
@@ -18,24 +19,73 @@ import {
 } from '../styles/charactersheet'
 
 export default function CharacterSheetFinal() {
+    var currClass = useSelector(getClass)
+    var allClasses = useSelector(getAllClasses)
+
+
+    var currAbilityScores = useSelector(getAbilityScores)
+    const [strMod, setStrMod] = useState(Math.floor((currAbilityScores[0] - 10) / 2))
+    const [dexMod, setDexMod] = useState(Math.floor((currAbilityScores[1] - 10) / 2))
+    const [conMod, setConMod] = useState(Math.floor((currAbilityScores[2] - 10) / 2))
+    const [intMod, setIntMod] = useState(Math.floor((currAbilityScores[3] - 10) / 2))
+    const [wisMod, setWisMod] = useState(Math.floor((currAbilityScores[4] - 10) / 2))
+    const [chaMod, setChaMod] = useState(Math.floor((currAbilityScores[5] - 10) / 2))
+
+
+    var currClassData
+    var spellCastingMod
+    var spellAttackBonus
+    var spellCastingAbility
+    var currSpellCastingAbility
+    if (allClasses != undefined) {
+        allClasses.forEach((option) => {
+            if (option[1].name == currClass) {
+                currClassData = option[1]
+                spellCastingAbility = option[1].spellcasting.spellcasting_ability.name
+
+            }
+        })
+        if (spellCastingAbility == "STR") {
+            spellCastingMod = strMod;
+        }
+        else if (spellCastingAbility == "DEX") {
+            spellCastingMod = dexMod
+        }
+        else if (spellCastingAbility == "CON") {
+            spellCastingMod = conMod;
+        }
+        else if (spellCastingAbility == "INT") {
+            spellCastingMod = intMod;
+        }
+        else if (spellCastingAbility == "WIS") {
+            spellCastingMod = wisMod;
+        }
+        else if (spellCastingAbility == "CHA") {
+            spellCastingMod = chaMod;
+        }
+        spellAttackBonus = (spellCastingMod + 2)
+    }
+    console.log(currClassData)
+
+
     return (
-        <CharSheet>
+        <CharSheet onChange={(e) => { e.preventDefault(); }}>
             <StyledHeader>
                 <CharName>
-                    <label>Spellcasting Class</label><input name="charname" ></input>
+                    <label>Spellcasting Class</label><input name="charname" value={currClass} onChange={(e) => { e.preventDefault(); }}></input>
                 </CharName>
                 <SpellMisc>
                     <div>
                         <label>Spellcasting Ability</label>
-                        <input ></input>
+                        <input value={spellCastingAbility} onChange={(e) => { e.preventDefault(); }}></input>
                     </div>
                     <div>
                         <label>Spell Save DC</label>
-                        <input ></input>
+                        <input value={"+" + (8 + spellAttackBonus)}></input>
                     </div>
                     <div>
                         <label>Spell Attack Bonus</label>
-                        <input ></input>
+                        <input value={"+" + (spellCastingMod + 2) }></input>
                     </div>
 
                 </SpellMisc>

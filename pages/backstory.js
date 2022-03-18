@@ -87,35 +87,36 @@ export default function Backstory() {
     }
 
     return (
-        <Layout>
-            <FormDisplay>
-                <form onSubmit={onSubmit}>
+        <Layout Title="The Backstory">
+            {charClassStory !== undefined ? 
+                <FormDisplay>
+                    <form onSubmit={onSubmit}>
 
-                    <input value={storyInput} placeholder="Enter a description of your character's story" onChange={(e) => setStoryInput(e.target.value)} />
-                    <button>Submit</button>
-                </form>
-                {spin ? <Spinner /> : <></>}
-                {toggle || theStory !== undefined ?
-                    //stuff
-                    <StoryDisplay>
-                        <textarea value={storyText} onChange={(e) =>  onChange(e) }></textarea>
-                    </StoryDisplay>
+                        <input value={storyInput} placeholder="Enter a description of your character's story" onChange={(e) => setStoryInput(e.target.value)} />
+                        <button>Submit</button>
+                    </form>
+                    {spin ? <Spinner /> : <></>}
+                    {toggle || theStory !== undefined ?
+                        //stuff
+                        <StoryDisplay>
+                            <textarea value={storyText} onChange={(e) =>  onChange(e) }></textarea>
+                        </StoryDisplay>
                     : <></> }
+                    {resubmit ? // If the user wants to resubmit their updated story
+                        <ButtonDisplay><Action onClick={onReSubmit}>Save</Action></ButtonDisplay>
+                    : <></> }
+                </FormDisplay>  : <>
+                <Error>
+                    <h1>Please start this process from the beginning.</h1>
 
-                {resubmit ? // If the user wants to resubmit their updated story
-                    <ButtonDisplay><Action onClick={onReSubmit}>Resubmit</Action></ButtonDisplay>
-                    : <></> }
-                {!toggle && charClassStory == undefined ? // Error handling
-                    <>
-                        <Error>
-                            <h1>Please start this process from the beginning.</h1>
                             <Link href="/">
                                 <Action>To The Beginning</Action>
-                            </Link>
-                        </Error>
-                    </>
-                    : <></> }
-            </FormDisplay>
+                        </Link>
+                    </Error>
+                </>
+
+            }
+            
                 <ButtonDisplay>
                     {toggle || theStory !== undefined ?
                         <Link href="/review">

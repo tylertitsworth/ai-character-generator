@@ -1,5 +1,5 @@
 import React from 'react';
-import { Field, StyledSelect } from '../styles/globals'
+import { Field, StyledSelect, FlexRow } from '../styles/globals'
 import { useDispatch, useSelector} from 'react-redux';
 import {
 	writeClass,

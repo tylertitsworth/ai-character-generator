@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { SkillField, StyledSelect, FlexRow, Error } from '../styles/globals'
+import { SkillField, StyledSelect, FlexRow, Error, ItemContainer, ContentContainer } from '../styles/globals'
 
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -15,7 +15,7 @@ export default function SkillDropdown(props) {
 
 	var testClass = [];
 	var choose = 0;
-	var choices = [];
+	var choicesFiltered = [];
 	const currentClass = useSelector(getClass)
 	console.log("CURRENT CLASS FROM SKILL DROPDOWN", currentClass)
 
@@ -49,6 +49,7 @@ export default function SkillDropdown(props) {
 		var choose = testClass[1].proficiency_choices[2].choose		// (1-4)
 		var choices = testClass[1].proficiency_choices[2].from		// Names
 	}
+	var choicesFiltered = choices.filter(skill => !skill.name.includes("Skill: Religion") && !skill.name.includes("Skill: Insight"));
 
 	//console.log(`Test Class: ${testClass[1].name}`)
 	useEffect(() => {
@@ -62,36 +63,37 @@ export default function SkillDropdown(props) {
 		if (toggle) {
 
 			if (choose == 1) {
-				setSkill1(choices[0].name.replace("Skill: ", ""))
+				setSkill1(choicesFiltered[0].name.replace("Skill: ", ""))
 				setSkill2("")
 				setSkill3("")
 				setSkill4("")
 				setToggle(false)
 			}
 			else if (choose == 2) {
-				setSkill1(choices[0].name.replace("Skill: ", ""))
-				setSkill2(choices[1].name.replace("Skill: ", ""))
+				setSkill1(choicesFiltered[0].name.replace("Skill: ", ""))
+				setSkill2(choicesFiltered[1].name.replace("Skill: ", ""))
 				setSkill3("")
 				setSkill4("")
 				setToggle(false)
 			}
 			else if (choose == 3) {
-				setSkill1(choices[0].name.replace("Skill: ", ""))
-				setSkill2(choices[1].name.replace("Skill: ", ""))
-				setSkill3(choices[2].name.replace("Skill: ", ""))
+				setSkill1(choicesFiltered[0].name.replace("Skill: ", ""))
+				setSkill2(choicesFiltered[1].name.replace("Skill: ", ""))
+				setSkill3(choicesFiltered[2].name.replace("Skill: ", ""))
 				setSkill4("")
 				setToggle(false)
 			}
 			else {
-				setSkill1(choices[0].name.replace("Skill: ", ""))
-				setSkill2(choices[1].name.replace("Skill: ", ""))
-				setSkill3(choices[2].name.replace("Skill: ", ""))
-				setSkill4(choices[3].name.replace("Skill: ", ""))
+				setSkill1(choicesFiltered[0].name.replace("Skill: ", ""))
+				setSkill2(choicesFiltered[1].name.replace("Skill: ", ""))
+				setSkill3(choicesFiltered[2].name.replace("Skill: ", ""))
+				setSkill4(choicesFiltered[3].name.replace("Skill: ", ""))
 				setToggle(false)
 			}
 
 		}
-
+		// Just to console.log the skills each time they're changed; 
+		// if removed, can remove the variables from the [] below
 		console.log("Skill 1: ", skill1.replace("Skill: ", ""))
 		console.log("Skill 2: ", skill2.replace("Skill: ", ""))
 		console.log("Skill 3: ", skill3.replace("Skill: ", ""))
@@ -99,8 +101,6 @@ export default function SkillDropdown(props) {
 	}, [skill1, skill2, skill3, skill4, toggle])
 
 	useEffect(() => {
-
-
 		if (choose == 1) {
 			setIsValid(true)
 		}
@@ -132,32 +132,27 @@ export default function SkillDropdown(props) {
 				setIsValid(true)
 			}
 		}
-
-
 	}, [skill1, skill2, skill3, skill4])
 
 	useEffect(() => {
 		if (isValid == true) {
+			allSkills = ["Religion", "Insight"]
 			if (choose == 1) {
-				allSkills = []
 				allSkills.push(skill1)
 				dispatch(writeSkills(allSkills))
 			}
 			else if (choose == 2) {
-				allSkills = []
 				allSkills.push(skill1)
 				allSkills.push(skill2)
 				dispatch(writeSkills(allSkills))
 			}
 			else if (choose == 3) {
-				allSkills = []
 				allSkills.push(skill1)
 				allSkills.push(skill2)
 				allSkills.push(skill3)
 				dispatch(writeSkills(allSkills))
 			}
 			else {
-				allSkills = []
 				allSkills.push(skill1)
 				allSkills.push(skill2)
 				allSkills.push(skill3)
@@ -166,7 +161,7 @@ export default function SkillDropdown(props) {
 			}
 
 		}
-	}, [currentClass, isValid])
+	}, [currentClass, skill1, skill2, skill3, skill4, isValid])
 
 
 	if (choose == 1) {
@@ -175,7 +170,7 @@ export default function SkillDropdown(props) {
 				<h3>Choose {choose} Skill</h3>
 				<SkillField>
 					<StyledSelect value={skill1} onChange={(event) => { console.log(event.target.value); setSkill1(event.target.value) }}> {
-						choices.map((choice, i) =>
+						choicesFiltered.map((choice, i) =>
 							<option key={i} value={choice.name.replace("Skill: ", "")}>{choice.name.replace("Skill: ", "")}</option>
 						)
 					}
@@ -186,82 +181,45 @@ export default function SkillDropdown(props) {
 	}
 	else if (choose == 2) {
 		return (
-			<>
+			<ContentContainer>
 				<FlexRow>
-					<h2>Choose {choose} Skills</h2>
-					<SkillField>
-						<StyledSelect value={skill1} onChange={(event) => setSkill1(event.target.value)}> {
-							choices.map((choice, i) =>
-								<option key={i} value={choice.name.replace("Skill: ", "")}>{choice.name.replace("Skill: ", "")}</option>
-							)
-						}
-						</StyledSelect>
-					</SkillField>
-					<SkillField>
-						<StyledSelect value={skill2} onChange={(event) => setSkill2(event.target.value)}> {
-							choices.map((choice, i) =>
-								<option key={i} value={choice.name.replace("Skill: ", "")}>{choice.name.replace("Skill: ", "")}</option>
-							)
-						}
-						</StyledSelect>
-					</SkillField>
-				</FlexRow>
-				{isValid ? <> </> :
-					<Error>
-						<h1>Please choose unique skills!</h1>
-					</Error>
-
-				}
-			</>
-		)
-	}
-	else if (choose === 3) {
-		return (
-			<>
-				<FlexRow>
-					<h2>Choose {choose} Skills</h2>
-					<SkillField>
-						<StyledSelect value={skill1} onChange={(event) => setSkill1(event.target.value)}> {
-							choices.map((choice, i) =>
-								<option key={i} value={choice.name.replace("Skill: ", "")}>{choice.name.replace("Skill: ", "")}</option>
-							)
-						}
-						</StyledSelect>
-					</SkillField>
-					<SkillField>
-						<StyledSelect value={skill2} onChange={(event) => setSkill2(event.target.value)}> {
-							choices.map((choice, i) =>
-								<option key={i} value={choice.name.replace("Skill: ", "")}>{choice.name.replace("Skill: ", "")}</option>
-							)
-						}
-						</StyledSelect>
-					</SkillField>
-					<SkillField>
-						<StyledSelect value={skill3} onChange={(event) => setSkill3(event.target.value)}> {
-							choices.map((choice, i) =>
-								<option key={i} value={choice.name.replace("Skill: ", "")}>{choice.name.replace("Skill: ", "")}</option>
-							)
-						}
-						</StyledSelect>
-					</SkillField>
+					<ItemContainer>
+						<h2>Choose {choose} Skills</h2>
+						<SkillField>
+							<StyledSelect value={skill1} onChange={(event) => setSkill1(event.target.value)}> {
+								choicesFiltered.map((choice, i) =>
+									<option key={i} value={choice.name.replace("Skill: ", "")}>{choice.name.replace("Skill: ", "")}</option>
+								)
+							}
+							</StyledSelect>
+						</SkillField>
+						<SkillField>
+							<StyledSelect value={skill2} onChange={(event) => setSkill2(event.target.value)}> {
+								choicesFiltered.map((choice, i) =>
+									<option key={i} value={choice.name.replace("Skill: ", "")}>{choice.name.replace("Skill: ", "")}</option>
+								)
+							}
+							</StyledSelect>
+						</SkillField>
+					</ItemContainer>
 				</FlexRow>
 				{isValid ? <> </> :
 					<Error>
 						<h1>Please choose unique skills for your character!</h1>
 					</Error>
 				}
-			</>
+			</ContentContainer>
 		)
 	}
-
-	else {
+	else if (choose === 3) {
 		return (
-			<>
+			<ContentContainer>
 				<FlexRow>
+				<ItemContainer>
 					<h2>Choose {choose} Skills</h2>
 					<SkillField>
 						<StyledSelect value={skill1} onChange={(event) => setSkill1(event.target.value)}> {
-							choices.map((choice, i) =>
+							choicesFiltered.map((choice, i) =>
 								<option key={i} value={choice.name.replace("Skill: ", "")}>{choice.name.replace("Skill: ", "")}</option>
 							)
 						}
@@ -269,7 +227,7 @@ export default function SkillDropdown(props) {
 					</SkillField>
 					<SkillField>
 						<StyledSelect value={skill2} onChange={(event) => setSkill2(event.target.value)}> {
-							choices.map((choice, i) =>
+							choicesFiltered.map((choice, i) =>
 								<option key={i} value={choice.name.replace("Skill: ", "")}>{choice.name.replace("Skill: ", "")}</option>
 							)
 						}
@@ -277,27 +235,69 @@ export default function SkillDropdown(props) {
 					</SkillField>
 					<SkillField>
 						<StyledSelect value={skill3} onChange={(event) => setSkill3(event.target.value)}> {
-							choices.map((choice, i) =>
+							choicesFiltered.map((choice, i) =>
 								<option key={i} value={choice.name.replace("Skill: ", "")}>{choice.name.replace("Skill: ", "")}</option>
 							)
 						}
 						</StyledSelect>
 					</SkillField>
-					<SkillField>
-						<StyledSelect value={skill4} onChange={(event) => setSkill4(event.target.value)}> {
-							choices.map((choice, i) =>
-								<option key={i} value={choice.name.replace("Skill: ", "")}>{choice.name.replace("Skill: ", "")}</option>
-							)
-						}
-						</StyledSelect>
-					</SkillField>
+					</ItemContainer>
 				</FlexRow>
 				{isValid ? <> </> :
 					<Error>
-						<h1>Please choose unique skills!</h1>
+						<h1>Please choose unique skills for your character!</h1>
 					</Error>
 				}
-			</>
+			</ContentContainer>
+		)
+	}
+
+	else {
+		return (
+			<ContentContainer>
+				<FlexRow>
+					<ItemContainer>
+						<h2>Choose {choose} Skills</h2>
+						<SkillField>
+							<StyledSelect value={skill1} onChange={(event) => setSkill1(event.target.value)}> {
+								choicesFiltered.map((choice, i) =>
+									<option key={i} value={choice.name.replace("Skill: ", "")}>{choice.name.replace("Skill: ", "")}</option>
+								)
+							}
+							</StyledSelect>
+						</SkillField>
+						<SkillField>
+							<StyledSelect value={skill2} onChange={(event) => setSkill2(event.target.value)}> {
+								choicesFiltered.map((choice, i) =>
+									<option key={i} value={choice.name.replace("Skill: ", "")}>{choice.name.replace("Skill: ", "")}</option>
+								)
+							}
+							</StyledSelect>
+						</SkillField>
+						<SkillField>
+							<StyledSelect value={skill3} onChange={(event) => setSkill3(event.target.value)}> {
+								choicesFiltered.map((choice, i) =>
+									<option key={i} value={choice.name.replace("Skill: ", "")}>{choice.name.replace("Skill: ", "")}</option>
+								)
+							}
+							</StyledSelect>
+						</SkillField>
+						<SkillField>
+							<StyledSelect value={skill4} onChange={(event) => setSkill4(event.target.value)}> {
+								choicesFiltered.map((choice, i) =>
+									<option key={i} value={choice.name.replace("Skill: ", "")}>{choice.name.replace("Skill: ", "")}</option>
+								)
+							}
+							</StyledSelect>
+						</SkillField>
+					</ItemContainer>
+				</FlexRow>
+				{isValid ? <> </> :
+					<Error>
+						<h1>Please choose unique skills for your character!</h1>
+					</Error>
+				}
+			</ContentContainer>
 		)
 	}
 }

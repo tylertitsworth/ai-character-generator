@@ -88,7 +88,8 @@ const Bounce3 = styled.div`
 const SpinContainer = styled.div`
     justify-content: space-between;
     width: 50%;
-    margin-top: 30px;
+    margin-top: auto;
+    margin-bottom: auto;
     margin-left: auto;
     margin-right: auto;
     display: flex;
