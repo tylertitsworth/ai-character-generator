@@ -11,34 +11,24 @@ import {
 } from '../redux/selectors'
 
 export default function AbilityScoreDisplay(props) {
-	
 	const ABILITY_NAMES = ["Strength","Dexterity","Constitution","Intelligence","Wisdom","Charisma"]
-	console.log(ABILITY_NAMES)
 	var THE_SCORES_ARRAY = [15, 14, 13, 12, 10, 8]
 	var orderedAbilities = []
-
 	const [missingAbility, setMissingAbility] = useState("")
 	const [isValid, setIsValid] = useState(true)
 	const [toggle, setToggle] = useState(true)
-
 	const [abilityScore1, setAbilityScore1] = useState(ABILITY_NAMES[0])
 	const [abilityScore2, setAbilityScore2] = useState(ABILITY_NAMES[1])
 	const [abilityScore3, setAbilityScore3] = useState(ABILITY_NAMES[2])
 	const [abilityScore4, setAbilityScore4] = useState(ABILITY_NAMES[3])
 	const [abilityScore5, setAbilityScore5] = useState(ABILITY_NAMES[4])
 	const [abilityScore6, setAbilityScore6] = useState(ABILITY_NAMES[5])
-
 	const currClass = useSelector(getClass);
 	var classData = useSelector(getAllClasses);
 
-	//console.log(currClass, classData)
-
 	const dispatch = useDispatch()
 
-	useEffect(() => {
-		console.log("************* TOGGLING Class Changed")
-		setToggle(true)
-	}, [currClass])
+	useEffect(() => { setToggle(true) }, [currClass])
 	useEffect(() => {
 		if (toggle) {
 			if (currClass === "Fighter") {
@@ -161,21 +151,17 @@ export default function AbilityScoreDisplay(props) {
 				dispatch(writeAbilityScores([8, 10, 14, 12, 13, 15])) 
 				setToggle(false)
 			}
-
         }
-
 	}, [toggle])
 
 	// set initial ability state
 	useEffect(() => {
-
 		var abilityScoreCheck1 = ABILITY_NAMES[0]
 		var abilityScoreCheck2 = ABILITY_NAMES[1]
 		var abilityScoreCheck3 = ABILITY_NAMES[2]
 		var abilityScoreCheck4 = ABILITY_NAMES[3]
 		var abilityScoreCheck5 = ABILITY_NAMES[4]
 		var abilityScoreCheck6 = ABILITY_NAMES[5]
-
 
 		if (abilityScoreCheck1 != abilityScore1 && abilityScoreCheck1 != abilityScore2 && abilityScoreCheck1 != abilityScore3 &&
 			abilityScoreCheck1 != abilityScore4 && abilityScoreCheck1 != abilityScore5 && abilityScoreCheck1 != abilityScore6) {
@@ -217,20 +203,10 @@ export default function AbilityScoreDisplay(props) {
 			setIsValid(true)
 			//dispatch(writeAbilityScores())
 			setMissingAbility("")
-
         }
-		// console.log(`Ability Score 1: ${abilityScore1} is ${THE_SCORES_ARRAY[0]}`)
-		// console.log(`Ability Score 2: ${abilityScore2} is ${THE_SCORES_ARRAY[1]}`)
-		// console.log(`Ability Score 3: ${abilityScore3} is ${THE_SCORES_ARRAY[2]}`)
-		// console.log(`Ability Score 4: ${abilityScore4} is ${THE_SCORES_ARRAY[3]}`)
-		// console.log(`Ability Score 5: ${abilityScore5} is ${THE_SCORES_ARRAY[4]}`)
-		// console.log(`Ability Score 6: ${abilityScore6} is ${THE_SCORES_ARRAY[5]}`)
-
 	}, [abilityScore1, abilityScore2, abilityScore3, abilityScore4, abilityScore5, abilityScore6])
 
-
 	useEffect(() => {
-		
 		if (isValid) {
 			// oh boy Tyler is gonna hate me for this one!
 			// Strength
@@ -350,14 +326,7 @@ export default function AbilityScoreDisplay(props) {
 
 			dispatch(writeAbilityScores(orderedAbilities))
 		}
-		else {
-			//orderedAbilities = THE_SCORES_ARRAY
-		}
-		//console.log("><><><><><><><><><>< Ordered Abilities:", orderedAbilities)
-		//dispatch(writeAbilityScores(orderedAbilities))
-
 	}, [currClass,abilityScore1, abilityScore2,abilityScore3, abilityScore4, abilityScore5, abilityScore6, isValid])
-
 
 	return (
 		<ContentContainer>
@@ -365,17 +334,16 @@ export default function AbilityScoreDisplay(props) {
 				<ItemContainer>
 					<AbilityScore>
 						<h1>{THE_SCORES_ARRAY[0]}</h1>
-						<select value={abilityScore1} onChange={(event) => { console.log(event.target.value); setAbilityScore1(event.target.value) }}>
+						<select value={abilityScore1} onChange={(event) => { setAbilityScore1(event.target.value) }}>
 							{ABILITY_NAMES.map((ability, i) =>
 								<option key={i} value={ability}>{ability}</option>
 							)
 							}
 						</select>
 					</AbilityScore>
-
 					<AbilityScore>
 						<h1>{THE_SCORES_ARRAY[1]}</h1>
-						<select value={abilityScore2} onChange={(event) => { console.log(event.target.value); setAbilityScore2(event.target.value) }}>
+						<select value={abilityScore2} onChange={(event) => { setAbilityScore2(event.target.value) }}>
 							{ABILITY_NAMES.map((ability, i) =>
 								<option key={i} value={ability}>{ability}</option>
 							)
@@ -383,21 +351,19 @@ export default function AbilityScoreDisplay(props) {
 						</select>
 					</AbilityScore>
 				</ItemContainer>
-
 				<ItemContainer>
 					<AbilityScore>
 						<h1>{THE_SCORES_ARRAY[2]}</h1>
-						<select value={abilityScore3} onChange={(event) => { console.log(event.target.value); setAbilityScore3(event.target.value) }}>
+						<select value={abilityScore3} onChange={(event) => { setAbilityScore3(event.target.value) }}>
 							{ABILITY_NAMES.map((ability, i) =>
 								<option key={i} value={ability}>{ability}</option>
 							)
 							}
 						</select>
 					</AbilityScore>
-
 					<AbilityScore>
 						<h1>{THE_SCORES_ARRAY[3]}</h1>
-						<select value={abilityScore4} onChange={(event) => { console.log(event.target.value); setAbilityScore4(event.target.value) }}>
+						<select value={abilityScore4} onChange={(event) => { setAbilityScore4(event.target.value) }}>
 							{ABILITY_NAMES.map((ability, i) =>
 								<option key={i} value={ability}>{ability}</option>
 							)
@@ -405,21 +371,19 @@ export default function AbilityScoreDisplay(props) {
 						</select>
 					</AbilityScore>
 				</ItemContainer>
-
 				<ItemContainer>
 					<AbilityScore>
 						<h1>{THE_SCORES_ARRAY[4]}</h1>
-						<select value={abilityScore5} onChange={(event) => { console.log(event.target.value); setAbilityScore5(event.target.value) }}>
+						<select value={abilityScore5} onChange={(event) => { setAbilityScore5(event.target.value) }}>
 							{ABILITY_NAMES.map((ability, i) =>
 								<option key={i} value={ability}>{ability}</option>
 							)
 							}
 						</select>
 					</AbilityScore>
-
 					<AbilityScore>
 						<h1>{THE_SCORES_ARRAY[5]}</h1>
-						<select value={abilityScore6} onChange={(event) => { console.log(event.target.value); setAbilityScore6(event.target.value) }}>
+						<select value={abilityScore6} onChange={(event) => { setAbilityScore6(event.target.value) }}>
 							{ABILITY_NAMES.map((ability, i) =>
 								<option key={i} value={ability}>{ability}</option>
 							)
@@ -427,9 +391,6 @@ export default function AbilityScoreDisplay(props) {
 						</select>
 					</AbilityScore>
 				</ItemContainer>
-
-				
-
 			</FlexRow>
 			{isValid ? <> </> :
 				<Error>
@@ -437,9 +398,6 @@ export default function AbilityScoreDisplay(props) {
 					<h3>Missing Ability Score: {missingAbility}</h3>
 				</Error>
 			}
-
-
 		</ContentContainer>
     )
-
 }

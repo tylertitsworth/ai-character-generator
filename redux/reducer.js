@@ -14,9 +14,8 @@ import {
 } from './actions'
 
 function charReducer(state = [], action) {
-	console.log(state)
+	//console.log(state)
 	console.log("-- charReducer: ", action.type)
-
 	switch (action.type) {
 
 		case WRITE_CLASS:

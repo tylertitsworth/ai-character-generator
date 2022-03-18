@@ -5,10 +5,9 @@ import Layout from '../components/Layout';
 import CharacterSheet from '../components/CharacterSheet';
 import CharacterSheetCont from '../components/CharacterSheetCont';
 import CharacterSheetFinal from '../components/CharacterSheetFinal';
-
+import Head from 'next/head'
 import { Action, ButtonDisplay, Error } from '../styles/globals'
 import { CharSheetContainer } from '../styles/charactersheet';
-
 import { useSelector } from 'react-redux';
 import {
     getClass,
@@ -34,34 +33,27 @@ export default function Review() {
     var currClassData = [];
     var spellPageToggle
     let width = 0               // how to make dynamically check? Works through typical functionality
-    if (allClasses != undefined) width = screen.width;
-    console.log(currClass)
-    console.log(allClasses)
-
     if (allClasses != undefined) {
+        width = screen.width;
         allClasses.forEach((option) => {
             if (option[1].name == currClass) {
                 currClassData = option[1]
-                if (option[1].spellcasting !== null) {
-                    spellPageToggle = true;
-                }
-                else {
-                    spellPageToggle = false;
-                }
+                if (option[1].spellcasting !== null) { spellPageToggle = true; } 
+                else { spellPageToggle = false; }
             }
         })
-        console.log(currClassData)
     }
     return (
-
         <Layout Title="Review Information">
+            <Head>
+                <title>Download a PDF of your 5e Character!</title>
+            </Head>
             {allClasses !== undefined ? <>
                 <CharSheetContainer>
                     <div ref={ref}>
                         <CharacterSheet />
                         <CharacterSheetCont />
-                        {spellPageToggle ? <CharacterSheetFinal /> : <></> }
-                        
+                        {spellPageToggle ? <CharacterSheetFinal /> : <></> } 
                     </div>
                 </CharSheetContainer>
                 <ButtonDisplay>

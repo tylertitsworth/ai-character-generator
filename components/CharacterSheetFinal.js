@@ -65,8 +65,6 @@ export default function CharacterSheetFinal() {
         }
         spellAttackBonus = (spellCastingMod + 2)
     }
-    console.log(currClassData)
-
 
     return (
         <CharSheet onChange={(e) => { e.preventDefault(); }}>

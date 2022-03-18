@@ -53,29 +53,16 @@ export default function CharacterSheet() {
         if (a[1].name.toLowerCase() > b[1].name.toLowerCase()) return 1;
         return 0;
     })
+
     const dispatch = useDispatch();
 
     var currClassData = []
     var currRaceData = []
-
-    //console.log("Class: " + currClass + " Race: " + currRace);
-
-    allClasses.forEach((option) => {
-        if (option[1].name === currClass) {
-            currClassData = option[1]
-            
-        }
-    })
-
-    allRaces.forEach((option) => {
-        if (option[1].name === currRace) {
-            currRaceData = option[1]
-        }
-    })
+    allClasses.forEach((option) => { if (option[1].name === currClass) { currClassData = option[1] } })
+    allRaces.forEach((option) => { if (option[1].name === currRace) { currRaceData = option[1] } })
+    
     var savingThrows = currClassData.saving_throws
     var savingThrowsProf = [false,false,false,false,false,false]
-
-    console.log(savingThrows)
 
     const [skillRadio, setSkillRadio] = useState({
         'acrobatics': currSkills.includes("Acrobatics"),
@@ -99,25 +86,12 @@ export default function CharacterSheet() {
     })
 
     savingThrows.forEach((option) => {
-        if (option.name == "STR") {
-            savingThrowsProf[0] = true
-        }
-        if (option.name == "DEX") {
-            savingThrowsProf[1] = true
-        }
-        if (option.name == "CON") {
-            savingThrowsProf[2] = true
-        }
-        if (option.name == "INT") {
-            savingThrowsProf[3] = true
-        }
-        if (option.name == "WIS") {
-            savingThrowsProf[4] = true
-        }
-        if (option.name == "CHA") {
-            savingThrowsProf[5] = true
-        }
-
+        if (option.name == "STR") { savingThrowsProf[0] = true }
+        if (option.name == "DEX") { savingThrowsProf[1] = true }
+        if (option.name == "CON") { savingThrowsProf[2] = true }
+        if (option.name == "INT") { savingThrowsProf[3] = true }
+        if (option.name == "WIS") { savingThrowsProf[4] = true }
+        if (option.name == "CHA") { savingThrowsProf[5] = true }
     })
 
     const [proficiencyBonus, setProficiencyBonus] = useState({
@@ -129,10 +103,6 @@ export default function CharacterSheet() {
         'cha': savingThrowsProf[5]
     })
 
-    console.log(currClassData)
-    console.log(allBackgrounds)
-    console.log(proficiencyBonus)
-
     const personalityTraits = allBackgrounds[0][1].personality_traits.from
     const ideals = allBackgrounds[0][1].ideals.from
     const bonds = allBackgrounds[0][1].bonds.from
@@ -142,7 +112,6 @@ export default function CharacterSheet() {
     const [ideal, setIdeal] = useState(ideals[0].desc)
     const [bond, setBond] = useState(bonds[0])
     const [flaw, setFlaw] = useState(flaws[0])
-
     const [hpMax, setHpMax] = useState(currClassData.hit_die + conMod)
 
     return (

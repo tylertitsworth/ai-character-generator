@@ -17,8 +17,6 @@ export default function SkillDropdown(props) {
 	var choose = 0;
 	var choicesFiltered = [];
 	const currentClass = useSelector(getClass)
-	console.log("CURRENT CLASS FROM SKILL DROPDOWN", currentClass)
-
 	const [toggle, setToggle] = useState(true)		// will cause the useEffect below to only go off once
 	const [isValid, setIsValid] = useState(true)
 	const [skill1, setSkill1] = useState("")
@@ -27,19 +25,8 @@ export default function SkillDropdown(props) {
 	const [skill4, setSkill4] = useState("")
 	var allSkills = [];
 
-	for (var i = 0; i < classData.length; i++) {
-		if (classData[i][1].name === currentClass) {
-			console.log(classData[i])
-			testClass = classData[i]
-		}
-	}
-	console.log(testClass)
-	//var testClass = classData[5]		// change this number to get different results (0-11) 5, 0 
-
-	var MonkSwitch = testClass[1].proficiency_choices[0].from[0].name.includes("Skill: ")
-	//console.log("MONK SWITCH: ", MonkSwitch)		// False if Monk
-
-	if (MonkSwitch) {
+	for (var i = 0; i < classData.length; i++) { if (classData[i][1].name === currentClass) { testClass = classData[i] } }
+	if (testClass[1].proficiency_choices[0].from[0].name.includes("Skill: ")) {
 		//console.log("Not a Monk")
 		var choose = testClass[1].proficiency_choices[0].choose		// (1-4)
 		var choices = testClass[1].proficiency_choices[0].from		// Names
@@ -50,18 +37,11 @@ export default function SkillDropdown(props) {
 		var choices = testClass[1].proficiency_choices[2].from		// Names
 	}
 	var choicesFiltered = choices.filter(skill => !skill.name.includes("Skill: Religion") && !skill.name.includes("Skill: Insight"));
-
-	//console.log(`Test Class: ${testClass[1].name}`)
-	useEffect(() => {
-		console.log("CHANGED CLASS")
-
-		setToggle(true)
-	}, [currentClass])
+	useEffect(() => { setToggle(true) }, [currentClass])
 
 	// set skill state
 	useEffect(() => {
 		if (toggle) {
-
 			if (choose == 1) {
 				setSkill1(choicesFiltered[0].name.replace("Skill: ", ""))
 				setSkill2("")
@@ -90,47 +70,29 @@ export default function SkillDropdown(props) {
 				setSkill4(choicesFiltered[3].name.replace("Skill: ", ""))
 				setToggle(false)
 			}
-
 		}
 		// Just to console.log the skills each time they're changed; 
 		// if removed, can remove the variables from the [] below
-		console.log("Skill 1: ", skill1.replace("Skill: ", ""))
-		console.log("Skill 2: ", skill2.replace("Skill: ", ""))
-		console.log("Skill 3: ", skill3.replace("Skill: ", ""))
-		console.log("Skill 4: ", skill4.replace("Skill: ", ""))
+		// console.log("Skill 1: ", skill1.replace("Skill: ", ""))
+		// console.log("Skill 2: ", skill2.replace("Skill: ", ""))
+		// console.log("Skill 3: ", skill3.replace("Skill: ", ""))
+		// console.log("Skill 4: ", skill4.replace("Skill: ", ""))
 	}, [skill1, skill2, skill3, skill4, toggle])
 
 	useEffect(() => {
-		if (choose == 1) {
-			setIsValid(true)
-		}
+		if (choose == 1) { setIsValid(true) }
 		else if (choose == 2) {
-			if (skill1 == skill2) {
-				console.log("Two skills are the same")
-				setIsValid(false)
-			}
-			else {
-				setIsValid(true)
-			}
+			if (skill1 == skill2) { setIsValid(false) }
+			else { setIsValid(true) }
 		}
 		else if (choose == 3) {
-			if (skill1 == skill2 || skill1 == skill3 || skill2 == skill3) {
-				console.log("Two skills are the same")
-				setIsValid(false)
-			}
-			else {
-				setIsValid(true)
-			}
+			if (skill1 == skill2 || skill1 == skill3 || skill2 == skill3) { setIsValid(false) }
+			else { setIsValid(true) }
 		}
 		else {
 			if (skill1 == skill2 || skill1 == skill3 || skill1 == skill4
-				|| skill2 == skill3 || skill2 == skill4 || skill3 == skill4) {
-				console.log("Two skills are the same")
-				setIsValid(false)
-			}
-			else {
-				setIsValid(true)
-			}
+				|| skill2 == skill3 || skill2 == skill4 || skill3 == skill4) { setIsValid(false) }
+			else { setIsValid(true) }
 		}
 	}, [skill1, skill2, skill3, skill4])
 
@@ -162,7 +124,6 @@ export default function SkillDropdown(props) {
 
 		}
 	}, [currentClass, skill1, skill2, skill3, skill4, isValid])
-
 
 	if (choose == 1) {
 		return (

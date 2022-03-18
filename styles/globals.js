@@ -102,7 +102,10 @@ const Page = styled.div`
         margin-right: 10px;
         width: 25%;
         margin-bottom: 0;
-        
+        a{
+            color: inherit;
+            text-decoration: inherit;
+        }
     }
     
     @media(max-width: ${breakpoints.sm}px) {
@@ -138,6 +141,7 @@ const FormDisplay = styled.div`
     background-color: #FACE7F;
     padding: 10px;
     display: flex;
+    border-radius: 5px;
     flex-direction: column;
     @media(max-width: ${breakpoints.sm}px) {
         width: 90%;

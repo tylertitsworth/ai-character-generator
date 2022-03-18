@@ -21,6 +21,7 @@ export default async function (req, res) {
 }
 
 function generatePrompttwo(userStory,genClass,genRace) {
+  console.log("User input is-------------------------- "+userStory+","+genClass+","+genRace)
   const simpleReturn=("write a one page dungeons and dragon backstory with "+genClass+' ' +' class, ' + genRace + ' race and '+userStory+ ' .');
   return "write a one page dungeons and dragon backstory with "+genClass+' ' +' class, ' + genRace + ' race and '+userStory+ ' .';
 }

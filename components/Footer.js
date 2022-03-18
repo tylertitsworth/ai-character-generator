@@ -9,9 +9,9 @@ export default function Footer() {
     return (
         <FooterDiv>
             <h5>Created by:</h5>
-            <h5>Tyler Titsworth</h5>
-            <h5>Miguel Ruiz</h5>
-            <h5>Kira L. Jiroux</h5>
+            <h5><a href="https://github.com/titswort" target="_blank" rel="noopener noreferrer">Tyler Titsworth</a></h5>
+            <h5><a href="https://github.com/MiguelCoding" target="_blank" rel="noopener noreferrer">Miguel Ruiz</a></h5>
+            <h5><a href="https://github.com/kjiroux" target="_blank" rel="noopener noreferrer">Kira L. Jiroux</a></h5>
         </FooterDiv>
     )
 }

@@ -6,6 +6,7 @@ import { useQuery } from '@apollo/client';
 import { query } from '../hooks/qltree';
 import Layout from '../components/Layout'
 import Spinner from '../components/Spinner';
+import Head from 'next/head'
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	writeClass,
@@ -67,7 +68,6 @@ function GeneralCharacter() {
 	useEffect(() => {
 		if (loading === false) {
 			console.log("--- LOADED DATA: ", data)
-			console.log(Object.entries(data.abilityScores));
 			setAllAbilityScores(Object.entries(data.abilityScores));
 			setAllSkills(Object.entries(data.skills));
 			setAllLanguages(Object.entries(data.languages));
@@ -98,9 +98,7 @@ function GeneralCharacter() {
 	async function onSubmit(event) {
 		setToggle(false)
 		setSpin(true)
-		console.log("before the preventDefault + event object")
 		event.preventDefault();
-		console.log(">>>>>>>>>>Fetching the data from the call>>>>>>>");
 		const response = await fetch("/api/userClass", {
 			method: "POST",
 			headers: {
@@ -122,13 +120,8 @@ function GeneralCharacter() {
 		setResult(data.result);
 		setResultTwo(secondData.resultTwo);
 
-		console.log("original return from open AI call 1>> " + data.result);
-		console.log("original return from open AI call 2>> " + secondData.resultTwo);
 		var setPickedResult = handleSubmitCleaner(data.result);
-		console.log("This is the picked Class from the API after sanitazation>> " + setPickedResult);
-
 		var setPickedRace = handleSubmitCleanerRace(secondData.resultTwo); 
-		console.log("the picked race is "+setPickedRace);
 		
 		dispatch(writeClass(setPickedResult));
 		dispatch(writeRace(setPickedRace));
@@ -139,11 +132,14 @@ function GeneralCharacter() {
 		setToggle(true)
 	}
 	return (
-		<Layout Title="AI  D&D  Character  Creator">      
+		<Layout Title="AI  D&D  Character  Creator">
+		    <Head>
+                <title>AI Character Generator</title>
+            </Head> 
 			<FormDisplay>
 				<form onSubmit={onSubmit}>
 					<input value={classInput} placeholder="Enter a description of your character" onChange={(e) => setclassInput(e.target.value)} />
-					<button>Submit</button>
+					<button disabled={!classInput}>{classInput ? "Submit" : "Invalid"}</button>
 				</form>
 				{spin ? <Spinner /> : <></>}
 				{toggle || currClass !== undefined ? <>
@@ -153,7 +149,6 @@ function GeneralCharacter() {
 							<AbilityScoreDisplay data={allAbilityScores} />
 					</PageFlex>
 				</> : <></>}
-
 			</FormDisplay>
 			{toggle || currClass !== undefined ?
 				<ButtonDisplay>

@@ -18,11 +18,8 @@ import {
     Treasure
 } from '../styles/charactersheet'
 
-
 export default function CharacterSheetCont() {
     var currStory = useSelector(getStory)
-    //console.log(currStory)
-
     return (
         <CharSheet onChange={(e) => { e.preventDefault(); }}>
             <header>

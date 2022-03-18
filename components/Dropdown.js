@@ -18,7 +18,7 @@ export default function Dropdown(props) {
 	return (
 		<>
 			<Field>
-				<StyledSelect value={currentRace} onChange={(event) => { event.preventDefault(); console.log(event.target.value); dispatch(writeRace(event.target.value)) }}> {
+				<StyledSelect value={currentRace} onChange={(event) => { event.preventDefault(); dispatch(writeRace(event.target.value)) }}> {
 					allRaces.map((opt, i) =>
 						<option key={i} value={opt[1].name}>{opt[1].name}</option>
 					)
@@ -26,7 +26,7 @@ export default function Dropdown(props) {
 				</StyledSelect>
 				</Field>
 			<Field>
-				<StyledSelect value={currentClass} onChange={(event) => { event.preventDefault(); console.log(event.target.value); dispatch(writeClass(event.target.value)) }}> {
+				<StyledSelect value={currentClass} onChange={(event) => { event.preventDefault(); dispatch(writeClass(event.target.value)) }}> {
 					allClasses.map((opt, i) =>
 						<option key={i} value={opt[1].name}>{opt[1].name}</option>
 					)
